@@ -24,6 +24,7 @@ function Information() {
         <Route path="/" element={<InfoFirst />} />{" "}
         <Route path="*" element={<div>404 Not Found</div>} />{" "}
       </Routes>
+
       <TopScrollBtn />
     </DIV>
   );
