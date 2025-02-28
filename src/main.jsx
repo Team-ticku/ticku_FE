@@ -8,8 +8,8 @@ import BottomNavBar from "./components/common/bottomNavBar/BottomNavBar.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <BottomNavBar />
       <App />
+      <BottomNavBar />
     </BrowserRouter>
   </StrictMode>
 );

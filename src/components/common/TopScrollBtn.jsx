@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const Btn = styled.button`
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 100px;
+  right: 30px;
   background-color: #b2c4df;
   border: none;
   border-radius: 50%;
@@ -12,13 +12,13 @@ const Btn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 35px;
+  width: 60px;
+  height: 60px;
 `;
 
 const Image = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   /* object-position: 0px 10px; */
   display: block;
