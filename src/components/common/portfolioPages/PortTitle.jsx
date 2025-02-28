@@ -16,9 +16,9 @@ const Title = styled.h2`
   margin-left: -80px;
 
   &:nth-child(2)::before {
-    content: "";
+    content: "  ";
     display: inline-block;
-    width: 20px;
+    width: 60px;
   }
 `;
 

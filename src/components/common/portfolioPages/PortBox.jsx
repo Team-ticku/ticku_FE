@@ -21,7 +21,7 @@ const AddButton = styled.img`
 const PortBox = () => {
   return (
     <PortDiv>
-      <AddButton src="../public/img/portadd.png" />
+      <AddButton src="../public/images/portadd.png" />
     </PortDiv>
   );
 };

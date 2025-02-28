@@ -11,6 +11,7 @@ const Button = styled.button`
   width: 140px;
   height: 50px;
   text-align: center;
+  line-height: 13px;
 `;
 
 const ButtonContainer = styled.div`

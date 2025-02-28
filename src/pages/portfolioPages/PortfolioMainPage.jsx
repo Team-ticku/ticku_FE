@@ -3,7 +3,7 @@ import React from "react";
 import PortTitle from "../../components/common/portfolioPages/PortTitle";
 import PortBox from "../../components/common/portfolioPages/PortBox";
 import PortButton from "../../components/common/portfolioPages/PortButton";
-import "../App.css";
+// import "../App.css";
 import styled from "styled-components";
 
 const Container = styled.div`
