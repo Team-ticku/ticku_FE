@@ -1,8 +1,8 @@
 import React from "react";
 // import reactLogo from "./assets/react.svg";
-import PortTitle from "../../components/common/portfolioPages/PortTitle";
-import PortBox from "../../components/common/portfolioPages/PortBox";
-import PortButton from "../../components/common/portfolioPages/PortButton";
+import PortTitle from "../../components/portfolioPages/PortTitle";
+import PortBox from "../../components/portfolioPages/PortBox";
+import PortButton from "../../components/portfolioPages/PortButton";
 // import "../App.css";
 import styled from "styled-components";
 
