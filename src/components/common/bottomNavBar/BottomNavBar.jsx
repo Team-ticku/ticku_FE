@@ -1,0 +1,119 @@
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import styled from "styled-components";
+import "./FontAwesome";
+// FontAwesomIcon 컴포넌트
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import PlusModal from "./PlusModal";
+
+const BottomWrap = styled.div`
+  display: flex;
+  position: fixed;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  height: 45px;
+  width: 100%;
+  box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
+    rgba(42, 51, 69, 0.04) 0px -1px 1px -0.5px,
+    rgba(42, 51, 70, 0.04) 0px -3px 3px -1.5px,
+    rgba(42, 51, 70, 0.04) 0px -6px 6px -3px,
+    rgba(14, 63, 126, 0.04) 0px -12px 12px -6px,
+    rgba(14, 63, 126, 0.04) 0px -24px 24px -12px;
+  align-items: center;
+  text-align: center;
+`;
+const Div = styled.div`
+  background-color: white;
+  border: none;
+  flex: 20%;
+`;
+export const IconStyle = styled(FontAwesomeIcon)`
+  color: #d2d2d2;
+`;
+export const ClickedIconStyle = styled(FontAwesomeIcon)`
+  color: #111111;
+`;
+
+export default function BottomNavBar() {
+  const location = useLocation();
+  // 선택된 아이콘 관리 변수
+  const [activeNav, setActiveNav] = useState(3);
+
+  // 모달창 상태 관리 변수
+  const [isOpen, setIsOpen] = useState(false);
+  // 모달창 상태 관리 함수
+  const modalHandle = () => {
+    if (isOpen) {
+      console.log(isOpen);
+      setIsOpen(false);
+    } else {
+      console.log(isOpen);
+      setIsOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    if (location.pathname === "/information") {
+      setActiveNav(1);
+    } else if (location.pathname === "/portmn") {
+      setActiveNav(2);
+    } else if (location.pathname === "/communityposts") {
+      setActiveNav(4);
+    } else if (location.pathname === "/mypage") {
+      setActiveNav(5);
+    } else if (location.pathname === "/calen") {
+      setActiveNav(6);
+    } else if (location.pathname === "/ticko") {
+      setActiveNav(7);
+    } else {
+      setActiveNav(3);
+    }
+  }, [location]);
+
+  return (
+    <BottomWrap>
+      <Div>
+        <Link to="/information">
+          {activeNav === 1 ? (
+            <ClickedIconStyle icon="magnifying-glass" />
+          ) : (
+            <IconStyle icon="magnifying-glass" />
+          )}
+        </Link>
+      </Div>
+      <Div>
+        <Link to="/portmn">
+          {activeNav === 2 ? (
+            <ClickedIconStyle icon="chart-pie" />
+          ) : (
+            <IconStyle icon="chart-pie" />
+          )}
+        </Link>
+      </Div>
+      <Div>
+        <Link to="/">
+          {activeNav === 3 ? (
+            <ClickedIconStyle icon="house" />
+          ) : (
+            <IconStyle icon="house" />
+          )}
+        </Link>
+      </Div>
+      <Div>
+        <Link to="/communityposts">
+          {activeNav === 4 ? (
+            <ClickedIconStyle icon="pen-to-square" />
+          ) : (
+            <IconStyle icon="pen-to-square" />
+          )}
+        </Link>
+      </Div>
+      <Div>
+        <IconStyle icon="grip" onClick={modalHandle} />
+      </Div>
+      <PlusModal isOpen={isOpen} modalClose={modalHandle} />
+    </BottomWrap>
+  );
+}
