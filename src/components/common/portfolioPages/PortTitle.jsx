@@ -22,7 +22,7 @@ const Title = styled.h2`
   }
 `;
 
-function PortMain() {
+function PortTitle() {
   return (
     <TitleWrapper>
       <Title>당신이 원하는</Title>
@@ -30,4 +30,4 @@ function PortMain() {
     </TitleWrapper>
   );
 }
-export default PortMain;
+export default PortTitle;
