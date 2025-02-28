@@ -46,11 +46,15 @@ export default function BottomNavBar() {
   // 모달창 상태 관리 함수
   const modalHandle = () => {
     if (isOpen) {
-      console.log(isOpen);
       setIsOpen(false);
     } else {
-      console.log(isOpen);
       setIsOpen(true);
+    }
+  };
+  // 모달창 닫기
+  const modalClose = () => {
+    if (isOpen) {
+      setIsOpen(false);
     }
   };
 
@@ -75,7 +79,7 @@ export default function BottomNavBar() {
   return (
     <BottomWrap>
       <Div>
-        <Link to="/information">
+        <Link to="/information" onClick={modalClose}>
           {activeNav === 1 ? (
             <ClickedIconStyle icon="magnifying-glass" />
           ) : (
@@ -84,7 +88,7 @@ export default function BottomNavBar() {
         </Link>
       </Div>
       <Div>
-        <Link to="/portmn">
+        <Link to="/portmn" onClick={modalClose}>
           {activeNav === 2 ? (
             <ClickedIconStyle icon="chart-pie" />
           ) : (
@@ -93,7 +97,7 @@ export default function BottomNavBar() {
         </Link>
       </Div>
       <Div>
-        <Link to="/">
+        <Link to="/" onClick={modalClose}>
           {activeNav === 3 ? (
             <ClickedIconStyle icon="house" />
           ) : (
@@ -102,7 +106,7 @@ export default function BottomNavBar() {
         </Link>
       </Div>
       <Div>
-        <Link to="/communityposts">
+        <Link to="/communityposts" onClick={modalClose}>
           {activeNav === 4 ? (
             <ClickedIconStyle icon="pen-to-square" />
           ) : (
