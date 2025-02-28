@@ -67,8 +67,6 @@ const ClickedGridMenuName = styled.div`
 `;
 
 export default function PlusModal({ isOpen, modalClose }) {
-  console.log("모달", isOpen);
-
   const location = useLocation();
   // 선택된 아이콘 관리 변수
   const [activeModal, setActiveModal] = useState(3);
