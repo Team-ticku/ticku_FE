@@ -23,4 +23,4 @@ function PortfolioMainPage() {
   );
 }
 
-export default Port;
+export default PortfolioMainPage;
