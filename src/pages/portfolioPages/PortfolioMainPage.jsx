@@ -13,7 +13,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-function Port() {
+function PortfolioMainPage() {
   return (
     <Container>
       <PortTitle />
