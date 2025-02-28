@@ -8,7 +8,7 @@ import MyPage from "./pages/MyPage";
 import PortfolioMainPage from "./pages/PortfolioMainPage";
 import TickoPage from "./pages/TickoPage";
 
-function Tmp() {
+function App() {
   return (
     <>
       <Routes>
@@ -24,4 +24,4 @@ function Tmp() {
   );
 }
 
-export default Tmp;
+export default App;
