@@ -8,20 +8,26 @@ const Button = styled.button`
   margin-left: 10px;
 `;
 const Img = styled.img`
-  width: 40px;
-  height: 40px;
+  ${(props) => props.height && `height: ${props.height}px;`};
+  ${(props) => props.width && `width: ${props.width}px;`};
 `;
 
-function BackButton() {
+function BackButton({ width, height, link }) {
   const navigate = useNavigate();
+
   return (
     <>
       <Button
         onClick={() => {
-          navigate(-1);
+          navigate(link);
         }}
       >
-        <Img src="/images/arrow_back.png" alt="뒤로가기"></Img>
+        <Img
+          src="/images/arrow_back.png"
+          alt="뒤로가기"
+          width={width}
+          height={height}
+        ></Img>
       </Button>
     </>
   );
