@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Navigation from "../components/information/Navigation";
-import InfoFirst from "../components/information/InfoFirst";
+import Navigation from "../../components/information/Navigation";
+import InfoFirst from "../../components/information/InfoFirst";
 import { Routes, Route } from "react-router-dom";
+import TopScrollBtn from "../../components/common/TopScrollBtn";
 
 const DIV = styled.div`
   height: 2000px;
@@ -23,6 +24,7 @@ function Information() {
         <Route path="/" element={<InfoFirst />} />{" "}
         <Route path="*" element={<div>404 Not Found</div>} />{" "}
       </Routes>
+      <TopScrollBtn />
     </DIV>
   );
 }
