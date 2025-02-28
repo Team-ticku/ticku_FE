@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React from "react";
 
 const NavDiv = styled.div`
-  padding: 10px 5px;
+  padding-top: 30px;
   cursor: pointer;
   border: none;
   display: flex;
@@ -14,21 +14,21 @@ const NavDiv = styled.div`
 `;
 
 const NavComponentBtn = styled.button`
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background-color: ${(props) => props.backgroundColor};
   border-radius: 10px;
   border: none;
   cursor: pointer;
 `;
 const NavComponentImg = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 `;
 
 const NavComponentText = styled.p`
   text-align: center;
-  margin: 0;
+  margin: 8px 0;
 `;
 
 function NavBtn({ icon, text, bgColor, onClick }) {

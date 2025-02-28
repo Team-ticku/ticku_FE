@@ -4,9 +4,13 @@ import Navigation from "../components/information/Navigation";
 import InfoFirst from "../components/information/InfoFirst";
 import { Routes, Route } from "react-router-dom";
 
+const DIV = styled.div`
+  height: 2000px;
+`;
+
 function Information() {
   return (
-    <div>
+    <DIV>
       <Navigation />
 
       <Routes>
@@ -19,7 +23,7 @@ function Information() {
         <Route path="/" element={<InfoFirst />} />{" "}
         <Route path="*" element={<div>404 Not Found</div>} />{" "}
       </Routes>
-    </div>
+    </DIV>
   );
 }
 

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import React, { useRef, useState, useEffect } from "react"; // useRef, useState, useEffect import
 import NavBtn from "./NavBtn.jsx";
-
+import SearchBar from "../common/SearchBar.jsx";
 import chartIcon from "../../../public/images/information/chartIcon.png";
 import financeIcon from "../../../public/images/information/financeIcon.png";
 import volumeIcon from "../../../public/images/information/volumeIcon.png";
@@ -19,8 +19,8 @@ const NAVDIV = styled.div`
     content: "";
     position: absolute;
     bottom: 0;
-    left: 40px;
-    right: 40px;
+    left: 20px;
+    right: 20px;
     height: 2px;
     background-color: #b2c4df;
   }
@@ -28,7 +28,7 @@ const NAVDIV = styled.div`
 
 const NavBarContainer = styled.div`
   // 컨테이너 추가
-  width: 80%; // NavBar의 너비 (4개 항목 + 스크롤 여유 공간)
+  width: 90%; // NavBar의 너비 (4개 항목 + 스크롤 여유 공간)
   margin: 0; // 가로 중앙 정렬
   overflow-x: auto; // 가로 스크롤 활성화
   overflow-y: hidden; //세로 스크롤은 숨기기
@@ -133,22 +133,25 @@ function Navigation() {
   }, [isDragging, startX, scrollLeft]); // 의존성 배열 (필수)
 
   return (
-    <NAVDIV>
-      <NavBarContainer ref={containerRef} style={{ cursor: "grab" }}>
-        <NavBar>
-          {navButtons.map((button, index) => (
-            <NavBtn
-              key={index}
-              icon={button.icon}
-              text={button.text}
-              bgColor={button.bgColor}
-              onClick={() => navigate(button.link)}
-              tabIndex={0}
-            />
-          ))}
-        </NavBar>
-      </NavBarContainer>
-    </NAVDIV>
+    <>
+      <SearchBar />
+      <NAVDIV>
+        <NavBarContainer ref={containerRef} style={{ cursor: "grab" }}>
+          <NavBar>
+            {navButtons.map((button, index) => (
+              <NavBtn
+                key={index}
+                icon={button.icon}
+                text={button.text}
+                bgColor={button.bgColor}
+                onClick={() => navigate(button.link)}
+                tabIndex={0}
+              />
+            ))}
+          </NavBar>
+        </NavBarContainer>
+      </NAVDIV>
+    </>
   );
 }
 
