@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import styled from "styled-components";
 import React from "react";
 
@@ -31,11 +37,17 @@ const NavComponentText = styled.p`
   margin: 8px 0;
 `;
 
-function NavBtn({ icon, text, bgColor, onClick }) {
+function NavBtn({ icon, text, bgColor, link }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/information/" + link);
+  };
+
   return (
     <NavDiv>
-      <NavComponentBtn backgroundColor={bgColor} onClick={onClick}>
-        <NavComponentImg src={icon} />
+      <NavComponentBtn backgroundColor={bgColor} onClick={handleClick}>
+        <NavComponentImg src={icon} alt={text} />
       </NavComponentBtn>
       <NavComponentText>{text}</NavComponentText>
     </NavDiv>
