@@ -10,10 +10,10 @@ import PlusModal from "./PlusModal";
 const BottomWrap = styled.div`
   display: flex;
   position: fixed;
-  bottom: 25px;
+  bottom: 0;
   left: 0;
   right: 0;
-  height: 45px;
+  height: 55px;
   width: 100%;
   box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
     rgba(42, 51, 69, 0.04) 0px -1px 1px -0.5px,
@@ -21,7 +21,8 @@ const BottomWrap = styled.div`
     rgba(42, 51, 70, 0.04) 0px -6px 6px -3px,
     rgba(14, 63, 126, 0.04) 0px -12px 12px -6px,
     rgba(14, 63, 126, 0.04) 0px -24px 24px -12px;
-  align-items: center;
+  /* align-items: center; */
+  padding-top: 10px;
   text-align: center;
 `;
 const Div = styled.div`
