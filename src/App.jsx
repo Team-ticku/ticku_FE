@@ -6,7 +6,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import MainPage from "./pages/mainpage/MainPage";
 // import MyPage from "./pages/MyPage";
 import PortfolioMainPage from "./pages/portfolioPages/PortfolioMainPage";
-// import TickoPage from "./pages/TickoPage";
+import TickoPage from "./pages/tickoPages/TickoPage";
 
 function App() {
   return (
@@ -16,7 +16,6 @@ function App() {
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/portmn" element={<PortfolioMainPage />}></Route>
           {/* <Route path="/information" element={<InformationPage />}></Route>
-
         <Route path="/communityposts" element={<CommunityPostPage />}></Route>
         <Route path="/mypage" element={<MyPage />}></Route>
         <Route path="/calen" element={<CalendarPage />}></Route>
