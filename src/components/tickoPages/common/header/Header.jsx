@@ -12,7 +12,7 @@ const HeaderContainer = styled.div`
 export default function Header() {
   return (
     <HeaderContainer>
-      <BackButton />
+      <BackButton width="30px" height="30px" link="/ticko" />
       <CharacterProfile />
     </HeaderContainer>
   );
