@@ -1,6 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import React, { useRef, useState, useEffect } from "react"; // useRef, useState, useEffect import
+import React, { useRef, useState, useEffect } from "react";
 import NavBtn from "./NavBtn.jsx";
 import SearchBar from "../common/SearchBar.jsx";
 import chartIcon from "../../../public/images/information/chartIcon.png";
@@ -13,9 +12,8 @@ import resultIcon from "../../../public/images/information/resultIcon.png";
 const NAVDIV = styled.div`
   display: flex;
   justify-content: center;
-  position: relative; // ::after 가상 요소를 위해 필요
+  position: relative;
   &::after {
-    // ::after 가상 요소 (하단 구분선)
     content: "";
     position: absolute;
     bottom: 0;
@@ -27,44 +25,34 @@ const NAVDIV = styled.div`
 `;
 
 const NavBarContainer = styled.div`
-  // 컨테이너 추가
-  width: 90%; // NavBar의 너비 (4개 항목 + 스크롤 여유 공간)
-  margin: 0; // 가로 중앙 정렬
-  overflow-x: auto; // 가로 스크롤 활성화
-  overflow-y: hidden; //세로 스크롤은 숨기기
-
-  white-space: nowrap; // NavBtn들이 한 줄에 표시되도록 함
-  -webkit-overflow-scrolling: touch; // iOS에서 부드러운 스크롤링
+  width: 90%;
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
   user-select: none;
   touch-action: pan-y;
-  /* padding:  */
 `;
 
 const NavBar = styled.div`
   display: flex;
-  // justify-content: center; // 제거 (flex-start를 사용하거나, 아예 없애서 컨테이너의 nowrap에 의해 한 줄로 배치되도록)
-  justify-content: flex-start; // 왼쪽 정렬 (스크롤 가능하도록)
-  padding: 15px 0px; // 양쪽에 약간의 여백 (선택 사항)
-  width: fit-content; // NavBar의 내용물에 의해 너비가 결정되도록
+  justify-content: flex-start;
+  padding: 15px 0px;
+  width: fit-content;
 `;
 
 const navButtons = [
-  { icon: chartIcon, text: "차트", bgColor: "#F5D3F3", link: "/chart" },
-  {
-    icon: financeIcon,
-    text: "기업 재무",
-    bgColor: "#D9DFB2",
-    link: "/finance",
-  },
-  { icon: volumeIcon, text: "거래량", bgColor: "#B2DFBF", link: "/volume" },
-  { icon: newsIcon, text: "뉴스", bgColor: "#BDB2DF", link: "/news" },
-  { icon: dividendIcon, text: "배당", bgColor: "#B2D1DF", link: "/dividend" },
-  { icon: resultIcon, text: "실적", bgColor: "#FDC7AC", link: "/result" },
+  { icon: chartIcon, text: "차트", bgColor: "#F5D3F3", link: "chart" },
+  { icon: financeIcon, text: "기업 재무", bgColor: "#D9DFB2", link: "finance" },
+  { icon: volumeIcon, text: "거래량", bgColor: "#B2DFBF", link: "volume" },
+  { icon: newsIcon, text: "뉴스", bgColor: "#BDB2DF", link: "news" },
+  { icon: dividendIcon, text: "배당", bgColor: "#B2D1DF", link: "dividend" },
+  { icon: resultIcon, text: "실적", bgColor: "#FDC7AC", link: "result" },
 ];
 
 function Navigation() {
-  const navigate = useNavigate();
-  const containerRef = useRef(null); // NavBarContainer에 대한 ref
+  const containerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -77,7 +65,7 @@ function Navigation() {
       setIsDragging(true);
       setStartX(e.pageX - container.offsetLeft);
       setScrollLeft(container.scrollLeft);
-      container.style.cursor = "grabbing"; // 커서 변경
+      container.style.cursor = "grabbing";
     };
 
     const handleMouseLeave = () => {
@@ -92,19 +80,17 @@ function Navigation() {
 
     const handleMouseMove = (e) => {
       if (!isDragging) return;
-      e.preventDefault(); // 기본 동작 방지 (텍스트 선택 등)
+      e.preventDefault();
       const x = e.pageX - container.offsetLeft;
-      const walk = (x - startX) * 1.5; // 스크롤 속도 조절 (원하는 대로 변경)
+      const walk = (x - startX) * 1.5;
       container.scrollLeft = scrollLeft - walk;
     };
 
-    // 마우스 이벤트 리스너 등록
     container.addEventListener("mousedown", handleMouseDown);
     container.addEventListener("mouseleave", handleMouseLeave);
     container.addEventListener("mouseup", handleMouseUp);
     container.addEventListener("mousemove", handleMouseMove);
 
-    // 터치 이벤트 리스너 (모바일/태블릿)
     container.addEventListener("touchstart", (e) =>
       handleMouseDown(e.touches[0])
     );
@@ -114,7 +100,6 @@ function Navigation() {
       handleMouseMove(e.touches[0])
     );
 
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거 (메모리 누수 방지)
     return () => {
       container.removeEventListener("mousedown", handleMouseDown);
       container.removeEventListener("mouseleave", handleMouseLeave);
@@ -130,7 +115,7 @@ function Navigation() {
         handleMouseMove(e.touches[0])
       );
     };
-  }, [isDragging, startX, scrollLeft]); // 의존성 배열 (필수)
+  }, [isDragging, startX, scrollLeft]);
 
   return (
     <>
@@ -144,8 +129,7 @@ function Navigation() {
                 icon={button.icon}
                 text={button.text}
                 bgColor={button.bgColor}
-                onClick={() => navigate(button.link)}
-                tabIndex={0}
+                link={button.link}
               />
             ))}
           </NavBar>
