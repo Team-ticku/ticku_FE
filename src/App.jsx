@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 // import CalendarPage from "./pages/CalendarPage";
 // import CommunityPostPage from "./pages/CommunityPostsPage";
 import InformationPage from "./pages/InformationPages/InformationPage";
+
 import MainPage from "./pages/mainpage/MainPage";
 import MyPage from "./pages/myPages/MyPage";
 import PortfolioMainPage from "./pages/portfolioPages/PortfolioMainPage";
