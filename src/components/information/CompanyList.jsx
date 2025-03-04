@@ -7,6 +7,7 @@ const CompanyContainer = styled.div`
   width: 330px;
   padding: 10px 30px;
   justify-content: space-between;
+
 `;
 
 const CompanySubContainer = styled.div`
