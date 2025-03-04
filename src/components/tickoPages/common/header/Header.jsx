@@ -4,6 +4,9 @@ import CharacterProfile from "./CharacterProfile";
 
 const HeaderContainer = styled.div`
   display: flex;
+  width: 390px;
+  position: fixed;
+  background-color: white;
   align-items: center;
   padding: 5px 0;
 `;
