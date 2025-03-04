@@ -20,13 +20,13 @@ const StartName = styled.div`
   font-size: 12px;
 `;
 
-export default function StartSpeechBubble() {
+export default function StartSpeechBubble({ context }) {
   return (
     <StartWrap>
       <Character></Character>
       <StartSpeech>
         <StartName>티코</StartName>
-        <SpeechBubble context="주식 기초 지식을 골랐구나!"></SpeechBubble>
+        <SpeechBubble context={context}></SpeechBubble>
       </StartSpeech>
     </StartWrap>
   );
