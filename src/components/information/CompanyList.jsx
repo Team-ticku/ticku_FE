@@ -15,16 +15,16 @@ const CompanySubContainer = styled.div`
 `;
 
 const CompanyLogos = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   /* background-color: blue; */
   margin-right: 15px;
-  margin-top: 8px;
+  margin-top: 9px;
 `;
 
 const CompanyName = styled.p`
-  font-size: 22px;
+  font-size: 20px;
 `;
 
 const StarDiv = styled.div`
