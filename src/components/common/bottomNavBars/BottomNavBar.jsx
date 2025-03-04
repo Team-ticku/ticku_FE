@@ -72,7 +72,7 @@ export default function BottomNavBar() {
       setActiveNav(6);
     } else if (location.pathname === "/ticko") {
       setActiveNav(7);
-    } else {
+    } else if (location.pathname === "/") {
       setActiveNav(3);
     }
   }, [location]);
