@@ -2,7 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 // import CalendarPage from "./pages/CalendarPage";
 // import CommunityPostPage from "./pages/CommunityPostsPage";
-// import MyPage from "./pages/MyPage";
+import MainPage from "./pages/mainpage/MainPage";
 import InformationPage from "./pages/InformationPages/InformationPage";
 import MainPage from "./pages/mainpage/MainPage";
 import PortfolioMainPage from "./pages/portfolioPages/PortfolioMainPage";
@@ -18,10 +18,10 @@ function App() {
           <Route path="/ticko" element={<TickoPage />}></Route>
           <Route path="/information" element={<InformationPage />}></Route>
           {/* 
-        <Route path="/communityposts" element={<CommunityPostPage />}></Route>
+        <Route path="/communityposts" element={<CommunityPostPage />}></Route>*/}
         <Route path="/mypage" element={<MyPage />}></Route>
-        <Route path="/calen" element={<CalendarPage />}></Route>
-         */}
+        {/* <Route path="/calen" element={<CalendarPage />}></Route>*/}
+         
         </Routes>
       </BrowserRouter>
     </>
