@@ -7,7 +7,6 @@ const CompanyContainer = styled.div`
   width: 330px;
   padding: 10px 30px;
   justify-content: space-between;
-
 `;
 
 const CompanySubContainer = styled.div`
@@ -16,16 +15,20 @@ const CompanySubContainer = styled.div`
 `;
 
 const CompanyLogos = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   /* background-color: blue; */
   margin-right: 15px;
-  margin-top: 8px;
+  margin-top: 9px;
 `;
 
 const CompanyName = styled.p`
-  font-size: 22px;
+  font-size: 20px;
+`;
+
+const StarDiv = styled.div`
+  margin-right: 25px;
 `;
 
 function CompanyList({ company }) {
@@ -40,7 +43,9 @@ function CompanyList({ company }) {
         <CompanyName>{company.name}</CompanyName> {/* {}에 기업 이름 */}
       </CompanySubContainer>
 
-      <Star></Star>
+      <StarDiv>
+        <Star></Star>
+      </StarDiv>
     </CompanyContainer>
   );
 }

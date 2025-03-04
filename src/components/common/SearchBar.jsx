@@ -1,5 +1,7 @@
+// src/components/common/SearchBar.jsx
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom"; // useNavigate import
 
 const Div = styled.div`
   margin-top: 20px;
@@ -7,6 +9,7 @@ const Div = styled.div`
   flex-direction: row;
   justify-content: center;
 `;
+
 const Box = styled.div`
   background-color: #eeeded;
   display: flex;
@@ -16,6 +19,7 @@ const Box = styled.div`
   height: 50px;
   width: 300px;
 `;
+
 const SearchIcon = styled.img`
   height: 30px;
   width: 30px;
@@ -34,28 +38,37 @@ const StyledTextInput = styled.input`
   outline: none;
 `;
 
-function SearchBar(props) {
+function SearchBar({ onSearch }) {
   const [ticker, setTicker] = useState("");
   const inputRef = useRef(null);
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      console.log(`검색한 종목: ${ticker}`);
+      onSearch(ticker);
     }
   };
 
   const handleBoxClick = () => {
-    inputRef.current.focus();
+    // inputRef.current.focus(); // 포커스 이동 + 페이지 이동
+    navigate(`/Information/List?query=${ticker}`); // 페이지 이동
   };
+
+  const handleChange = (e) => {
+    setTicker(e.target.value);
+    onSearch(e.target.value);
+  };
+
   return (
     <Div>
       <Box onClick={handleBoxClick}>
-        <SearchIcon src="/public/images/search.png" alt="Search Icon" />
+        <SearchIcon src="/images/search.png" alt="Search Icon" />{" "}
+        {/* public 제거 */}
         <StyledTextInput
           ref={inputRef}
           placeholder="종목 검색"
           value={ticker}
-          onChange={(e) => setTicker(e.target.value)}
+          onChange={handleChange}
           onKeyDown={handleKeyDown}
         />
       </Box>
