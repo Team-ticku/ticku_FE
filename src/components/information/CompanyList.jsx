@@ -6,12 +6,8 @@ const CompanyContainer = styled.div`
   align-items: center;
   width: 330px;
   padding: 10px 30px;
-  border-bottom: 1px solid #b2c4df;
   justify-content: space-between;
 
-  &:first-child {
-    border-top: 1px solid #b2c4df;
-  }
 `;
 
 const CompanySubContainer = styled.div`
