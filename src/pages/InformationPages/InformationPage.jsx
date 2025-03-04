@@ -1,6 +1,7 @@
 // InformationPage.jsx (수정)
 import React from "react";
 import styled from "styled-components";
+import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import Navigation from "../../components/information/Navigation";
 import InfoFirst from "../../components/information/InfoFirst";
 import { Routes, Route, Outlet } from "react-router-dom";
@@ -24,6 +25,7 @@ function Information() {
 
   return (
     <DIV>
+      <BottomNavBar />
       <Navigation />
       <Routes>
         <Route path="/" element={<InfoFirst />} />
