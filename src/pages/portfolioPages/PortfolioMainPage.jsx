@@ -3,6 +3,7 @@ import React from "react";
 import PortTitle from "../../components/portfoliopage/PortTitle";
 import PortBox from "../../components/portfoliopage/PortBox";
 import PortButton from "../../components/portfoliopage/PortButtons";
+import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 
 // import "../App.css";
 import styled from "styled-components";
@@ -16,11 +17,14 @@ const Container = styled.div`
 
 function PortfolioMainPage() {
   return (
-    <Container>
-      <PortTitle />
-      <PortBox />
-      <PortButton />
-    </Container>
+    <>
+      <BottomNavBar />
+      <Container>
+        <PortTitle />
+        <PortBox />
+        <PortButton />
+      </Container>
+    </>
   );
 }
 

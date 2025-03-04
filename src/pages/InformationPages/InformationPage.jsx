@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import Navigation from "../../components/information/Navigation";
 import InfoFirst from "../../components/information/InfoFirst";
 import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import TopScrollBtn from "../../components/common/TopScrollBtn";
-import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import Chart from "./Chart";
 import List from "./List";
 

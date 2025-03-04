@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const Img = styled.img`
-  width: 25px;
+  width: 35px;
 `;
 const Button = styled.button`
   padding: 0;
@@ -10,8 +10,8 @@ const Button = styled.button`
   background: none;
 `;
 
-function BookMark() {
-  const [isBookMarkded, setIsBookMarked] = useState(false);
+function BookMark({ width, height, defaultBookmarked }) {
+  const [isBookMarkded, setIsBookMarked] = useState(defaultBookmarked);
 
   function changeBookMark() {
     setIsBookMarked((prev) => !prev);
