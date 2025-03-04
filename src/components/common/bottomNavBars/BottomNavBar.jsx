@@ -24,6 +24,8 @@ const BottomWrap = styled.div`
   /* align-items: center; */
   padding-top: 10px;
   text-align: center;
+  background-color: white;
+  z-index: 2;
 `;
 const Div = styled.div`
   background-color: white;
