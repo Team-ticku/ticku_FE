@@ -6,12 +6,7 @@ const CompanyContainer = styled.div`
   align-items: center;
   width: 330px;
   padding: 10px 30px;
-  border-bottom: 1px solid #b2c4df;
   justify-content: space-between;
-
-  &:first-child {
-    border-top: 1px solid #b2c4df;
-  }
 `;
 
 const CompanySubContainer = styled.div`
@@ -32,6 +27,10 @@ const CompanyName = styled.p`
   font-size: 22px;
 `;
 
+const StarDiv = styled.div`
+  margin-right: 25px;
+`;
+
 function CompanyList({ company }) {
   if (!company || Object.keys(company).length == 0) {
     return null;
@@ -44,7 +43,9 @@ function CompanyList({ company }) {
         <CompanyName>{company.name}</CompanyName> {/* {}에 기업 이름 */}
       </CompanySubContainer>
 
-      <Star></Star>
+      <StarDiv>
+        <Star></Star>
+      </StarDiv>
     </CompanyContainer>
   );
 }
