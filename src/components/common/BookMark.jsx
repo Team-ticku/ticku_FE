@@ -2,7 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const Img = styled.img`
-  width: 25px;
+  ${(props) => props.height && `height: ${props.height}px;`};
+  ${(props) => props.width && `width: ${props.width}px;`};
 `;
 const Button = styled.button`
   padding: 0;
@@ -10,7 +11,7 @@ const Button = styled.button`
   background: none;
 `;
 
-function BookMark() {
+function BookMark({ width, height }) {
   const [isBookMarkded, setIsBookMarked] = useState(false);
 
   function changeBookMark() {
@@ -21,9 +22,13 @@ function BookMark() {
     <>
       <Button onClick={changeBookMark}>
         {isBookMarkded ? (
-          <Img src="/images/bookmarked.png"></Img>
+          <Img src="/images/bookmarked.png" width={width} height={height}></Img>
         ) : (
-          <Img src="/images/unbookmarked.png"></Img>
+          <Img
+            src="/images/unbookmarked.png"
+            width={width}
+            height={height}
+          ></Img>
         )}
       </Button>
     </>
