@@ -8,6 +8,7 @@ const BodyWrap = styled.div`
   flex-direction: column;
   gap: 5px;
   padding: 55px 20px 10px 10px;
+  visibility: hidden;
 `;
 
 const menuList = [
@@ -27,8 +28,11 @@ export default function AccountBody() {
   return (
     <BodyWrap>
       <StartSpeechBubble context="계좌를 골랐구나!"></StartSpeechBubble>
-      <ElseSpeechBubble context="아래 항목 중에서 어떤 게 궁금한지 알려줘~"></ElseSpeechBubble>
-      <Menu list={menuList} flexDirection="column"></Menu>
+      <ElseSpeechBubble
+        context="아래 항목 중에서 어떤 게 궁금한지 알려줘~"
+        animationDelay={"1s"}
+      ></ElseSpeechBubble>
+      <Menu list={menuList} flexDirection="column" animationDelay={"2s"}></Menu>
     </BodyWrap>
   );
 }
