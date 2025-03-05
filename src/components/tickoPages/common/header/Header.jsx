@@ -11,10 +11,10 @@ const HeaderContainer = styled.div`
   padding: 5px 0;
 `;
 
-export default function Header() {
+export default function Header({ link }) {
   return (
     <HeaderContainer>
-      <BackButton width="30px" height="30px" link="/ticko" />
+      <BackButton width="30px" height="30px" link={link} />
       <CharacterProfile />
     </HeaderContainer>
   );
