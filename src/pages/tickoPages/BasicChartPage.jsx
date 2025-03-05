@@ -4,7 +4,7 @@ import ChartBody from "../../components/tickoPages/basicChartPage/ChartBody";
 export default function BasicChartPage() {
   return (
     <>
-      <Header></Header>
+      <Header link="/ticko"></Header>
       <ChartBody></ChartBody>
     </>
   );

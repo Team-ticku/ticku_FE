@@ -4,7 +4,7 @@ import WordBody from "../../components/tickoPages/basicWordPage/WordBody";
 export default function BasicWordPage() {
   return (
     <>
-      <Header></Header>
+      <Header link="/ticko"></Header>
       <WordBody></WordBody>
     </>
   );
