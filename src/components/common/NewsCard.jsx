@@ -17,7 +17,7 @@ const NewsCardWrapper = styled.div`
 
 // 뉴스 카드 왼쪽 섹션
 const LeftSection = styled.div`
-  width: ${(props) => (props.hasImage ? "66%" : "100%")};
+  width: ${(props) => (props.$hasImage ? "66%" : "100%")};
 `;
 
 const NewsTitle = styled.p`
@@ -63,7 +63,7 @@ const SourceName = styled.p`
 // 카드 오른쪽 섹션
 const RightSection = styled.div`
   width: 34%;
-  display: ${(props) => (props.hasImage ? "block" : "none")};
+  display: ${(props) => (props.$hasImage ? "block" : "none")};
 `;
 
 const BookmarkContainer = styled.div`
@@ -93,7 +93,7 @@ function NewsCard({
       <div>
         <NewsCardWrapper>
           {/* 왼쪽 내용 */}
-          <LeftSection hasImage={hasImage}>
+          <LeftSection $hasImage={hasImage}>
             <NewsTitle>{title}</NewsTitle>
             <NewsContent>{content}</NewsContent>
 
@@ -108,7 +108,7 @@ function NewsCard({
           </BookmarkContainer>
 
           {/* 오른쪽 내용 */}
-          <RightSection hasImage={hasImage}>
+          <RightSection $hasImage={hasImage}>
             <ArticleImage src={image} />
           </RightSection>
         </NewsCardWrapper>
