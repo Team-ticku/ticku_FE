@@ -1,7 +1,8 @@
-import React from "react";
+import VolumeInfo from "../../components/information/VolumeInfo";
 import CompanyInfo from "../../components/information/CompanyInfo";
+import VolumeTable from "../../components/information/VolumeTable";
 
-function ChartPage({ chartData }) {
+function VolumePage({ chartData, volumeData }) {
   return (
     <div>
       <CompanyInfo
@@ -12,8 +13,10 @@ function ChartPage({ chartData }) {
         price={chartData.price}
         change={chartData.change}
       />
+      <VolumeInfo></VolumeInfo>
+      <VolumeTable data={volumeData} />
     </div>
   );
 }
 
-export default ChartPage;
+export default VolumePage;
