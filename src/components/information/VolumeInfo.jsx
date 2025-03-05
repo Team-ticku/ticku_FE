@@ -18,10 +18,10 @@ const TabP = styled.p`
   margin-top: 8px;
 `;
 
-function VolumeInfo() {
+function VolumeInfo(props) {
   return (
     <TabContainer>
-      <TabP>거래량</TabP>
+      <TabP>{props.title}</TabP>
     </TabContainer>
   );
 }

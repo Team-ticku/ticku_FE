@@ -1,8 +1,9 @@
 import VolumeInfo from "../../components/information/VolumeInfo";
 import CompanyInfo from "../../components/information/CompanyInfo";
 import VolumeTable from "../../components/information/VolumeTable";
+import DividendTable from "../../components/information/DividendTable";
 
-function VolumePage({ chartData, volumeData }) {
+function DividendPage({ chartData, dividendData }) {
   return (
     <div>
       <CompanyInfo
@@ -13,10 +14,10 @@ function VolumePage({ chartData, volumeData }) {
         price={chartData.price}
         change={chartData.change}
       />
-      <VolumeInfo title="거래량"></VolumeInfo>
-      <VolumeTable data={volumeData} />
+      <VolumeInfo title="배당"></VolumeInfo>
+      <DividendTable data={dividendData} /> {/* data prop 전달 */}
     </div>
   );
 }
 
-export default VolumePage;
+export default DividendPage;
