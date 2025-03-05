@@ -3,11 +3,12 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 // import CalendarPage from "./pages/CalendarPage";
 // import CommunityPostPage from "./pages/CommunityPostsPage";
 import InformationPage from "./pages/InformationPages/InformationPage";
-
 import MainPage from "./pages/mainpage/MainPage";
 import MyPage from "./pages/myPages/MyPage";
 import PortfolioMainPage from "./pages/portfolioPages/PortfolioMainPage";
 import TickoPage from "./pages/tickoPages/TickoPage";
+
+import ScrapNews from "./pages/myPages/ScrapNews";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="/mypage" element={<MyPage />}></Route>
           {/* <Route path="/calen" element={<CalendarPage />}></Route> */}
           {/* <Route path="/ticko" element={<TickoPage />}></Route> */}
+
+          <Route path="/mypage/scrapnews" element={<ScrapNews />}></Route>
         </Routes>
       </BrowserRouter>
     </>

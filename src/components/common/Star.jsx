@@ -11,8 +11,8 @@ const Button = styled.button`
   background: none;
 `;
 
-function Star() {
-  const [isStarred, setIsStarred] = useState(false);
+function Star({ defaultStarred }) {
+  const [isStarred, setIsStarred] = useState(defaultStarred);
 
   function changeStar() {
     setIsStarred((prev) => !prev);
