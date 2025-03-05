@@ -1,5 +1,17 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import LinkButton from "./LinkButton";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    visibility: visible;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+`;
 
 const Wrap = styled.div`
   display: flex;
@@ -21,13 +33,18 @@ const MenuWrap = styled.div`
   border-radius: 15px;
   padding: 25px 15px;
   gap: 10px 5px;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-name: ${fadeIn};
+  animation-fill-mode: forwards;
+  animation-delay: ${(props) => props.animationDelay || "0"};
 `;
 
-export default function Menu({ list, flexDirection }) {
+export default function Menu({ list, flexDirection, animationDelay }) {
   return (
     <Wrap>
       <Dummy></Dummy>
-      <MenuWrap flexDirection={flexDirection}>
+      <MenuWrap flexDirection={flexDirection} animationDelay={animationDelay}>
         {list.map((menu, idx) => {
           return (
             <LinkButton

@@ -8,6 +8,7 @@ const BodyWrap = styled.div`
   flex-direction: column;
   gap: 5px;
   padding: 55px 20px 10px 10px;
+  visibility: hidden;
 `;
 
 const menuList = [
@@ -41,9 +42,15 @@ export default function ChartBody() {
   return (
     <BodyWrap>
       <StartSpeechBubble context="차트를 골랐구나!"></StartSpeechBubble>
-      <ElseSpeechBubble context="차트 중에서도 캔들스틱 차트에 대해 설명해줄게!"></ElseSpeechBubble>
-      <ElseSpeechBubble context="아래 항목 중에서 어떤 게 궁금한지 알려줘~"></ElseSpeechBubble>
-      <ImgMenu list={menuList}></ImgMenu>
+      <ElseSpeechBubble
+        context="차트 중에서도 캔들스틱 차트에 대해 설명해줄게!"
+        animationDelay={"1s"}
+      ></ElseSpeechBubble>
+      <ElseSpeechBubble
+        context="아래 항목 중에서 어떤 게 궁금한지 알려줘~"
+        animationDelay={"2s"}
+      ></ElseSpeechBubble>
+      <ImgMenu list={menuList} animationDelay={"3s"}></ImgMenu>
     </BodyWrap>
   );
 }
