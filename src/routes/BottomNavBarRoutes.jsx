@@ -8,8 +8,6 @@ import MyPage from "../pages/myPages/MyPage";
 import PortfolioMainPage from "../pages/portfolioPages/PortfolioMainPage";
 import TickoPage from "../pages/tickoPages/TickoPage";
 
-// import ScrapNews from "./pages/myPages/ScrapNews";
-
 export default function BottomNavBarRoutes() {
   return (
     <Routes>
@@ -20,8 +18,6 @@ export default function BottomNavBarRoutes() {
       <Route path="/mypage" element={<MyPage />}></Route>
       {/* <Route path="/calen" element={<CalendarPage />}></Route> */}
       <Route path="/ticko" element={<TickoPage />}></Route>
-
-      {/* <Route path="/mypage/scrapnews" element={<ScrapNews />}></Route> */}
     </Routes>
   );
 }
