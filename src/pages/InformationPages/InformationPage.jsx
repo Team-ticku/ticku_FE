@@ -8,6 +8,7 @@ import TopScrollBtn from "../../components/common/TopScrollBtn";
 import Chart from "./Chart";
 import List from "./List";
 import Finance from "./Finance";
+import VolumePage from "./Volume";
 
 const DIV = styled.div`
   height: 2000px;
@@ -29,6 +30,52 @@ function Information() {
     stockCode: "005930", //종목 코드
     homepage: "www.samsung.com/sec", // 홈페이지
   };
+
+  // 거래량 데이터
+  const volumeData = [
+    {
+      date: "02.21",
+      closingPrice: "126,782원",
+      changeRate: "+5.18%",
+      volume: "15,128,831",
+    },
+    {
+      date: "02.20",
+      closingPrice: "120,535원",
+      changeRate: "+0.40%",
+      volume: "5,015,229",
+    },
+    {
+      date: "02.19",
+      closingPrice: "120,045원",
+      changeRate: "+1.29%",
+      volume: "5,948,149",
+    },
+    {
+      date: "02.18",
+      closingPrice: "118,505원",
+      changeRate: "+5.72%",
+      volume: "8,712,148",
+    },
+    {
+      date: "02.14",
+      closingPrice: "112,086원",
+      changeRate: "-1.21%",
+      volume: "9,875,485",
+    },
+    {
+      date: "02.13",
+      closingPrice: "113,467원",
+      changeRate: "-3.61%",
+      volume: "10,809,249",
+    },
+    {
+      date: "02.12",
+      closingPrice: "117,728원",
+      changeRate: "-2.32%",
+      volume: "6,427,373",
+    },
+  ];
 
   return (
     <DIV>
@@ -54,7 +101,9 @@ function Information() {
                 />
                 <Route
                   path="volume"
-                  element={<div>거래량 페이지 (임시)</div>}
+                  element={
+                    <VolumePage chartData={chartData} volumeData={volumeData} />
+                  }
                 />
                 <Route path="news" element={<div>뉴스 페이지 (임시)</div>} />
                 <Route
