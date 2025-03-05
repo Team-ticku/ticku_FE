@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import StartSpeechBubble from "../common/SpeechBubble/StartSpeechBubble";
-import ElseSpeechBubble from "../common/SpeechBubble/ElseSpeechBubble";
+import StartSpeechBubble from "../common/speechBubble/StartSpeechBubble";
+import ElseSpeechBubble from "../common/speechBubble/ElseSpeechBubble";
 import ImgMenu from "./ImgMenu";
 
 const BodyWrap = styled.div`
