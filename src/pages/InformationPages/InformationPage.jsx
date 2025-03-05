@@ -10,6 +10,7 @@ import List from "./List";
 import Finance from "./Finance";
 import VolumePage from "./Volume";
 
+
 const DIV = styled.div`
   height: 2000px;
 `;
