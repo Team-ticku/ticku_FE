@@ -14,6 +14,7 @@ const Dummy = styled.div`
 `;
 const MenuWrap = styled.div`
   display: flex;
+  flex-direction: ${(props) => props.flexDirection || "row"};
   justify-content: center;
   flex-wrap: wrap;
   border: 2px solid #b2c4df;
@@ -22,11 +23,11 @@ const MenuWrap = styled.div`
   gap: 10px 5px;
 `;
 
-export default function Menu({ list }) {
+export default function Menu({ list, flexDirection }) {
   return (
     <Wrap>
       <Dummy></Dummy>
-      <MenuWrap>
+      <MenuWrap flexDirection={flexDirection}>
         {list.map((menu, idx) => {
           return (
             <LinkButton
