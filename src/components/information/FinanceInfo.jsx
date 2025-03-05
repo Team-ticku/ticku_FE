@@ -21,6 +21,7 @@ const TabContainer = styled.div`
   display: flex;
   width: 250px;
   margin-bottom: 10px;
+  margin-left: 10px;
 `;
 
 const TabButton = styled.button`
@@ -30,7 +31,7 @@ const TabButton = styled.button`
   background-color: transparent;
   color: ${(props) => (props.active ? "black" : "#B3B3B3")};
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   outline: none;
 
@@ -46,6 +47,8 @@ const TabButton = styled.button`
 const ContentContainer = styled.div`
   padding: 20px;
   position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 const CompanyInfoContainer = styled.div``;
