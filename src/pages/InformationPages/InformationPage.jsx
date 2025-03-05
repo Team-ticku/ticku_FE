@@ -7,6 +7,7 @@ import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import TopScrollBtn from "../../components/common/TopScrollBtn";
 import Chart from "./Chart";
 import List from "./List";
+import Finance from "./Finance";
 
 const DIV = styled.div`
   height: 2000px;
@@ -20,6 +21,13 @@ function Information() {
     code: "기업 코드", // 기업 종목 코드
     price: "가격", // 기업 현재가
     change: "변화량", // 기업 가격 변화량
+  };
+
+  const financeData = {
+    ceo: "한종희", // 대표 이사
+    establishedDate: "1969.01.13", // 설립일
+    stockCode: "005930", //종목 코드
+    homepage: "www.samsung.com/sec", // 홈페이지
   };
 
   return (
@@ -40,7 +48,9 @@ function Information() {
                 <Route path="chart" element={<Chart chartData={chartData} />} />
                 <Route
                   path="finance"
-                  element={<div>기업 재무 페이지 (임시)</div>}
+                  element={
+                    <Finance chartData={chartData} financeData={financeData} />
+                  }
                 />
                 <Route
                   path="volume"
