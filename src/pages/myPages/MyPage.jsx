@@ -53,7 +53,11 @@ function MyPage() {
         src="/images/scrapicon.png"
         text="뉴스 스크랩"
       />
-      <MyPageTable src="/images/staricon.png" text="관심 기업 목록" />
+      <MyPageTable
+        link="/mypage/favorites"
+        src="/images/staricon.png"
+        text="관심 기업 목록"
+      />
       <MyPageTable src="/images/portfolioicon.png" text="내 포트폴리오" />
       <MyPageModal
         isOpen={modalOpen}
