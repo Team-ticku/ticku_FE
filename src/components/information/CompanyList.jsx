@@ -44,7 +44,7 @@ function CompanyList({ company }) {
       </CompanySubContainer>
 
       <StarDiv>
-        <Star></Star>
+        <Star defaultStarred={company.isFavorite}></Star>
       </StarDiv>
     </CompanyContainer>
   );

@@ -9,6 +9,7 @@ import PortfolioMainPage from "./pages/portfolioPages/PortfolioMainPage";
 import TickoPage from "./pages/tickoPages/TickoPage";
 
 import ScrapNews from "./pages/myPages/ScrapNews";
+import FavoriteCompanies from "./pages/myPages/FavoriteCompanies";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
           {/* <Route path="/ticko" element={<TickoPage />}></Route> */}
 
           <Route path="/mypage/scrapnews" element={<ScrapNews />}></Route>
+          <Route
+            path="/mypage/favorites"
+            element={<FavoriteCompanies />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>
