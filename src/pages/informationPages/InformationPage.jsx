@@ -10,6 +10,7 @@ import List from "./List";
 import Finance from "./Finance";
 import VolumePage from "./Volume";
 import DividendPage from "./DividendPage";
+import Result from "./Result";
 
 const DIV = styled.div`
   height: 2000px;
@@ -96,6 +97,52 @@ function Information() {
     },
   ];
 
+  const yearlyData = [
+    {
+      category: "매출액(억)",
+      2023: "2,589,354",
+      2022: "3,022,314",
+      2021: "2,796,048",
+    },
+    {
+      category: "영업이익(억)",
+      2023: "65,669",
+      2022: "433,766",
+      2021: "516,339",
+    },
+    {
+      category: "순이익(억)",
+      2023: "154,871",
+      2022: "556,541",
+      2021: "399,074",
+    },
+  ];
+
+  // 분기 데이터 (실제 데이터로 교체)
+  const quarterlyData = [
+    {
+      category: "매출액(억)",
+      "2023Q4": "677,799",
+      "2023Q3": "674,047",
+      "2023Q2": "600,055",
+      "2023Q1": "637,454",
+    },
+    {
+      category: "영업이익(억)",
+      "2023Q4": "28,247",
+      "2023Q3": "24,336",
+      "2023Q2": "6,685",
+      "2023Q1": "6,402",
+    },
+    {
+      category: "순이익(억)",
+      "2023Q4": "63,178",
+      "2023Q3": "174,995",
+      "2023Q2": "156,268",
+      "2023Q1": "110,430",
+    },
+  ];
+
   return (
     <DIV>
       <Routes>
@@ -134,7 +181,16 @@ function Information() {
                     />
                   }
                 />
-                <Route path="result" element={<div>실적 페이지 (임시)</div>} />
+                <Route
+                  path="result"
+                  element={
+                    <Result
+                      chartData={chartData}
+                      yearlyData={yearlyData}
+                      quarterlyData={quarterlyData}
+                    />
+                  }
+                />
                 <Route path="*" element={<div>404 Not Found</div>} />{" "}
                 {/* /information/* */}
               </Routes>
