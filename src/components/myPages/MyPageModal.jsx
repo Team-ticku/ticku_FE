@@ -7,7 +7,7 @@ const Backdrop = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 10;
   backdrop-filter: blur(5px) brightness(0.7);
 `;
 
@@ -30,7 +30,7 @@ const Modal = styled.div`
   height: 380px;
   border-radius: 50px 50px 0 0;
   text-align: center;
-  z-index: 2;
+  z-index: 11;
   animation: ${slideUp} 0.3s ease-out forwards;
 `;
 
