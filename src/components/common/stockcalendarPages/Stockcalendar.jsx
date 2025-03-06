@@ -34,6 +34,11 @@ const NavButton = styled.button`
   justify-content: center;
   font-size: 1.2em;
   cursor: pointer;
+  img {
+    width: 25px;
+    height: 25px;
+    filter: grayscale(100%) invert(100%) brightness(0%);
+  }
 `;
 
 //달력 요일 표시줄
@@ -226,7 +231,7 @@ const Calendar = ({ onScheduleSelect }) => {
             )
           }
         >
-          <img src="/images/calen-arrow1.png" alt="다음 달" />
+          <img src="/images/calen-arrow-before.png" alt="지난 달" />
         </NavButton>
         <MonthLabel
           ref={monthLabelRef}
@@ -253,7 +258,7 @@ const Calendar = ({ onScheduleSelect }) => {
             )
           }
         >
-          <img src="/images/calen-arrow2.png" alt="다음 달" />
+          <img src="/images/calen-arrow-after.png" alt="다음 달" />
         </NavButton>
       </CalendarHeader>
       <WeekdaysRow>
