@@ -6,7 +6,7 @@ const NewsCardWrapper = styled.div`
   width: 80%;
   border-radius: 20px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 20px 15px;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -73,20 +73,20 @@ const BookmarkContainer = styled.div`
 `;
 
 const ArticleImage = styled.img`
-  border-radius: 10px;
+  border-radius: 20px;
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
 function NewsCard({
-  title,
-  content,
-  hasImage,
-  image,
-  sourceName,
-  sourceImage,
-  defaultBookmarked,
+  title, // 기사 제목
+  content, // 기사 내용
+  hasImage, //사진이 있는지 없는지
+  image, //기사 사진
+  sourceName, //언론사 이름
+  sourceImage, //언론사 로고
+  defaultBookmarked, //북마크 되어있는지
 }) {
   return (
     <>
