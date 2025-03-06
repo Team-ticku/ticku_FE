@@ -1,0 +1,233 @@
+[
+  {
+    "id": 1,
+    "tag": "일상",
+    "userLikes": [1, 3],
+    "likesCount": 2,
+    "commentsCount": 5,
+    "userId": 1,
+    "title": "월요일 너무 싫다...",
+    "content": "근데 오늘은 금요일이라서 내일은 토요일이야 주말이라는 뜻이지ㅋㅋㅋㅋ 근데 놀지는 못해 프로젝트 하는 중이거든 ㅋ ㅋ ㅋ ㅋ ㅜ ㅜ ",
+    "image": null,
+    "comments": [
+      {
+        "id": 11,
+        "content": "나는 백수야"
+      },
+      {
+        "id": 12,
+        "content": "ㅋㅋ ㅜㅜ "
+      },
+      {
+        "id": 13,
+        "content": "화이팅!"
+      },
+      {
+        "id": 14,
+        "content": "어떡해  ㅜ ㅜ"
+      },
+      {
+        "id": 15,
+        "content": "어쩌라는거야"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "tag": "질문",
+    "userLikes": [2, 4, 5],
+    "likesCount": 3,
+    "commentsCount": 5,
+    "userId": 2,
+    "title": "지금 미국채 ETF 사는거 어떻게 생각해?",
+    "content": "각봐서 다음주 ~ 다음 달에 사려는데 괜찮을까????",
+    "image": null,
+    "comments": [
+      {
+        "id": 21,
+        "content": "hmm..!"
+      },
+      {
+        "id": 22,
+        "content": "바보임?"
+      },
+      {
+        "id": 23,
+        "content": "ㄱㄱ"
+      },
+      {
+        "id": 24,
+        "content": "애매"
+      },
+      {
+        "id": 25,
+        "content": "ㅋㅋ"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "tag": "정보/분석",
+    "userLikes": [1, 2, 3, 4, 5],
+    "likesCount": 5,
+    "commentsCount": 5,
+    "userId": 3,
+    "title": "🔥이노진 공모주 분석🔥",
+    "content": "청약일 : 2023.02.09.(목) ~ 2023.02.10.(금) \n 환불일 : 2023.02.14.(화) \n 상장일 : 2023.02.20.(월) \n 주간사 : IBK투자증권\n공모가 : 3,000원",
+    "image": "https://i.ibb.co/VYXR7FCL/img1.png",
+    "comments": [
+      {
+        "id": 31,
+        "content": "거래가능?"
+      },
+      {
+        "id": 32,
+        "content": "오"
+      },
+      {
+        "id": 33,
+        "content": "👍"
+      },
+      {
+        "id": 34,
+        "content": "good"
+      },
+      {
+        "id": 35,
+        "content": "정보감사요"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "tag": "일상",
+    "userLikes": [1, 3],
+    "likesCount": 2,
+    "commentsCount": 5,
+    "userId": 4,
+    "title": "안녕",
+    "content": "메롱",
+    "image": null,
+    "comments": [
+      {
+        "id": 41,
+        "content": "ㅎㅇ"
+      },
+      {
+        "id": 42,
+        "content": "👏"
+      },
+      {
+        "id": 43,
+        "content": "👍"
+      },
+      {
+        "id": 44,
+        "content": "?"
+      },
+      {
+        "id": 45,
+        "content": "👍"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "tag": "포트폴리오",
+    "userLikes": [3],
+    "likesCount": 1,
+    "commentsCount": 5,
+    "userId": 5,
+    "title": "안녕",
+    "content": "메롱",
+    "image": null,
+    "comments": [
+      {
+        "id": 41,
+        "content": "ㅎㅇ"
+      },
+      {
+        "id": 42,
+        "content": "👏"
+      },
+      {
+        "id": 43,
+        "content": "👍"
+      },
+      {
+        "id": 44,
+        "content": "?"
+      },
+      {
+        "id": 45,
+        "content": "👍"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "tag": "종목 추천",
+    "userLikes": [3],
+    "likesCount": 1,
+    "commentsCount": 5,
+    "userId": 1,
+    "title": "안녕",
+    "content": "메롱",
+    "image": null,
+    "comments": [
+      {
+        "id": 41,
+        "content": "ㅎㅇ"
+      },
+      {
+        "id": 42,
+        "content": "👏"
+      },
+      {
+        "id": 43,
+        "content": "👍"
+      },
+      {
+        "id": 44,
+        "content": "?"
+      },
+      {
+        "id": 45,
+        "content": "👍"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "tag": "일상",
+    "userLikes": [3],
+    "likesCount": 1,
+    "commentsCount": 5,
+    "userId": 3,
+    "title": "안녕",
+    "content": "바보",
+    "image": null,
+    "comments": [
+      {
+        "id": 41,
+        "content": "ㅎㅇ"
+      },
+      {
+        "id": 42,
+        "content": "👏"
+      },
+      {
+        "id": 43,
+        "content": "👍"
+      },
+      {
+        "id": 44,
+        "content": "?"
+      },
+      {
+        "id": 45,
+        "content": "👍"
+      }
+    ]
+  }
+]

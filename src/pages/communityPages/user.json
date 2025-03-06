@@ -1,0 +1,32 @@
+[
+  {
+    "userId": 1,
+    "name": "짱구",
+    "image": "https://i.ibb.co/wrjKst6q/997a9b2cd93277769ca9b3d109bceed7.jpg"
+  },
+  {
+    "userId": 2,
+    "name": "훈이",
+    "image": null
+  },
+  {
+    "userId": 3,
+    "name": "철수",
+    "image": "https://i.ibb.co/LmgykW7/image.jpg"
+  },
+  {
+    "userId": 4,
+    "name": "맹구",
+    "image": null
+  },
+  {
+    "userId": 5,
+    "name": "유리",
+    "image": null
+  },
+  {
+    "userId": 6,
+    "name": "수지",
+    "image": null
+  }
+]
