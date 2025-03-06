@@ -22,7 +22,7 @@ const Box = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding: 10px 24px;
+  padding: 0 24px;
 `;
 const Thumbnail = styled.img`
   width: 70px;
@@ -32,8 +32,8 @@ const Thumbnail = styled.img`
 `;
 
 const ContextContainer = styled.div`
-  margin: 7px 5px;
-  padding: 5px 10px;
+  margin: 0 5px;
+  padding: 0 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -46,7 +46,7 @@ const TextContainer = styled.div`
 
 const TitleText = styled.p`
   padding-left: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 3px;
   font-size: 20px;
   font-weight: 500;
 `;

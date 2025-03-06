@@ -7,6 +7,7 @@ const Div = styled.div`
   margin-bottom: 4px;
   display: flex;
   padding: 0 26px;
+  height: 33px;
 `;
 
 const Tag = styled.div`
@@ -20,9 +21,8 @@ const Tag = styled.div`
 
 const TagText = styled.p`
   padding: 3px 10px;
-  padding-top: 4px;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   color: white;
 `;
 
