@@ -9,8 +9,8 @@ import Chart from "./Chart";
 import List from "./List";
 import Finance from "./Finance";
 import VolumePage from "./Volume";
+import DividendPage from "./DividendPage";
 
-// 폴더이름 바껴랏!
 const DIV = styled.div`
   height: 2000px;
 `;
@@ -78,6 +78,24 @@ function Information() {
     },
   ];
 
+  const dividendData = [
+    {
+      year: "2024",
+      dividendPrice: "1,446",
+      dividendRate: "2.72%",
+    },
+    {
+      year: "2023",
+      dividendPrice: "1,444",
+      dividendRate: "1.84%",
+    },
+    {
+      year: "2022",
+      dividendPrice: "1,444",
+      dividendRate: "2.61%",
+    },
+  ];
+
   return (
     <DIV>
       <Routes>
@@ -109,7 +127,12 @@ function Information() {
                 <Route path="news" element={<div>뉴스 페이지 (임시)</div>} />
                 <Route
                   path="dividend"
-                  element={<div>배당 페이지 (임시)</div>}
+                  element={
+                    <DividendPage
+                      chartData={chartData}
+                      dividendData={dividendData}
+                    />
+                  }
                 />
                 <Route path="result" element={<div>실적 페이지 (임시)</div>} />
                 <Route path="*" element={<div>404 Not Found</div>} />{" "}
