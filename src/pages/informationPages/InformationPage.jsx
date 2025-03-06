@@ -195,48 +195,74 @@ function Information() {
   return (
     <DIV>
       <ContentWrapper ref={contentContainerRef}>
-        <Navigation />
         <Routes>
-          <Route path="" element={<InfoFirst />} />
           <Route path="list" element={<List />} />
-          <Route path="chart" element={<Chart chartData={chartData} />} />
           <Route
-            path="finance"
+            path="*" // 와일드카드(*) 경로 사용
             element={
-              <Finance chartData={chartData} financeData={financeData} />
+              <>
+                <Navigation />
+
+                <Routes>
+                  <Route path="" element={<InfoFirst />} />
+
+                  <Route
+                    path="chart"
+                    element={<Chart chartData={chartData} />}
+                  />
+                  <Route
+                    path="finance"
+                    element={
+                      <Finance
+                        chartData={chartData}
+                        financeData={financeData}
+                      />
+                    }
+                  />
+                  <Route
+                    path="volume"
+                    element={
+                      <VolumePage
+                        chartData={chartData}
+                        volumeData={volumeData}
+                      />
+                    }
+                  />
+                  <Route
+                    path="news"
+                    element={
+                      <NewsPage chartData={chartData} newsData={newsData} />
+                    }
+                  />
+                  <Route
+                    path="dividend"
+                    element={
+                      <DividendPage
+                        chartData={chartData}
+                        dividendData={dividendData}
+                      />
+                    }
+                  />
+                  <Route
+                    path="result"
+                    element={
+                      <Result
+                        chartData={chartData}
+                        yearlyData={yearlyData}
+                        quarterlyData={quarterlyData}
+                      />
+                    }
+                  />
+                  <Route path="*" element={<div>404 Not Found</div>} />
+                </Routes>
+
+                <TopScrollBtn />
+                <BottomNavBar />
+              </>
             }
           />
-          <Route
-            path="volume"
-            element={
-              <VolumePage chartData={chartData} volumeData={volumeData} />
-            }
-          />
-          <Route
-            path="news"
-            element={<NewsPage chartData={chartData} newsData={newsData} />}
-          />
-          <Route
-            path="dividend"
-            element={
-              <DividendPage chartData={chartData} dividendData={dividendData} />
-            }
-          />
-          <Route
-            path="result"
-            element={
-              <Result
-                chartData={chartData}
-                yearlyData={yearlyData}
-                quarterlyData={quarterlyData}
-              />
-            }
-          />
-          <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </ContentWrapper>
-      <TopScrollBtn />
-      <BottomNavBar />
     </DIV>
   );
 }
