@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 // import CalendarPage from "../pages/CalendarPage";
-// import CommunityPostPage from "../pages/CommunityPostsPage";
+import PostListPage from "../pages/communityPages/postListPage/PostListPage";
 import InformationPage from "../pages/InformationPages/InformationPage";
 import MainPage from "../pages/mainpage/MainPage";
 import MyPage from "../pages/myPages/MyPage";
@@ -14,7 +14,7 @@ export default function BottomNavBarRoutes() {
       <Route path="/" element={<MainPage />}></Route>
       <Route path="/portmn" element={<PortfolioMainPage />}></Route>
       <Route path="/information/*" element={<InformationPage />}></Route>
-      {/* <Route path="/communityposts" element={<CommunityPostPage />}></Route> */}
+      <Route path="/communityposts" element={<PostListPage />}></Route>
       <Route path="/mypage" element={<MyPage />}></Route>
       {/* <Route path="/calen" element={<CalendarPage />}></Route> */}
       <Route path="/ticko" element={<TickoPage />}></Route>
