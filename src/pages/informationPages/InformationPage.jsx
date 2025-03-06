@@ -11,6 +11,7 @@ import Finance from "./Finance";
 import VolumePage from "./Volume";
 import DividendPage from "./DividendPage";
 import Result from "./Result";
+import NewsPage from "./NewsPage";
 
 const DIV = styled.div`
   min-height: 100vh;
@@ -161,6 +162,29 @@ function Information() {
     },
   ];
 
+  const newsData = [
+    {
+      title: "코스피, 개인·기관 순매수에 강보합 마감…",
+      content: "코스피가 장 초반 하락세를 딛고...",
+      hasImage: true,
+      image: "../../public/images/information/NewsSampleImage.png", // 실제 이미지 URL
+      sourceName: "동아일보",
+      sourceImage: "../../public/images/information/dongaLogo.png", // 실제 로고 URL
+      defaultBookmarked: false,
+    },
+    {
+      title: "코스피, 개인·기관 순매수에 강보합 마감…",
+      content: "코스피가 장 초반 하락세를 딛고...",
+      hasImage: true,
+      image: "../../public/images/information/NewsSampleImage.png", // 실제 이미지 URL
+      sourceName: "동아일보",
+      sourceImage: "../../public/images/information/dongaLogo.png", // 실제 로고 URL
+      defaultBookmarked: false,
+    },
+
+    // ... 추가 뉴스 기사 데이터 ...
+  ];
+
   useEffect(() => {
     if (contentContainerRef.current) {
       const contentHeight = contentContainerRef.current.scrollHeight;
@@ -188,7 +212,10 @@ function Information() {
               <VolumePage chartData={chartData} volumeData={volumeData} />
             }
           />
-          <Route path="news" element={<div>뉴스 페이지 (임시)</div>} />
+          <Route
+            path="news"
+            element={<NewsPage chartData={chartData} newsData={newsData} />}
+          />
           <Route
             path="dividend"
             element={
