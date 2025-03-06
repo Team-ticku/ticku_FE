@@ -10,12 +10,11 @@ import List from "./List";
 import Finance from "./Finance";
 import VolumePage from "./Volume";
 
-// 폴더이름 바껴랏!
-const DIV = styled.div`
-  height: 2000px;
+const Wrap = styled.div`
+  width: 390px;
 `;
 
-function Information() {
+function Information({ display }) {
   const chartData = {
     logo: "", // 여기에 이미지 url
     altText: "기업 로고", // 이미지 alt(없어도 상관없음)
@@ -79,7 +78,7 @@ function Information() {
   ];
 
   return (
-    <DIV>
+    <Wrap>
       <Routes>
         {/* /Information/List 경로 */}
         <Route path="list" element={<List />} />
@@ -115,13 +114,13 @@ function Information() {
                 <Route path="*" element={<div>404 Not Found</div>} />{" "}
                 {/* /information/* */}
               </Routes>
-              <TopScrollBtn />
-              <BottomNavBar />
+              <TopScrollBtn display={display} />
+              <BottomNavBar display={display} />
             </>
           }
         />
       </Routes>
-    </DIV>
+    </Wrap>
   );
 }
 export default Information;

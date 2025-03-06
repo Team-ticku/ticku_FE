@@ -6,15 +6,20 @@ import LiveSearchRank from "../../components/mainpage/LiveSearchRank";
 import LiveIndexChart from "../../components/mainpage/LiveIndexChart";
 import MainPortfolio from "../../components/mainpage/MainPortfolio";
 
-function MainPage(props) {
+import styled from "styled-components";
+const Wrap = styled.div`
+  width: 390px;
+`;
+
+function MainPage({ display }) {
   return (
-    <>
-      <BottomNavBar />
+    <Wrap>
+      <BottomNavBar display={display} />
       <SearchBar />
       <LiveSearchRank />
       <LiveIndexChart />
       <MainPortfolio />
-    </>
+    </Wrap>
   );
 }
 export default MainPage;
