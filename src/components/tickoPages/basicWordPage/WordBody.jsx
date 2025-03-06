@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import StartSpeechBubble from "../common/SpeechBubble/StartSpeechBubble";
-import ElseSpeechBubble from "../common/SpeechBubble/ElseSpeechBubble";
+import StartSpeechBubble from "../common/speechBubble/StartSpeechBubble";
+import ElseSpeechBubble from "../common/speechBubble/ElseSpeechBubble";
 import Menu from "../common/menu/Menu";
 
 const BodyWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 10px 20px 10px 5px;
+  padding: 55px 20px 10px 10px;
+  visibility: hidden;
 `;
 
 const menuList = [
@@ -64,9 +65,12 @@ const menuList = [
 export default function WordBody() {
   return (
     <BodyWrap>
-      <StartSpeechBubble></StartSpeechBubble>
-      <ElseSpeechBubble context="아래 항목 중에서 어떤 게 궁금한지 알려줘~"></ElseSpeechBubble>
-      <Menu list={menuList}></Menu>
+      <StartSpeechBubble context="주식 기초 지식을 골랐구나!"></StartSpeechBubble>
+      <ElseSpeechBubble
+        context="아래 항목 중에서 어떤 게 궁금한지 알려줘~"
+        animationDelay="1s"
+      ></ElseSpeechBubble>
+      <Menu list={menuList} animationDelay="2s"></Menu>
     </BodyWrap>
   );
 }

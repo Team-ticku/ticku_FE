@@ -13,11 +13,14 @@ const Dummy = styled.div`
   flex-shrink: 0;
 `;
 
-export default function ElseSpeechBubble({ context }) {
+export default function ElseSpeechBubble({ context, animationDelay }) {
   return (
     <BubbleWrap>
       <Dummy></Dummy>
-      <SpeechBubble context={context}></SpeechBubble>
+      <SpeechBubble
+        context={context}
+        animationDelay={animationDelay}
+      ></SpeechBubble>
     </BubbleWrap>
   );
 }

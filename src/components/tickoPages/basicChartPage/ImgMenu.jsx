@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import LinkButton from "./LinkButton";
+import LinkButton from "../common/menu/LinkButton";
 
 const fadeIn = keyframes`
   from {
@@ -26,7 +26,6 @@ const Dummy = styled.div`
 `;
 const MenuWrap = styled.div`
   display: flex;
-  flex-direction: ${(props) => props.flexDirection || "row"};
   justify-content: center;
   flex-wrap: wrap;
   border: 2px solid #b2c4df;
@@ -37,22 +36,36 @@ const MenuWrap = styled.div`
   animation-timing-function: ease-out;
   animation-name: ${fadeIn};
   animation-fill-mode: forwards;
-  animation-delay: ${(props) => props.animationDelay || "0"};
+  animation-delay: ${(props) => props.animationDelay || "0s"};
+`;
+const Img = styled.img`
+  width: 80px;
+  height: 80px;
+  src: ${(props) => props.src || null};
 `;
 
-export default function Menu({ list, flexDirection, animationDelay }) {
+export default function ImgMenu({ list, animationDelay }) {
   return (
     <Wrap>
       <Dummy></Dummy>
-      <MenuWrap flexDirection={flexDirection} animationDelay={animationDelay}>
+      <MenuWrap animationDelay={animationDelay}>
+        <LinkButton
+          link={"/ticko/chart/1"}
+          title={"캔들스틱 표기 기간"}
+          padding={"7px 49px"}
+        ></LinkButton>
         {list.map((menu, idx) => {
           return (
-            <LinkButton
-              key={idx}
-              link={menu.link}
-              title={menu.title}
-              padding={menu.padding}
-            ></LinkButton>
+            <>
+              <LinkButton
+                key={idx}
+                link={menu.link}
+                title={menu.title}
+                padding={menu.padding}
+              >
+                <Img src={menu.src}></Img>
+              </LinkButton>
+            </>
           );
         })}
       </MenuWrap>
