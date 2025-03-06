@@ -1,16 +1,7 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import TotalRoutes from "./routes/totalRoutes";
 
 function App() {
-
-
-  return (
-    <>
-      
-    </>
-  )
+  return <TotalRoutes />;
 }
 
-export default App
+export default App;
