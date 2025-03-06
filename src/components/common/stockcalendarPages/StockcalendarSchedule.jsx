@@ -33,23 +33,37 @@ const ScheduleItem = styled.li`
   display: flex;
   align-items: center;
   padding: 10px;
-  list-style: none;
 `;
 
+const Dotdiv = styled.div`
+  color: #b2c4df;
+  font-size: 20px;
+  margin-right: 5px;
+`;
 const StockcalendarSchedule = ({ schedules = [] }) => {
   return (
-    <ScheduleContainer>
-      <ScheduleHeader>Today's 배당락일</ScheduleHeader>
-      <ScheduleList>
-        {schedules.length > 0 ? (
-          schedules.map((schedule, index) => (
-            <ScheduleItem key={index}>{schedule.schedule}</ScheduleItem>
-          ))
-        ) : (
-          <ScheduleItem>일정 없음</ScheduleItem>
-        )}
-      </ScheduleList>
-    </ScheduleContainer>
+    <>
+      <ScheduleContainer>
+        <ScheduleHeader>Today's 배당락일</ScheduleHeader>
+        <ScheduleList>
+          {schedules.length > 0 ? (
+            schedules.map((schedule, index) => (
+              <li key={index} style={{ listStyle: "square" }}>
+                <ScheduleItem>
+                  {" "}
+                  <Dotdiv>•</Dotdiv> {schedule.schedule}
+                </ScheduleItem>
+              </li>
+            ))
+          ) : (
+            // <li style={{ listStyle: "inside" }}>아무개</li>
+            <ScheduleItem style={{ listStyle: "inside" }}>
+              <Dotdiv>•</Dotdiv> 일정 없음
+            </ScheduleItem>
+          )}
+        </ScheduleList>
+      </ScheduleContainer>
+    </>
   );
 };
 
