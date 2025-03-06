@@ -1,8 +1,10 @@
 import React from "react";
 // import reactLogo from "./assets/react.svg";
-import PortTitle from "../../components/common/portfolioPages/PortTitle";
-import PortBox from "../../components/common/portfolioPages/PortBox";
-import PortButton from "../../components/common/portfolioPages/PortButton";
+import PortTitle from "../../components/portfoliopage/PortTitle";
+import PortBox from "../../components/portfoliopage/PortBox";
+import PortButton from "../../components/portfoliopage/PortButtons";
+import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
+
 // import "../App.css";
 import styled from "styled-components";
 
@@ -15,11 +17,14 @@ const Container = styled.div`
 
 function PortfolioMainPage() {
   return (
-    <Container>
-      <PortTitle />
-      <PortBox />
-      <PortButton />
-    </Container>
+    <>
+      <BottomNavBar />
+      <Container>
+        <PortTitle />
+        <PortBox />
+        <PortButton />
+      </Container>
+    </>
   );
 }
 
