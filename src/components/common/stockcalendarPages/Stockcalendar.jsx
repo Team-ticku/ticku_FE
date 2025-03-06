@@ -75,10 +75,10 @@ const DayCell = styled.div`
   transition: 0.2s;
   cursor: pointer;
   &.today {
-    background-color: #4287f5;
+    background-color: #b2c4df;
+    color: #ffffff;
   }
   &.selected {
-    border: 2px solid #b2c4df;
     color: #000000;
   }
   &.other-month {
@@ -86,9 +86,8 @@ const DayCell = styled.div`
   }
   &.has-schedule {
     border: 2px solid #b2c4df;
-    background-color: #b2c4df;
-    color: #ffffff;
-    opacity: 0.6;
+    background-color: rgba(178, 196, 223, 0.3);
+    color: #000000;
   }
   &:hover {
     background-color: #ddd;
