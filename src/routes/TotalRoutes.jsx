@@ -10,6 +10,8 @@ import AccountMenuRoutes from "./tickoPages/AccountMenuRoutes";
 import MyPageRoutes from "./myPages/MyPageRoutes";
 // 로그인 페이지
 import LoginRoutes from "./loginPage/LoginRoutes";
+// 회원가입 페이지
+import JoinPage from "../pages/joinPage/JoinPage";
 
 export default function TotalRoutes() {
   return (
@@ -27,6 +29,8 @@ export default function TotalRoutes() {
       <MyPageRoutes />
       {/* 로그인 페이지 */}
       <LoginRoutes />
+      {/* 회원 가입 페이지 */}
+      <JoinPage />
     </BrowserRouter>
   );
 }
