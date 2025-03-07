@@ -33,9 +33,9 @@ export default function TotalRoutes() {
       <LoginRoutes />
       {/* 회원 가입 페이지 */}
       <JoinPage />
-
       {/* 커뮤니티 페이지 */}
       <PostViewRoute />
+
     </BrowserRouter>
   );
 }

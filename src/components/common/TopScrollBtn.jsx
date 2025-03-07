@@ -9,7 +9,8 @@ const Btn = styled.button`
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
+  // 수정내용
+  display: ${(props) => props.display || "flex"};
   justify-content: center;
   align-items: center;
   width: 60px;
@@ -24,7 +25,7 @@ const Image = styled.img`
   display: block;
 `;
 
-function ScrollToTopButton() {
+function ScrollToTopButton({ display }) {
   const scrollToTop = () => {
     window.scrollTo({
       top: 10,
@@ -34,7 +35,7 @@ function ScrollToTopButton() {
 
   return (
     <>
-      <Btn onClick={scrollToTop}>
+      <Btn onClick={scrollToTop} display={display}>
         <Image src="../public/images/TopScrollBtn2.png"></Image>
       </Btn>
     </>
