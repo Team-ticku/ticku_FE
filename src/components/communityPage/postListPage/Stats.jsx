@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Div = styled.div`
   display: flex;
   flex-direction: row;
-  margin-left: 160px;
+  margin-left: ${(props) => props.marginLeft || "160px"};
   box-sizing: border-box;
   width: 100px;
   justify-content: space-between;
@@ -37,8 +37,9 @@ function Stats(props) {
     event.stopPropagation();
     setIsLiked(!isLiked);
   };
+
   return (
-    <Div>
+    <Div marginLeft={props.marginLeft}>
       <Container>
         <Picture
           src={
@@ -61,6 +62,7 @@ function Stats(props) {
 Stats.propTypes = {
   likesCount: PropTypes.number.isRequired,
   commentsCount: PropTypes.number.isRequired,
+  marginLeft: PropTypes.string,
 };
 
 export default Stats;
