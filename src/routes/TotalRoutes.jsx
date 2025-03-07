@@ -6,6 +6,7 @@ import TickoMainRoutes from "./tickoPages/tickoMainRoutes";
 import WordMenuRoutes from "./tickoPages/WordMenuRoutes";
 import ChartMenuRoutes from "./tickoPages/ChartMenuRoutes";
 import AccountMenuRoutes from "./tickoPages/AccountMenuRoutes";
+import PortfolioPageRoutes from "./portfolioPages/PortfolioRoutes";
 
 export default function TotalRoutes() {
   return (
@@ -18,6 +19,9 @@ export default function TotalRoutes() {
       <WordMenuRoutes />
       <ChartMenuRoutes />
       <AccountMenuRoutes />
+
+      {/* 포트폴리오 제작 페이지 */}
+      <PortfolioPageRoutes />
     </BrowserRouter>
   );
 }
