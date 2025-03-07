@@ -4,30 +4,38 @@
     "tag": "일상",
     "userLikes": [1, 3],
     "likesCount": 2,
-    "commentsCount": 5,
+    "commentsCount": 7,
     "userId": 1,
     "title": "월요일 너무 싫다...",
     "content": "근데 오늘은 금요일이라서 내일은 토요일이야 주말이라는 뜻이지ㅋㅋㅋㅋ 근데 놀지는 못해 프로젝트 하는 중이거든 ㅋ ㅋ ㅋ ㅋ ㅜ ㅜ ",
     "image": null,
     "comments": [
       {
-        "id": 11,
+        "id": 2,
         "content": "나는 백수야"
       },
       {
-        "id": 12,
+        "id": 6,
         "content": "ㅋㅋ ㅜㅜ "
       },
       {
-        "id": 13,
+        "id": 3,
         "content": "화이팅!"
       },
       {
-        "id": 14,
+        "id": 4,
         "content": "어떡해  ㅜ ㅜ"
       },
       {
-        "id": 15,
+        "id": 5,
+        "content": "어쩌라는거야"
+      },
+      {
+        "id": 5,
+        "content": "어쩌라는거야"
+      },
+      {
+        "id": 5,
         "content": "어쩌라는거야"
       }
     ]
@@ -44,23 +52,27 @@
     "image": null,
     "comments": [
       {
-        "id": 21,
+        "id": 1,
         "content": "hmm..!"
       },
       {
-        "id": 22,
+        "id": 3,
         "content": "바보임?"
       },
       {
-        "id": 23,
+        "id": 4,
         "content": "ㄱㄱ"
       },
       {
-        "id": 24,
+        "id": 5,
         "content": "애매"
       },
       {
-        "id": 25,
+        "id": 6,
+        "content": "ㅋㅋ"
+      },
+      {
+        "id": 6,
         "content": "ㅋㅋ"
       }
     ]
@@ -77,23 +89,23 @@
     "image": "https://i.ibb.co/VYXR7FCL/img1.png",
     "comments": [
       {
-        "id": 31,
+        "id": 1,
         "content": "거래가능?"
       },
       {
-        "id": 32,
+        "id": 2,
         "content": "오"
       },
       {
-        "id": 33,
+        "id": 4,
         "content": "👍"
       },
       {
-        "id": 34,
+        "id": 6,
         "content": "good"
       },
       {
-        "id": 35,
+        "id": 5,
         "content": "정보감사요"
       }
     ]
@@ -110,23 +122,23 @@
     "image": null,
     "comments": [
       {
-        "id": 41,
+        "id": 1,
         "content": "ㅎㅇ"
       },
       {
-        "id": 42,
+        "id": 2,
         "content": "👏"
       },
       {
-        "id": 43,
+        "id": 3,
         "content": "👍"
       },
       {
-        "id": 44,
+        "id": 6,
         "content": "?"
       },
       {
-        "id": 45,
+        "id": 5,
         "content": "👍"
       }
     ]
@@ -143,23 +155,23 @@
     "image": null,
     "comments": [
       {
-        "id": 41,
+        "id": 1,
         "content": "ㅎㅇ"
       },
       {
-        "id": 42,
+        "id": 2,
         "content": "👏"
       },
       {
-        "id": 43,
+        "id": 3,
         "content": "👍"
       },
       {
-        "id": 44,
+        "id": 4,
         "content": "?"
       },
       {
-        "id": 45,
+        "id": 6,
         "content": "👍"
       }
     ]
@@ -176,23 +188,23 @@
     "image": null,
     "comments": [
       {
-        "id": 41,
+        "id": 1,
         "content": "ㅎㅇ"
       },
       {
-        "id": 42,
+        "id": 2,
         "content": "👏"
       },
       {
-        "id": 43,
+        "id": 3,
         "content": "👍"
       },
       {
-        "id": 44,
+        "id": 4,
         "content": "?"
       },
       {
-        "id": 45,
+        "id": 5,
         "content": "👍"
       }
     ]
