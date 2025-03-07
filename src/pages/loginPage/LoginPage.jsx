@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -81,6 +82,7 @@ const JoinA = styled.a`
 function LoginPage() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const navigator = useNavigate();
 
   const handleLogin = async (e) => {
     //console.log("로그인");
