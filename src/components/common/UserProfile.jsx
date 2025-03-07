@@ -11,7 +11,7 @@ const Div = styled.div`
 const ProfilePicture = styled.img`
   ${(props) => props.height && `height: ${props.height}px;`}
   ${(props) => props.width && `width: ${props.width}px;`}
-  border-radius:20px;
+  border-radius:100px;
   object-fit: cover;
   margin-right: 10px;
 `;
