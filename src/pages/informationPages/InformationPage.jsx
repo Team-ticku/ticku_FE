@@ -13,9 +13,8 @@ import DividendPage from "./DividendPage";
 import Result from "./Result";
 import NewsPage from "./NewsPage";
 
-const DIV = styled.div`
-  min-height: 100vh;
-  overflow: hidden;
+const Wrap = styled.div`
+  width: 390px;
 `;
 
 const ContentWrapper = styled.div`
@@ -25,7 +24,7 @@ const ContentWrapper = styled.div`
   padding-bottom: 100px;
 `;
 
-function Information() {
+function Information({ display }) {
   const contentContainerRef = useRef(null);
 
   const chartData = {
@@ -193,7 +192,7 @@ function Information() {
   }, [yearlyData, quarterlyData, volumeData, dividendData]);
 
   return (
-    <DIV>
+    <Wrap>
       <ContentWrapper ref={contentContainerRef}>
         <Routes>
           <Route path="list" element={<List />} />
@@ -256,14 +255,14 @@ function Information() {
                   <Route path="*" element={<div>404 Not Found</div>} />
                 </Routes>
 
-                <TopScrollBtn />
-                <BottomNavBar />
+                <TopScrollBtn display={display} />
+                <BottomNavBar display={display} />
               </>
             }
           />
         </Routes>
       </ContentWrapper>
-    </DIV>
+    </Wrap>
   );
 }
 
