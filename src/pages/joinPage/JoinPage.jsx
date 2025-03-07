@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -44,6 +45,7 @@ const DuplicateID = styled.p`
   margin-top: 10px;
   width: 95%;
   text-align: left;
+  display: ${(props) => (props.isIdDuplicate ? "block" : "none")};
 `;
 
 const PassWordInput = styled.input`
@@ -87,53 +89,54 @@ const JoinButton = styled.button`
 `;
 
 function JoinPage() {
-  const [id, setId] = useState("");
+  const [uid, setUid] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [isIdDuplicate, setIsIdDuplicate] = useState(false);
+  const [isIdDuplicate, setIsIdDuplicate] = useState(false); // 중복 아이디 상태
 
-  // 아이디 중복 체크 함수
-  /*const checkIdDuplicate = async (id) => {
-    try {
-      const response = await axios.post("http://localhost:5000/api/check-id", {
-        id,
-      });
-      setIsIdDuplicate(response.data.isDuplicate); // 서버에서 중복 여부 받아오기
-    } catch (err) {
-      console.error(err);
-      setError("아이디 중복 체크 실패");
-    }
-  };*/
-
-  // 아이디 입력 변경 시 중복 체크
-  /*useEffect(() => {
-    if (id.length > 0) {
-      checkIdDuplicate(id);
-    } else {
-      setIsIdDuplicate(false);
-    }
-  }, [id]);*/
+  const navigate = useNavigate();
 
   const handleJoin = async () => {
     console.log("회원가입");
 
-    /*if (isIdDuplicate) {
-      setError("아이디가 중복되었습니다.");
+    // 하나라도 비어있으면 return
+    if (!uid || !password || !name) {
       return;
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/register", {
-        id,
-        password,
-        name,
+      // 아이디 중복 검사
+      const duplicateResponse = await fetch("http://localhost:5000/check-in", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ uid }),
       });
-      console.log(response.data); // 응답 처리
-      // 성공 시 처리 로직 추가 (예: 페이지 이동)
+
+      const duplicateData = await duplicateResponse.json();
+
+      if (duplicateData.isIdDuplicate) {
+        setIsIdDuplicate(true);
+        return;
+      }
+
+      // 회원가입 진행
+      const response = await fetch("http://localhost:5000/join", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ uid, password, name }),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 201) {
+        navigate("/login");
+      } else {
+        console.log("회원가입 실패 : " + data.message);
+      }
     } catch (err) {
       console.error(err);
-      setError("회원가입에 실패했습니다. 다시 시도해주세요.");
-    }*/
+      console.log("회원가입 실패");
+    }
   };
 
   return (
@@ -145,14 +148,12 @@ function JoinPage() {
           <IdInput
             type="text"
             placeholder="아이디를 입력하세요"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            value={uid}
+            onChange={(e) => setUid(e.target.value)}
           />
-
-          {/* <DuplicateID>중복된 아이디입니다</DuplicateID> */}
-          {isIdDuplicate && id.length > 0 && (
-            <DuplicateID>중복된 아이디입니다</DuplicateID>
-          )}
+          <DuplicateID isIdDuplicate={isIdDuplicate}>
+            중복된 아이디입니다
+          </DuplicateID>
 
           <PassWordInput
             type="password"
