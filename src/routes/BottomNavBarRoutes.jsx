@@ -8,10 +8,13 @@ import MyPage from "../pages/myPages/MyPage";
 import PortfolioMainPage from "../pages/portfolioPages/PortfolioMainPage";
 import TickoPage from "../pages/tickoPages/TickoPage";
 
+import StartPage from "../pages/startPages/StartPage";
+
 export default function BottomNavBarRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />}></Route>
+      <Route path="/" element={<StartPage />}></Route>
+      <Route path="/main" element={<MainPage />}></Route>
       <Route path="/portmn" element={<PortfolioMainPage />}></Route>
       <Route path="/information/*" element={<InformationPage />}></Route>
       <Route path="/communityposts" element={<PostListPage />}></Route>
