@@ -83,28 +83,27 @@ function LoginPage() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
-    console.log("로그인");
-
-    // 백엔드랑 연결할 때 사용
-    /*e.preventDefault();
+    //console.log("로그인");
+    e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/login", {
-        id,
-        password,
+      const response = await fetch(`http://localhost:5000/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, password }),
       });
 
-      if (response.data.token) {
-        alert("로그인 성공!");
-        localStorage.setItem("token", response.data.token); // JWT 저장
-        window.location.href = "/dashboard"; // 로그인 후 페이지 이동
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        navigator("/main");
       } else {
-        alert("로그인 실패: " + response.data.message);
+        console.log("로그인 실패 : " + data.message);
       }
-    } catch (error) {
-      console.error("로그인 오류:", error);
-      alert("서버 오류 또는 아이디/비밀번호가 잘못되었습니다.");
-    }*/
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
