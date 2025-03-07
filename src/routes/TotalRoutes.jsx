@@ -11,7 +11,7 @@ import MyPageRoutes from "./myPages/MyPageRoutes";
 // 로그인 페이지
 import LoginRoutes from "./loginPage/LoginRoutes";
 // 회원가입 페이지
-import JoinPage from "../pages/joinPage/JoinPage";
+import JoinRoutes from "./joinPage/JoinRoutes";
 // 커뮤니티 페이지
 import PostViewRoute from "./communityPages/PostViewRoutes";
 
@@ -32,10 +32,9 @@ export default function TotalRoutes() {
       {/* 로그인 페이지 */}
       <LoginRoutes />
       {/* 회원 가입 페이지 */}
-      <JoinPage />
+      <JoinRoutes />
       {/* 커뮤니티 페이지 */}
       <PostViewRoute />
-
     </BrowserRouter>
   );
 }
