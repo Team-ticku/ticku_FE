@@ -22,6 +22,17 @@ const slideUp = keyframes`
   }
 `;
 
+const slideDown = keyframes`
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+`;
+
 const Modal = styled.div`
   position: fixed;
   bottom: 0;
@@ -31,7 +42,9 @@ const Modal = styled.div`
   border-radius: 50px 50px 0 0;
   text-align: center;
   z-index: 11;
-  animation: ${slideUp} 0.3s ease-out forwards;
+  /* animation: ${slideUp} 0.3s ease-out forwards; */
+  animation: ${(props) => (props.isClosing ? slideDown : slideUp)} 0.3s ease-out
+    forwards;
 `;
 
 const ProfileContainer = styled.div`
@@ -94,6 +107,7 @@ const SaveButton = styled.button`
 
 function MyPageModal({ isOpen, onClose, userName, userImage }) {
   if (!isOpen) return null;
+  const [isClosing, setIsClosing] = useState(false); // 모달이 닫힐 때 애니메이션을 위해 추가
 
   const [name, setName] = useState(userName);
   const [profileImg, setProfileImg] = useState(userImage);
@@ -120,10 +134,19 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
     setIsEditing(false);
   };
 
+  // 백그라운드 클릭 시 모달 닫기
+  const handleBackdropClick = () => {
+    setIsClosing(true); // 모달 닫을 때 애니메이션 실행
+    setTimeout(() => {
+      setIsClosing(false);
+      onClose(); // 애니메이션 후 모달 닫기
+    }, 300); // 애니메이션 시간(0.3초) 후에 모달을 닫음
+  };
+
   return (
     <>
-      <Backdrop onClick={onClose}>
-        <Modal onClick={(e) => e.stopPropagation()}>
+      <Backdrop onClick={handleBackdropClick}>
+        <Modal isClosing={isClosing} onClick={(e) => e.stopPropagation()}>
           {isEditing ? (
             // 편집 모드일 때
             <ProfileContainer>
