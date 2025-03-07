@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import PortMakeBtn from "./PortMakeBtn";
 import BottomNavBar from "../common/bottomNavBars/BottomNavBar";
@@ -179,6 +180,8 @@ function PortMakeModal({ isOpen, onClose }) {
   ]);
   const [isMaxPercent, setIsMaxPercent] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleInputChange = (index, field, value) => {
     if (field === "percent") {
       // 숫자가 아니거나 음수인 경우 무시
@@ -214,7 +217,7 @@ function PortMakeModal({ isOpen, onClose }) {
 
   return (
     <>
-      <Backdrop onClick={onClose}>
+      <Backdrop onClick={() => navigate("/portmn")}>
         <Modal onClick={(e) => e.stopPropagation()}>
           <Title>이름을 입력하세요</Title>
           <InputWrapper>

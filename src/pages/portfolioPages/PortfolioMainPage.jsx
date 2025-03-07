@@ -25,7 +25,7 @@ function PortfolioMainPage({ display }) {
       <BottomNavBar display={display} />
       <Container>
         <PortTitle />
-        <PortBox />
+        <PortBox link={"make"} />
         <PortButton />
       </Container>
     </Wrap>
