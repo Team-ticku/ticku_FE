@@ -80,9 +80,9 @@ const JoinA = styled.a`
 `;
 
 function LoginPage() {
-  const [id, setId] = useState("");
+  const [uid, setUid] = useState("");
   const [password, setPassword] = useState("");
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     //console.log("로그인");
@@ -92,14 +92,14 @@ function LoginPage() {
       const response = await fetch(`http://localhost:5000/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, password }),
+        body: JSON.stringify({ uid, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
-        navigator("/main");
+        navigate("/main");
       } else {
         console.log("로그인 실패 : " + data.message);
       }
@@ -117,8 +117,8 @@ function LoginPage() {
           <IdInput
             type="text"
             placeholder="아이디를 입력하세요"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            value={uid}
+            onChange={(e) => setUid(e.target.value)}
           />
           <PassWordInput
             type="password"
