@@ -38,7 +38,7 @@ function PostListPage() {
           <PostList
             posts={data}
             onClickItem={(item) => {
-              navigate(`post/${item.id}`);
+              navigate(`/communityposts/post/${item.id}`);
             }}
           />
         </Box>
