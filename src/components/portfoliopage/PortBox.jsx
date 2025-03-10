@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const PortDiv = styled.div`
   width: 300px;
@@ -18,9 +19,15 @@ const AddButton = styled.img`
   height: 50px;
 `;
 
-const PortBox = () => {
+const PortBox = ({ link }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/portmn/" + link);
+  };
+
   return (
-    <PortDiv>
+    <PortDiv onClick={handleClick}>
       <AddButton src="../public/images/portadd.png" />
     </PortDiv>
   );
