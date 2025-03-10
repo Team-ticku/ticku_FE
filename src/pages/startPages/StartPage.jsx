@@ -89,8 +89,7 @@ export default function StartPage() {
       ></ExFullPages>
       <Skip
         onClick={() => {
-          // 로그인 페이지 주소로 수정 필요
-          toLogin("/main");
+          toLogin("/login");
         }}
       >
         skip
