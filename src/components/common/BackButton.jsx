@@ -7,6 +7,7 @@ const Button = styled.button`
   border: none;
   background: none;
   margin-left: 10px;
+  cursor: pointer;
 `;
 
 const Img = styled.img`
