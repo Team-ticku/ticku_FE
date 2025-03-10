@@ -1,7 +1,7 @@
 import WelcomeEx from "./ExplainPages/WelcomeEx";
 import MainPage from "../mainpage/MainPage";
 import Information from "../InformationPages/InformationPage";
-// 배당락일 캘린더 페이지 추가 필요
+import StockcalenPages from "../stockcalendarPages/StockcalenPages";
 import PortfolioMainPage from "../portfolioPages/PortfolioMainPage";
 import TickoPage from "../tickoPages/TickoPage";
 import PostListPage from "../communityPages/postListPage/PostListPage";
@@ -85,7 +85,30 @@ const comList = [
     ),
   },
   {
-    page: <DummyPage></DummyPage>,
+    page: <StockcalenPages display="none" />,
+    instruction: [
+      <Instruction
+        key="Calen_1"
+        top="30px"
+        left="15px"
+        context="날짜를 선택해봐~"
+        animationDelay="1s"
+        width="350px"
+        height="300px"
+        flexDirection="column-reverse"
+        alignItems="end"
+      ></Instruction>,
+      <Instruction
+        key="Calen_2"
+        bottom="260px"
+        left="5px"
+        context="그 날짜가 배당일인 기업 목록이 나올 거야!"
+        animationDelay="2s"
+        width="140px"
+        height="40px"
+        alignItems="end"
+      ></Instruction>,
+    ],
   },
   {
     page: <PortfolioMainPage display="none" />,
