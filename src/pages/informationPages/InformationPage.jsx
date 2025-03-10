@@ -28,8 +28,6 @@ function Information({ display }) {
   const contentContainerRef = useRef(null);
 
   const chartData = {
-    logo: "", // 여기에 이미지 url
-    altText: "기업 로고", // 이미지 alt(없어도 상관없음)
     name: "기업 이름", // 기업 이름
     code: "기업 코드", // 기업 종목 코드
     price: "가격", // 기업 현재가
