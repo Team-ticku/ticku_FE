@@ -26,12 +26,12 @@ const TimeLine = styled.p`
   padding-left: 15px;
 `;
 
-function PostListPage() {
+function PostListPage({ display }) {
   const navigate = useNavigate();
 
   return (
     <>
-      <BottomNavBar />
+      <BottomNavBar display={display} />
       <Div>
         <TimeLine>타임라인</TimeLine>
         <Box>

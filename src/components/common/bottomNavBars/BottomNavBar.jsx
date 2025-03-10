@@ -74,7 +74,7 @@ export default function BottomNavBar({ display }) {
       setActiveNav(6);
     } else if (location.pathname === "/ticko") {
       setActiveNav(7);
-    } else if (location.pathname === "/") {
+    } else if (location.pathname === "/main") {
       setActiveNav(3);
     }
   }, [location]);
@@ -100,7 +100,7 @@ export default function BottomNavBar({ display }) {
         </Link>
       </Div>
       <Div>
-        <Link to="/" onClick={modalClose}>
+        <Link to="/main" onClick={modalClose}>
           {activeNav === 3 ? (
             <ClickedIconStyle icon="house" />
           ) : (
