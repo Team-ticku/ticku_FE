@@ -17,23 +17,16 @@ const Img = styled.img`
 function BackButton({
   width = 24,
   height = 24,
-  link = -1, // 기본적으로 뒤로가기
   src = "/images/arrow_back.png",
+  link,
 }) {
   const navigate = useNavigate();
 
   return (
     <Button onClick={() => navigate(link)}>
-      <Img src={src} alt="뒤로가기" width={width} height={height} />
+      <Img src={src} alt="뒤로가기" width={width} height={height} link={link} />
     </Button>
   );
 }
-
-BackButton.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
-  link: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  src: PropTypes.string,
-};
 
 export default BackButton;
