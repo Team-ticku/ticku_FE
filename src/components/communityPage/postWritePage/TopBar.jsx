@@ -26,6 +26,7 @@ function TopBar() {
         width={28}
         height={28}
         src="../../../../public/images/cross-mark.png"
+        link="/communityposts"
       />
       <StyledText>글 쓰기</StyledText>
       <Button title="완료" fontsize={22} width={70} />
