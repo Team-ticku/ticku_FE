@@ -8,17 +8,9 @@ const CompanyDiv = styled.div`
   padding-left: 25px;
 `;
 
-const CompanyLogo = styled.img`
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  border-radius: 10px;
-  background-color: blue;
-  margin-right: 15px;
-`;
-
 const TextDiv = styled.div`
   display: block;
+  width: 90%;
 `;
 
 const CompanySubDiv = styled.div`
@@ -33,6 +25,7 @@ const CompanySubDiv = styled.div`
 const CompanyName = styled.p`
   font-size: 20px;
   margin: 0;
+  margin-right: 10px;
 `;
 
 const CompanyCode = styled.span`
@@ -47,14 +40,15 @@ const CompanyPrice = styled.span`
 
 const CompanyPriceChange = styled.span`
   font-size: 20px;
-  margin-left: 110px;
+  /* margin-left: 110px; */
 
   color: ${(props) => (props.change.startsWith("-") ? "blue" : "red")};
 `;
 const PriceWrap = styled.div`
   display: flex;
   align-items: baseline;
-  margin-left: auto;
+  /* margin-left: auto; */
+  justify-content: space-between;
 `;
 
 function CompanyInfo(props) {
@@ -62,7 +56,6 @@ function CompanyInfo(props) {
 
   return (
     <CompanyDiv>
-      <CompanyLogo src={logo} alt={altText} />
       <TextDiv>
         <CompanySubDiv>
           <CompanyName>{name}</CompanyName>

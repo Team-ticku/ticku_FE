@@ -6,8 +6,6 @@ function VolumePage({ chartData, volumeData }) {
   return (
     <div>
       <CompanyInfo
-        logo={chartData.logo}
-        altText={chartData.altText}
         name={chartData.name}
         code={chartData.code}
         price={chartData.price}

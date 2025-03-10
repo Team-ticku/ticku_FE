@@ -32,7 +32,6 @@ function List() {
       {
         id: 1,
         name: "삼성전자",
-        logo: "../../../public/images/Information/삼성전자.png",
         isFavorite: true,
       },
       {
