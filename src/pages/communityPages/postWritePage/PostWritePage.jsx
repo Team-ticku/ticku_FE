@@ -8,7 +8,7 @@ import ContentInput from "../../../components/communityPage/postWritePage/Conten
 import BottomBar from "../../../components/communityPage/postWritePage/BottomBar";
 
 const Wrap = styled.div`
-  width: 100vw;
+  width: 390px;
 `;
 
 function PostWritePage({ display }) {
