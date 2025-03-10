@@ -13,7 +13,7 @@ import LoginRoutes from "./loginPage/LoginRoutes";
 // 회원가입 페이지
 import JoinRoutes from "./joinPage/JoinRoutes";
 // 커뮤니티 페이지
-import PostViewRoute from "./communityPages/PostViewRoutes";
+import CommunityRoutes from "./communityPages/CommunityRoutes";
 
 export default function TotalRoutes() {
   return (
@@ -34,7 +34,7 @@ export default function TotalRoutes() {
       {/* 회원 가입 페이지 */}
       <JoinRoutes />
       {/* 커뮤니티 페이지 */}
-      <PostViewRoute />
+      <CommunityRoutes />
     </BrowserRouter>
   );
 }
