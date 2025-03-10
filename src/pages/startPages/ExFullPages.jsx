@@ -4,7 +4,7 @@ import Information from "../InformationPages/InformationPage";
 // 배당락일 캘린더 페이지 추가 필요
 import PortfolioMainPage from "../portfolioPages/PortfolioMainPage";
 import TickoPage from "../tickoPages/TickoPage";
-// 커뮤니티 페이지 추가 필요
+import PostListPage from "../communityPages/postListPage/PostListPage";
 import Instruction from "../../components/startPage/Instruction";
 
 import styled, { keyframes } from "styled-components";
@@ -76,7 +76,7 @@ const comList = [
         key="Infor_1"
         top="100px"
         left="20px"
-        context="검색한 기업의 궁금한 정보를 눌러봐!"
+        context="검색한 기업에 대해 알고 싶은 정보를 한 눈에 볼 수 있어!"
         animationDelay="1s"
         width="350px"
         height="110px"
@@ -125,7 +125,28 @@ const comList = [
     ],
   },
   {
-    page: <DummyPage></DummyPage>,
+    page: <PostListPage display="none" />,
+    instruction: [
+      <Instruction
+        key="PostList_1"
+        top="110px"
+        left="20px"
+        context="얘기하고 싶은 주제를 선택해서 글을 작성해봐~"
+        animationDelay="1s"
+        width="60px"
+        height="40px"
+      ></Instruction>,
+      <Instruction
+        key="PostList_2"
+        bottom="270px"
+        right="10px"
+        context="실시간으로 다른 사람들과 소통할 수 있어!"
+        animationDelay="3s"
+        width="50px"
+        height="40px"
+        alignSelf="flex-end"
+      ></Instruction>,
+    ],
   },
   {
     page: <TickoPage display="none" />,
@@ -134,7 +155,7 @@ const comList = [
         key="Portfolio_1"
         bottom="90px"
         left="20px"
-        context="주식 초보가 이해하기 쉽게 티코가 설명해줄게! 여기 중에 궁금한 게 생기면 날 보러와~"
+        context="주식 초보가 이해하기 쉽게 티코가 설명해줄게! 궁금한 게 생기면 날 보러와~"
         animationDelay="1s"
         width="345px"
         height="280px"
