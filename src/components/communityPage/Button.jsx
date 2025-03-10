@@ -15,20 +15,26 @@ Button.jsx
 */
 
 const StyledButton = styled.button`
-  font-size: 18px;
+  font-size: ${(props) => props.$fontsize || "18"}px;
   border-radius: 10px;
-  font-weight: 400;
+  font-weight: 500;
   cursor: pointer;
   height: ${(props) => props.$height || "auto"}px;
   background-color: ${(props) => props.$background || "#B2C4DF"};
   color: white;
   border: none;
-  width: 50px;
+  width: ${(props) => props.$width || "50"}px;
 `;
 
-function Button({ height, title, background, onClick }) {
+function Button({ height, title, background, onClick, fontsize, width }) {
   return (
-    <StyledButton $height={height} onClick={onClick} $background={background}>
+    <StyledButton
+      $height={height}
+      onClick={onClick}
+      $background={background}
+      $fontsize={fontsize}
+      $width={width}
+    >
       {title || "button"}
     </StyledButton>
   );
@@ -39,6 +45,8 @@ Button.propTypes = {
   title: PropTypes.string,
   background: PropTypes.string,
   onClick: PropTypes.func,
+  fontsize: PropTypes.number,
+  width: PropTypes.number,
 };
 
 export default Button;
