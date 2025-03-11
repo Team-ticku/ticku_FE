@@ -142,13 +142,8 @@ const isSameDay = (date1, date2) => {
   );
 };
 
-const scheduleData = [
-  { date: new Date(2025, 2, 10), schedule: "삼성전자 배당일" },
-  { date: new Date(2025, 2, 10), schedule: "하이닉스 배당일" },
-  { date: new Date(2025, 2, 10), schedule: "대한항공 배당일" },
-];
-
-const Calendar = ({ onScheduleSelect }) => {
+const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
+  // onMonthChange props 추가
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [isMonthDropdownOpen, setMonthDropdownOpen] = useState(false);
@@ -164,9 +159,11 @@ const Calendar = ({ onScheduleSelect }) => {
     );
     setSelectedDate(clickedDate);
 
-    const events = scheduleData.filter((schedule) =>
-      isSameDay(schedule.date, clickedDate)
-    );
+    // 선택된 날짜에 해당하는 스케줄만 필터링
+    const events = scheduleData.filter((schedule) => {
+      const scheduleDate = new Date(schedule.date); // 스케줄의 date를 Date 객체로 변환
+      return isSameDay(scheduleDate, clickedDate); // 선택된 날짜와 스케줄의 날짜가 같은지 비교
+    });
 
     if (onScheduleSelect) {
       onScheduleSelect(events);
@@ -204,9 +201,15 @@ const Calendar = ({ onScheduleSelect }) => {
         currentDate.getMonth(),
         i
       );
-      const hasSchedule = scheduleData.some((schedule) =>
-        isSameDay(schedule.date, currentDay)
-      );
+      const hasSchedule = scheduleData.some((schedule) => {
+        console.log(
+          "isSameDay",
+          currentDay,
+          schedule.date,
+          isSameDay(currentDay, schedule.date)
+        ); // isSameDay 함수 확인
+        return isSameDay(schedule.date, currentDay);
+      });
       days.push({
         day: i,
         isCurrentMonth: true,
@@ -215,20 +218,42 @@ const Calendar = ({ onScheduleSelect }) => {
         hasSchedule,
       });
     }
+    console.log("days", days); // days 배열 확인
     return days;
   };
 
   const daysArray = getDaysArray();
 
+  // 월 선택 핸들러 추가
+  const selectMonth = (monthIndex) => {
+    const newMonth = new Date(currentDate.getFullYear(), monthIndex, 1);
+    setCurrentDate(newMonth);
+    setMonthDropdownOpen(false);
+    if (onMonthChange) {
+      onMonthChange(newMonth); // StockcalenPages 컴포넌트로 새 달 정보 전달
+    }
+  };
+
+  // 이전 달, 다음 달 이동 시 호출될 함수
+  const handleMonthNavigation = (newDate) => {
+    setCurrentDate(newDate);
+    if (onMonthChange) {
+      onMonthChange(newDate); // StockcalenPages 컴포넌트로 새 달 정보 전달
+    }
+  };
+
   return (
     <CalendarContainer>
       <CalendarHeader>
         <NavButton
-          onClick={() =>
-            setCurrentDate(
-              new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
-            )
-          }
+          onClick={() => {
+            const newDate = new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth() - 1,
+              1
+            );
+            handleMonthNavigation(newDate);
+          }}
         >
           <img src="/images/calen-arrow-before.png" alt="지난 달" />
         </NavButton>
@@ -251,11 +276,14 @@ const Calendar = ({ onScheduleSelect }) => {
         )}
 
         <NavButton
-          onClick={() =>
-            setCurrentDate(
-              new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
-            )
-          }
+          onClick={() => {
+            const newDate = new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth() + 1,
+              1
+            );
+            handleMonthNavigation(newDate);
+          }}
         >
           <img src="/images/calen-arrow-after.png" alt="다음 달" />
         </NavButton>
