@@ -32,11 +32,6 @@ const Welcome = styled.div`
   animation-fill-mode: forwards;
   animation-delay: "2s";
 `;
-// 더미 페이지 (배당락일 캘린더, 커뮤니티)
-const DummyPage = styled.div`
-  width: 390px;
-  height: 792px;
-`;
 
 // 각 설명 페이지 배열 (각 페이지 + 설명 문구로 구성된 페이지)
 const comList = [
