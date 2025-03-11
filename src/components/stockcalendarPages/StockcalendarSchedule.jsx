@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+// StockcalendarSchedule.jsx
+import React from "react";
 import styled from "styled-components";
 
 const ScheduleContainer = styled.div`
@@ -41,15 +42,18 @@ const Dotdiv = styled.div`
   font-size: 20px;
   margin-right: 5px;
 `;
-const StockcalendarSchedule = ({ schedules }) => {
+
+const StockcalendarSchedule = ({ schedules, showScheduleHeader }) => {
   return (
     <>
       <ScheduleContainer>
-        <ScheduleHeader>Today's 배당락일</ScheduleHeader>
+        {showScheduleHeader && ( // showScheduleHeader가 true일 때만 Header 표시
+          <ScheduleHeader>Today's 배당락일</ScheduleHeader>
+        )}
         <ScheduleList>
-          {schedules.length > 0 ? (
+          {schedules && schedules.length > 0 ? (
             schedules.map((schedule, index) => (
-              <ScheduleItem>
+              <ScheduleItem key={index}>
                 {" "}
                 <Dotdiv>•</Dotdiv> {schedule.company}
               </ScheduleItem>
