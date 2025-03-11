@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PlusModal from "./PlusModal";
 
 const BottomWrap = styled.div`
-  display: flex;
+  /* display: flex; */
   position: fixed;
   bottom: 0;
   left: 0;
@@ -21,11 +21,11 @@ const BottomWrap = styled.div`
     rgba(42, 51, 70, 0.04) 0px -6px 6px -3px,
     rgba(14, 63, 126, 0.04) 0px -12px 12px -6px,
     rgba(14, 63, 126, 0.04) 0px -24px 24px -12px;
-  /* align-items: center; */
   padding-top: 10px;
   text-align: center;
   background-color: white;
   z-index: 2;
+  display: ${(props) => props.display || "flex"};
 `;
 const Div = styled.div`
   background-color: white;
@@ -39,7 +39,7 @@ export const ClickedIconStyle = styled(FontAwesomeIcon)`
   color: #111111;
 `;
 
-export default function BottomNavBar() {
+export default function BottomNavBar({ display }) {
   const location = useLocation();
   // 선택된 아이콘 관리 변수
   const [activeNav, setActiveNav] = useState(3);
@@ -74,13 +74,13 @@ export default function BottomNavBar() {
       setActiveNav(6);
     } else if (location.pathname === "/ticko") {
       setActiveNav(7);
-    } else if (location.pathname === "/") {
+    } else if (location.pathname === "/main") {
       setActiveNav(3);
     }
   }, [location]);
 
   return (
-    <BottomWrap>
+    <BottomWrap display={display}>
       <Div>
         <Link to="/information" onClick={modalClose}>
           {activeNav === 1 ? (
@@ -100,7 +100,7 @@ export default function BottomNavBar() {
         </Link>
       </Div>
       <Div>
-        <Link to="/" onClick={modalClose}>
+        <Link to="/main" onClick={modalClose}>
           {activeNav === 3 ? (
             <ClickedIconStyle icon="house" />
           ) : (

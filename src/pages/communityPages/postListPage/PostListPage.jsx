@@ -26,19 +26,19 @@ const TimeLine = styled.p`
   padding-left: 15px;
 `;
 
-function PostListPage() {
+function PostListPage({ display }) {
   const navigate = useNavigate();
 
   return (
     <>
-      <BottomNavBar />
+      <BottomNavBar display={display} />
       <Div>
         <TimeLine>타임라인</TimeLine>
         <Box>
           <PostList
             posts={data}
             onClickItem={(item) => {
-              navigate(`post/${item.id}`);
+              navigate(`/communityposts/post/${item.id}`);
             }}
           />
         </Box>

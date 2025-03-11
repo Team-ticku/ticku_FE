@@ -4,14 +4,14 @@ import styled from "styled-components";
 import userData from "../../pages/communityPages/user.json"; // 커뮤니티 페이지 테스트를 위한 가짜 데이터
 
 const Div = styled.div`
-  display: inline-flex;
+  display: flex;
   align-items: center;
 `;
 
 const ProfilePicture = styled.img`
   ${(props) => props.height && `height: ${props.height}px;`}
   ${(props) => props.width && `width: ${props.width}px;`}
-  border-radius:20px;
+  border-radius:100px;
   object-fit: cover;
   margin-right: 10px;
 `;
@@ -19,6 +19,7 @@ const ProfilePicture = styled.img`
 const UserName = styled.p`
   ${(props) => props.fontsize && `font-size: ${props.fontsize}px;`}
   ${(props) => props.padding && `padding-bottom: ${props.padding}px;`}
+  white-space:nowrap;
 `;
 
 function UserProfile({ userId, height, width, fontsize, padding }) {

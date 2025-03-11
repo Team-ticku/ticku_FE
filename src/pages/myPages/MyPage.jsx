@@ -58,7 +58,11 @@ function MyPage() {
         src="/images/staricon.png"
         text="관심 기업 목록"
       />
-      <MyPageTable src="/images/portfolioicon.png" text="내 포트폴리오" />
+      <MyPageTable
+        link="/mypage/myportfolio"
+        src="/images/portfolioicon.png"
+        text="내 포트폴리오"
+      />
       <MyPageModal
         isOpen={modalOpen}
         onClose={closeModal}

@@ -15,16 +15,20 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-function PortfolioMainPage() {
+const Wrap = styled.div`
+  width: 390px;
+`;
+
+function PortfolioMainPage({ display }) {
   return (
-    <>
-      <BottomNavBar />
+    <Wrap>
+      <BottomNavBar display={display} />
       <Container>
         <PortTitle />
-        <PortBox />
+        <PortBox link={"make"} />
         <PortButton />
       </Container>
-    </>
+    </Wrap>
   );
 }
 

@@ -16,6 +16,7 @@ const Tag = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  height: 33px;
   background-color: ${(props) => getTagColor(props.tag)};
 `;
 
