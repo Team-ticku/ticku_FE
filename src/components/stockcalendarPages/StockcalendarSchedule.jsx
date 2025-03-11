@@ -3,12 +3,13 @@ import styled from "styled-components";
 
 const ScheduleContainer = styled.div`
   width: 320px;
-  margin-top: 15px;
+  margin-top: 40px;
+  margin-left: 25px;
   font-family: Arial;
 `;
 
 const ScheduleHeader = styled.div`
-  padding: 15px;
+  //padding: 15px;
   display: flex;
   justify-content: flex-start;
   background-color: #ffffff;
@@ -22,12 +23,12 @@ const ScheduleList = styled.ul`
 `;
 
 const ScheduleItem = styled.li`
-  width: 300px;
+  width: 315px;
   height: 30px;
   border: 2px solid #b2c4df;
   border-radius: 5px;
   margin-top: 10px;
-  margin-left: 15px;
+  margin-right: 5px;
   font-size: 16px;
   font-weight: bolder;
   display: flex;
