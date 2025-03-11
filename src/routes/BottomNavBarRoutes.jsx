@@ -6,7 +6,7 @@ import MainPage from "../pages/mainpage/MainPage";
 import MyPage from "../pages/myPages/MyPage";
 import PortfolioMainPage from "../pages/portfolioPages/PortfolioMainPage";
 import TickoPage from "../pages/tickoPages/TickoPage";
-import StockcalenPages from "../pages/stockcalendarPages/StockcalenPages";
+
 
 export default function BottomNavBarRoutes() {
   return (
