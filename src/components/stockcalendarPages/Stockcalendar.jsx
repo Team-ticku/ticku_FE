@@ -8,7 +8,7 @@ const CalendarContainer = styled.div`
   margin-top: 12px;
   position: relative;
 `;
-// 올라가랏랏
+
 //화살표 Nav 간격 조정
 const CalendarHeader = styled.div`
   background-color: #ffffff;

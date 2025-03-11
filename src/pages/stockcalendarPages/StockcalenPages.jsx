@@ -4,7 +4,7 @@ import Calendar from "../../components/stockcalendarPages/Stockcalendar";
 import StockcalendarSchedule from "../../components/stockcalendarPages/StockcalendarSchedule";
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import styled from "styled-components";
-// 올라가랏랏
+
 const Wrap = styled.div`
   width: 390px;
 `;
