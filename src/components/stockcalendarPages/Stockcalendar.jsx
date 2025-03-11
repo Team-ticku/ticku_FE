@@ -142,13 +142,8 @@ const isSameDay = (date1, date2) => {
   );
 };
 
-const scheduleData = [
-  { date: new Date(2025, 2, 10), schedule: "삼성전자 배당일" },
-  { date: new Date(2025, 2, 10), schedule: "하이닉스 배당일" },
-  { date: new Date(2025, 2, 10), schedule: "대한항공 배당일" },
-];
-
-const Calendar = ({ onScheduleSelect }) => {
+//scheduleData props 추가
+const Calendar = ({ onScheduleSelect, scheduleData }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [isMonthDropdownOpen, setMonthDropdownOpen] = useState(false);
@@ -164,10 +159,11 @@ const Calendar = ({ onScheduleSelect }) => {
     );
     setSelectedDate(clickedDate);
 
-    const events = scheduleData.filter((schedule) =>
-      isSameDay(schedule.date, clickedDate)
-    );
-
+    //선택된 날짜에 해당하는 스케쥴만 필터링
+    const events = scheduleData.filter((schedule) => {
+      const scheduleDate = new Date(schedule.date);
+      return isSameDay(scheduleDate, clickedDate);
+    });
     if (onScheduleSelect) {
       onScheduleSelect(events);
     }
@@ -186,7 +182,7 @@ const Calendar = ({ onScheduleSelect }) => {
       0
     );
     const daysInMonth = lastDayOfMonth.getDate();
-    const firstDayIndex = firstDayOfMonth.getDay(); //3월 1일 인덱스스
+    const firstDayIndex = firstDayOfMonth.getDay(); //3월 1일 인덱스
 
     for (let i = 1; i <= firstDayIndex; i++) {
       days.push({
@@ -219,6 +215,11 @@ const Calendar = ({ onScheduleSelect }) => {
   };
 
   const daysArray = getDaysArray();
+
+  const selectMonth = (monthIndex) => {
+    setCurrentDate(new Date(currentDate.getFullYear(), monthIndex, 1));
+    setMonthDropdownOpen(false);
+  };
 
   return (
     <CalendarContainer>
