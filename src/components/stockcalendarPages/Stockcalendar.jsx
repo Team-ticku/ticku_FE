@@ -4,7 +4,7 @@ import styled from "styled-components";
 const CalendarContainer = styled.div`
   width: 360px; //현재 달력의 너비
   font-family: sans-serif;
-  margin-left: 8px;
+  margin-left: 18px;
   margin-top: 12px;
   position: relative;
 `;
