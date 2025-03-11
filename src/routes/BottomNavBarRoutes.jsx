@@ -7,7 +7,7 @@ import MyPage from "../pages/myPages/MyPage";
 import StockcalenPages from "../pages/stockcalendarPages/StockcalenPages";
 import PortfolioMainPage from "../pages/portfolioPages/PortfolioMainPage";
 import TickoPage from "../pages/tickoPages/TickoPage";
-import StockcalenPages from "../pages/stockcalendarPages/StockcalenPages";
+
 
 import StartPage from "../pages/startPages/StartPage";
 
