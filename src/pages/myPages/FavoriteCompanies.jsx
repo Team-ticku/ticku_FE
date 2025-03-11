@@ -23,13 +23,11 @@ function FavoriteCompanies() {
     {
       id: 1,
       name: "삼성전자",
-      logo: "../../../public/images/Information/삼성전자.png",
       isFavorite: true,
     },
     {
       id: 2,
       name: "LG 전자",
-      logo: "../../../public/images/Information/lg전자.png",
       isFavorite: true,
     },
   ];
