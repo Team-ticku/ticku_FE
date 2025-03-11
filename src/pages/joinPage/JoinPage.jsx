@@ -106,11 +106,14 @@ function JoinPage() {
 
     try {
       // 아이디 중복 검사
-      const duplicateResponse = await fetch("http://localhost:5000/check-in", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ uid }),
-      });
+      const duplicateResponse = await fetch(
+        "http://localhost:5000/auth/check-in",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ uid }),
+        }
+      );
 
       const duplicateData = await duplicateResponse.json();
 
@@ -120,7 +123,7 @@ function JoinPage() {
       }
 
       // 회원가입 진행
-      const response = await fetch("http://localhost:5000/join", {
+      const response = await fetch("http://localhost:5000/auth/join", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ uid, password, name }),
