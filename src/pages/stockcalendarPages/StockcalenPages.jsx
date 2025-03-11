@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Calendar from "../../components//stockcalendarPages/Stockcalendar";
+import Calendar from "../../components/stockcalendarPages/Stockcalendar";
 import StockcalendarSchedule from "../../components/stockcalendarPages/StockcalendarSchedule";
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 
