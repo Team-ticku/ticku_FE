@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "../../components/stockcalendarPages/Stockcalendar";
 import StockcalendarSchedule from "../../components/stockcalendarPages/StockcalendarSchedule";
+import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 
 function StockcalenPages() {
   const [selectedSchedules, setSelectedSchedules] = useState([]);
@@ -34,6 +35,7 @@ function StockcalenPages() {
         scheduleData={scheduleData} // scheduleData props 전달
       />
       <StockcalendarSchedule schedules={selectedSchedules} />
+      <BottomNavBar />
     </div>
   );
 }
