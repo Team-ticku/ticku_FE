@@ -14,17 +14,9 @@ const CompanySubContainer = styled.div`
   justify-content: center;
 `;
 
-const CompanyLogos = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  /* background-color: blue; */
-  margin-right: 15px;
-  margin-top: 9px;
-`;
-
 const CompanyName = styled.p`
   font-size: 20px;
+  margin-left: 20px;
 `;
 
 const StarDiv = styled.div`
@@ -39,10 +31,8 @@ function CompanyList({ company }) {
   return (
     <CompanyContainer>
       <CompanySubContainer>
-        <CompanyLogos src={company.logo} /> {/* src에 기업 로고 */}
         <CompanyName>{company.name}</CompanyName> {/* {}에 기업 이름 */}
       </CompanySubContainer>
-
       <StarDiv>
         <Star defaultStarred={company.isFavorite}></Star>
       </StarDiv>

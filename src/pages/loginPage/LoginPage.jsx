@@ -99,6 +99,8 @@ function LoginPage() {
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.userId);
+
         navigate("/main");
       } else {
         console.log("로그인 실패 : " + data.message);

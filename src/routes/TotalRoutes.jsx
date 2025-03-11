@@ -6,6 +6,8 @@ import TickoMainRoutes from "./tickoPages/tickoMainRoutes";
 import WordMenuRoutes from "./tickoPages/WordMenuRoutes";
 import ChartMenuRoutes from "./tickoPages/ChartMenuRoutes";
 import AccountMenuRoutes from "./tickoPages/AccountMenuRoutes";
+
+import PortfolioPageRoutes from "./portfolioPages/PortfolioRoutes";
 // 마이 페이지
 import MyPageRoutes from "./myPages/MyPageRoutes";
 // 로그인 페이지
@@ -13,7 +15,7 @@ import LoginRoutes from "./loginPage/LoginRoutes";
 // 회원가입 페이지
 import JoinRoutes from "./joinPage/JoinRoutes";
 // 커뮤니티 페이지
-import PostViewRoute from "./communityPages/PostViewRoutes";
+import CommunityRoutes from "./communityPages/CommunityRoutes";
 
 export default function TotalRoutes() {
   return (
@@ -27,6 +29,9 @@ export default function TotalRoutes() {
       <ChartMenuRoutes />
       <AccountMenuRoutes />
 
+      {/* 포트폴리오 제작 페이지 */}
+      <PortfolioPageRoutes />
+
       {/* 마이 페이지 */}
       <MyPageRoutes />
       {/* 로그인 페이지 */}
@@ -34,7 +39,7 @@ export default function TotalRoutes() {
       {/* 회원 가입 페이지 */}
       <JoinRoutes />
       {/* 커뮤니티 페이지 */}
-      <PostViewRoute />
+      <CommunityRoutes />
     </BrowserRouter>
   );
 }
