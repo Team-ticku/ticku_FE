@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const ScheduleContainer = styled.div`
@@ -22,7 +22,7 @@ const ScheduleList = styled.ul`
   padding-left: 0px;
 `;
 
-const ScheduleItem = styled.li`
+const ScheduleItem = styled.div`
   width: 315px;
   height: 30px;
   border: 2px solid #b2c4df;
@@ -41,7 +41,7 @@ const Dotdiv = styled.div`
   font-size: 20px;
   margin-right: 5px;
 `;
-const StockcalendarSchedule = ({ schedules = [] }) => {
+const StockcalendarSchedule = ({ schedules }) => {
   return (
     <>
       <ScheduleContainer>
@@ -49,15 +49,12 @@ const StockcalendarSchedule = ({ schedules = [] }) => {
         <ScheduleList>
           {schedules.length > 0 ? (
             schedules.map((schedule, index) => (
-              <li key={index} style={{ listStyle: "square" }}>
-                <ScheduleItem>
-                  {" "}
-                  <Dotdiv>•</Dotdiv> {schedule.schedule}
-                </ScheduleItem>
-              </li>
+              <ScheduleItem>
+                {" "}
+                <Dotdiv>•</Dotdiv> {schedule.company}
+              </ScheduleItem>
             ))
           ) : (
-            // <li style={{ listStyle: "inside" }}>아무개</li>
             <ScheduleItem style={{ listStyle: "inside" }}>
               <Dotdiv>•</Dotdiv> 일정 없음
             </ScheduleItem>
