@@ -49,7 +49,7 @@ const StockcalendarSchedule = ({ schedules }) => {
         <ScheduleList>
           {schedules.length > 0 ? (
             schedules.map((schedule, index) => (
-              <ScheduleItem>
+              <ScheduleItem key={index}>
                 {" "}
                 <Dotdiv>•</Dotdiv> {schedule.company}
               </ScheduleItem>

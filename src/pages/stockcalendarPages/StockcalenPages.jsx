@@ -1,8 +1,7 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Calendar from "../../components/common/stockcalendarPages/Stockcalendar";
-import StockcalendarSchedule from "../../components/common/stockcalendarPages/StockcalendarSchedule";
+import Calendar from "../../components//stockcalendarPages/Stockcalendar";
+import StockcalendarSchedule from "../../components/stockcalendarPages/StockcalendarSchedule";
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 
 const Wrap = styled.div`
@@ -35,16 +34,14 @@ function StockcalenPages({ display }) {
   };
 
   return (
-
-    <div>
+    <Wrap>
       <Calendar
         onScheduleSelect={handleScheduleSelect}
         scheduleData={scheduleData} // scheduleData props 전달
       />
       <StockcalendarSchedule schedules={selectedSchedules} />
-      <BottomNavBar />
-    </div>
-
+      <BottomNavBar display={display} />
+    </Wrap>
   );
 }
 
