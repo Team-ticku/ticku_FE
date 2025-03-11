@@ -142,6 +142,7 @@ const isSameDay = (date1, date2) => {
   );
 };
 
+
 const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
   // onMonthChange props 추가
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -159,11 +160,13 @@ const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
     );
     setSelectedDate(clickedDate);
 
+
     // 선택된 날짜에 해당하는 스케줄만 필터링
     const events = scheduleData.filter((schedule) => {
       const scheduleDate = new Date(schedule.date); // 스케줄의 date를 Date 객체로 변환
       return isSameDay(scheduleDate, clickedDate); // 선택된 날짜와 스케줄의 날짜가 같은지 비교
     });
+
 
     if (onScheduleSelect) {
       onScheduleSelect(events);
@@ -183,7 +186,7 @@ const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
       0
     );
     const daysInMonth = lastDayOfMonth.getDate();
-    const firstDayIndex = firstDayOfMonth.getDay(); //3월 1일 인덱스스
+    const firstDayIndex = firstDayOfMonth.getDay(); //3월 1일 인덱스
 
     for (let i = 1; i <= firstDayIndex; i++) {
       days.push({
@@ -224,6 +227,7 @@ const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
 
   const daysArray = getDaysArray();
 
+
   // 월 선택 핸들러 추가
   const selectMonth = (monthIndex) => {
     const newMonth = new Date(currentDate.getFullYear(), monthIndex, 1);
@@ -240,6 +244,7 @@ const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
     if (onMonthChange) {
       onMonthChange(newDate); // StockcalenPages 컴포넌트로 새 달 정보 전달
     }
+
   };
 
   return (

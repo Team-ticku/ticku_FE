@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 
-//import CalendarPage from "../pages/CalendarPage";
 import PostListPage from "../pages/communityPages/postListPage/PostListPage";
 import InformationPage from "../pages/InformationPages/InformationPage";
 import MainPage from "../pages/mainpage/MainPage";
@@ -8,7 +7,7 @@ import MyPage from "../pages/myPages/MyPage";
 import StockcalenPages from "../pages/stockcalendarPages/StockcalenPages";
 import PortfolioMainPage from "../pages/portfolioPages/PortfolioMainPage";
 import TickoPage from "../pages/tickoPages/TickoPage";
-import StockcalenPages from "../pages/stockcalendarPages/StockcalenPages";
+
 
 import StartPage from "../pages/startPages/StartPage";
 

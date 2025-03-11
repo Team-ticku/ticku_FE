@@ -1,6 +1,5 @@
-// StockcalendarSchedule.jsx
-
 import React from "react";
+
 import styled from "styled-components";
 
 const ScheduleContainer = styled.div`
@@ -44,7 +43,9 @@ const Dotdiv = styled.div`
   margin-right: 5px;
 `;
 
+
 const StockcalendarSchedule = ({ schedules, showScheduleHeader }) => {
+
   return (
     <>
       <ScheduleContainer>

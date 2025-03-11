@@ -1,3 +1,4 @@
+
 // StockcalenPages.jsx
 import React, { useState, useEffect } from "react";
 import Calendar from "../../components/stockcalendarPages/Stockcalendar";
@@ -11,9 +12,11 @@ const Wrap = styled.div`
 
 function StockcalenPages({ display }) {
   const [selectedSchedules, setSelectedSchedules] = useState([]);
+
   const [scheduleData, setScheduleData] = useState([]);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [showScheduleHeader, setShowScheduleHeader] = useState(false); // Header 표시 여부
+
 
   useEffect(() => {
     // 컴포넌트가 마운트될 때 데이터를 가져옴
@@ -37,11 +40,14 @@ function StockcalenPages({ display }) {
 
         // 필터링된 스케줄을 초기 선택된 스케줄로 설정
         setSelectedSchedules(currentMonthSchedules);
+
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+
   }, [currentMonth]);
+
 
   const handleScheduleSelect = (schedules) => {
     setSelectedSchedules(schedules);
@@ -59,6 +65,7 @@ function StockcalenPages({ display }) {
     <Wrap>
       <Calendar
         onScheduleSelect={handleScheduleSelect}
+
         scheduleData={scheduleData}
         onMonthChange={handleMonthChange} // Calendar 컴포넌트에 onMonthChange 함수 전달
       />
@@ -66,6 +73,7 @@ function StockcalenPages({ display }) {
         schedules={selectedSchedules}
         showScheduleHeader={showScheduleHeader} // StockcalendarSchedule에 showScheduleHeader 전달
       />
+
       <BottomNavBar display={display} />
     </Wrap>
   );

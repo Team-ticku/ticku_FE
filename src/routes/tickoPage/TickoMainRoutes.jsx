@@ -4,6 +4,8 @@ import BasicWordPage from "../../pages/tickoPages/tickoMenuPages/BasicWordPage";
 import BasicChartPage from "../../pages/tickoPages/tickoMenuPages/BasicChartPage";
 import BasicAccountPage from "../../pages/tickoPages/tickoMenuPages/BasicAccountPage";
 
+import Explain from "../../pages/tickoPages/tickoMenuPages/Explain";
+
 export default function TickoMainRoutes() {
   return (
     <Routes>
@@ -13,6 +15,8 @@ export default function TickoMainRoutes() {
       <Route path="/ticko/chart" element={<BasicChartPage />}></Route>
       {/* 계좌 설명 페이지 */}
       <Route path="/ticko/account" element={<BasicAccountPage />}></Route>
+      {/* 세부 설명 페이지 */}
+      <Route path="/ticko/:menu/:title" element={<Explain />}></Route>
     </Routes>
   );
 }

@@ -2,10 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 // 하단 내브바
 import BottomNavBarRoutes from "./BottomNavBarRoutes";
 // 티코 페이지
-import TickoMainRoutes from "./tickoPages/tickoMainRoutes";
-import WordMenuRoutes from "./tickoPages/WordMenuRoutes";
-import ChartMenuRoutes from "./tickoPages/ChartMenuRoutes";
-import AccountMenuRoutes from "./tickoPages/AccountMenuRoutes";
+import TickoMainRoutes from "./tickoPage/tickoMainRoutes";
 
 import PortfolioPageRoutes from "./portfolioPages/PortfolioRoutes";
 // 마이 페이지
@@ -25,9 +22,6 @@ export default function TotalRoutes() {
 
       {/* 티코 페이지 */}
       <TickoMainRoutes />
-      <WordMenuRoutes />
-      <ChartMenuRoutes />
-      <AccountMenuRoutes />
 
       {/* 포트폴리오 제작 페이지 */}
       <PortfolioPageRoutes />
