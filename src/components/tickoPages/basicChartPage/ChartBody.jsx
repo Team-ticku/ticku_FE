@@ -13,25 +13,25 @@ const BodyWrap = styled.div`
 
 const menuList = [
   {
-    link: "/ticko/chart/2",
+    link: "/ticko/chart/chart_2",
     title: "상승형",
     padding: "15px",
     src: "/images/basicChartPage/rise.png",
   },
   {
-    link: "/ticko/chart/3",
+    link: "/ticko/chart/chart_3",
     title: "하락형",
     padding: "15px",
     src: "/images/basicChartPage/fall.png",
   },
   {
-    link: "/ticko/chart/4",
+    link: "/ticko/chart/chart_4",
     title: "장대양봉",
     padding: "15px",
     src: "/images/basicChartPage/longrise.png",
   },
   {
-    link: "/ticko/chart/5",
+    link: "/ticko/chart/chart_5",
     title: "장대음봉",
     padding: "15px",
     src: "/images/basicChartPage/longfall.png",

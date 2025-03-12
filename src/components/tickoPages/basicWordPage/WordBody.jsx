@@ -12,53 +12,47 @@ const BodyWrap = styled.div`
 `;
 
 const menuList = [
-  { link: "/ticko/basic/1", title: "주식이란?", padding: "7px 10px" },
-  { link: "/ticko/basic/2", title: "주주란?", padding: "7px 10px" },
+  { link: "/ticko/basic/basic_1", title: "주식이란?", padding: "7px 10px" },
+  { link: "/ticko/basic/basic_2", title: "주주란?", padding: "7px 10px" },
   {
-    link: "/ticko/basic/3",
+    link: "/ticko/basic/basic_3",
     title: "주권이란?",
     padding: "7px 10px",
   },
   {
-    link: "/ticko/basic/4",
-    title: "주식의 보유와 양도",
-    padding: "7px 4px",
-  },
-  {
-    link: "/ticko/basic/5",
-    title: "거래시장의 분류",
-    padding: "7px 4px",
-  },
-  {
-    link: "/ticko/basic/6",
-    title: "보통주와 우선주",
-    padding: "7px 12px",
-  },
-  {
-    link: "/ticko/basic/7",
-    title: "세금과 양도세",
-    padding: "7px 12px",
-  },
-  { link: "/ticko/basic/8", title: "공모", padding: "7px 15px" },
-  { link: "/ticko/basic/9", title: "증자", padding: "7px 15px" },
-  { link: "/ticko/basic/10", title: "감자", padding: "7px 15px" },
-  { link: "/ticko/basic/11", title: "펀드", padding: "7px 15px" },
-  {
-    link: "/ticko/basic/12",
-    title: "인덱스펀드",
-    padding: "7px 22px",
-  },
-  { link: "/ticko/basic/13", title: "ETF", padding: "7px 18px" },
-  { link: "/ticko/basic/14", title: "지수", padding: "7px 18px" },
-  {
-    link: "/ticko/basic/15",
-    title: "주식투자 시작하기",
+    link: "/ticko/basic/basic_4",
+    title: "배당금이란?",
     padding: "7px 10px",
   },
   {
-    link: "/ticko/basic/16",
-    title: "종목 선택하기",
-    padding: "7px",
+    link: "/ticko/basic/basic_5",
+    title: "주식의 보유와 양도",
+    padding: "7px 10px",
+  },
+  {
+    link: "/ticko/basic/basic_6",
+    title: "보통주와 우선주",
+    padding: "7px 16px",
+  },
+  {
+    link: "/ticko/basic/basic_7",
+    title: "주식의 가격",
+    padding: "7px 15px",
+  },
+  { link: "/ticko/basic/basic_8", title: "공모", padding: "7px 26px" },
+  { link: "/ticko/basic/basic_9", title: "증자", padding: "7px 26px" },
+  { link: "/ticko/basic/basic_10", title: "감자", padding: "7px 26px" },
+  { link: "/ticko/basic/basic_11", title: "펀드", padding: "7px 17px" },
+  {
+    link: "/ticko/basic/basic_12",
+    title: "인덱스 펀드",
+    padding: "7px 20px",
+  },
+  { link: "/ticko/basic/basic_13", title: "ETF", padding: "7px 19px" },
+  {
+    link: "/ticko/basic/basic_14",
+    title: "주식투자 시작하기",
+    padding: "7px 67px",
   },
 ];
 

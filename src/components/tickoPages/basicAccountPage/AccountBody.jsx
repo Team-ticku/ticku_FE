@@ -13,21 +13,26 @@ const BodyWrap = styled.div`
 
 const menuList = [
   {
-    link: "/ticko/account/1",
-    title: "증권 계좌 생성법",
-    padding: "9px 70px",
+    link: "/ticko/account/account_1",
+    title: "ISA",
+    padding: "9px 100px",
   },
   {
-    link: "/ticko/account/2",
-    title: "절세 계좌",
-    padding: "9px 70px",
+    link: "/ticko/account/account_2",
+    title: "연금저축계좌",
+    padding: "9px 90px",
+  },
+  {
+    link: "/ticko/account/account_3",
+    title: "IRP",
+    padding: "9px 100px",
   },
 ];
 
 export default function AccountBody() {
   return (
     <BodyWrap>
-      <StartSpeechBubble context="계좌를 골랐구나!"></StartSpeechBubble>
+      <StartSpeechBubble context="절세 계좌를 골랐구나!"></StartSpeechBubble>
       <ElseSpeechBubble
         context="아래 항목 중에서 어떤 게 궁금한지 알려줘~"
         animationDelay={"1s"}
