@@ -109,7 +109,7 @@ function SearchBar() {
         );
         const data = await response.json();
 
-        if (response.status === 404 || data.length !== 1) {
+        if (response.status === 404 || data[0].corp_name !== query) {
           setQuery("");
           setResults([]);
 
