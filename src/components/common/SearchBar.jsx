@@ -109,11 +109,10 @@ function SearchBar() {
         );
         const data = await response.json();
 
-        if (response.status === 404 || data.length !== 1) {
+        if (response.status === 404 || data[0].corp_name !== query) {
           setQuery("");
           setResults([]);
-
-          alert("검색 결과가 없습니다."); // 검색 결과 없을 때 알림
+          alert("검색 결과가 없습니다."); // 검색 결과 없을 때 경고창
         } else {
           navigate(""); // 검색 페이지로 이동
           setResults([]);
