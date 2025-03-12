@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
 const Backdrop = styled.div`
@@ -107,31 +107,73 @@ const SaveButton = styled.button`
 
 function MyPageModal({ isOpen, onClose, userName, userImage }) {
   if (!isOpen) return null;
-  const [isClosing, setIsClosing] = useState(false); // 모달이 닫힐 때 애니메이션을 위해 추가
 
-  const [name, setName] = useState(userName);
-  const [profileImg, setProfileImg] = useState(userImage);
+  const [isClosing, setIsClosing] = useState(false); // 모달이 닫힐 때 애니메이션을 위해 추가
+  const [updateName, setUpdateName] = useState(userName);
+  const [updateImg, setUpdateImg] = useState(userImage);
+
+  const [sampleImg, setSampleImg] = useState(userImage); // 편집모드일 때 보여주는 샘플 이미지
   const [isEditing, setIsEditing] = useState(false);
 
   const handleImgChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const imgUrl = URL.createObjectURL(file);
-      setProfileImg(imgUrl);
+      setSampleImg(imgUrl);
+      setUpdateImg(file);
     }
   };
 
   // 이름 변경 함수
   const handleNameChange = (event) => {
-    setName(event.target.value);
+    setUpdateName(event.target.value);
   };
   // 연필 버튼 클릭 시 편집 모드 전환
   const handleEditClick = () => {
     setIsEditing(true);
   };
   // 수정하기 완료 버튼 클릭 시 편집 모드 종료
-  const handleSaveClick = () => {
-    setIsEditing(false);
+  const handleSaveClick = async () => {
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      console.error("userId가 없습니다.");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("userId", userId);
+      formData.append("name", updateName);
+
+      if (updateImg instanceof File) {
+        formData.append("image", updateImg);
+      }
+
+      const response = await fetch(
+        `http://localhost:5000/user/profile-change`,
+        {
+          method: "PUT",
+          //headers: { "Content-Type": "application/json" },
+          //body: JSON.stringify({ userId, name: updateName, image: updateImg }),
+          body: formData,
+        }
+      );
+
+      const updateUser = await response.json();
+      console.log(updateUser);
+      console.log(updateUser.image);
+
+      if (response.ok) {
+        setUpdateName(updateUser.name);
+        setUpdateImg(updateUser.image);
+        setIsEditing(false);
+      } else {
+        console.error("프로필 업데이트 실패");
+      }
+    } catch (err) {
+      console.error("프로필 업데이트 중 오류 발생", err);
+    }
   };
 
   // 백그라운드 클릭 시 모달 닫기
@@ -151,7 +193,16 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
             // 편집 모드일 때
             <ProfileContainer>
               <label>
-                <ProfileImg src={profileImg} alt="프로필 이미지" />
+                <ProfileImg
+                  src={
+                    sampleImg // 사용자가 이미지를 선택한 경우
+                      ? sampleImg
+                      : updateImg // `updateImg`가 있으면 그 이미지를 보여줌
+                      ? `http://localhost:5000${updateImg}` // 서버에서 받아온 이미지
+                      : "/images/profile_picture.png" // 기본 이미지
+                  }
+                  alt="프로필 이미지"
+                />
                 <FileInput
                   type="file"
                   accept="image/*"
@@ -163,7 +214,11 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
             // 편집 모드 아닐 때
             <ProfileContainer>
               <ProfileImg
-                src="/images/profile_picture.png"
+                src={
+                  updateImg
+                    ? `http://localhost:5000${updateImg}`
+                    : "/images/profile_picture.png"
+                }
                 alt="프로필 이미지"
               />
 
@@ -176,11 +231,15 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
           {/* 사용자 이름 */}
           {isEditing ? (
             <div>
-              <NameInput type="text" value={name} onChange={handleNameChange} />
+              <NameInput
+                type="text"
+                value={updateName}
+                onChange={handleNameChange}
+              />
               <SaveButton onClick={handleSaveClick}>수정하기</SaveButton>
             </div>
           ) : (
-            <NameText>{name}</NameText>
+            <NameText>{updateName}</NameText>
           )}
         </Modal>
       </Backdrop>
