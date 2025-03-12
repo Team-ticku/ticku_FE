@@ -1,17 +1,24 @@
-import React, { useRef, useEffect, useState } from "react";
+// InformationPage.jsx
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import Navigation from "../../components/information/Navigation";
 import InfoFirst from "../../components/information/InfoFirst";
-import { Routes, Route } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
 import TopScrollBtn from "../../components/common/TopScrollBtn";
 import Chart from "./Chart";
-import List from "./List";
 import Finance from "./Finance";
 import VolumePage from "./Volume";
 import DividendPage from "./DividendPage";
 import Result from "./Result";
 import NewsPage from "./NewsPage";
+import Search from "./Search";
 
 const Wrap = styled.div`
   width: 390px;
@@ -24,15 +31,17 @@ const ContentWrapper = styled.div`
   padding-bottom: 100px;
 `;
 
+// Search 컴포넌트를 감싸는 div 추가 (스타일링 목적)
+const SearchContainer = styled.div`
+  /* padding: 10px; */
+  /* background-color: #f8f9fa; */
+  /* border-bottom: 1px solid #dee2e6; */
+`;
+
 function Information({ display }) {
   const contentContainerRef = useRef(null);
-
-  const chartData = {
-    name: "기업 이름", // 기업 이름
-    code: "기업 코드", // 기업 종목 코드
-    price: "가격", // 기업 현재가
-    change: "변화량", // 기업 가격 변화량
-  };
+  const location = useLocation();
+  const navigate = useNavigate(); // useNavigate 추가
 
   const financeData = {
     ceo: "한종희", // 대표 이사
@@ -187,70 +196,52 @@ function Information({ display }) {
       const contentHeight = contentContainerRef.current.scrollHeight;
       console.log(contentHeight);
     }
-  }, [yearlyData, quarterlyData, volumeData, dividendData]);
+  }, []); // 의존성 배열에 location.pathname, navigate 추가
 
   return (
     <Wrap>
       <ContentWrapper ref={contentContainerRef}>
         <Routes>
-          <Route path="list" element={<List />} />
           <Route
-            path="*" // 와일드카드(*) 경로 사용
+            path="*"
             element={
               <>
                 <Navigation />
+                {/* Search 컴포넌트를 모든 하위 경로에서 렌더링 */}
+                <SearchContainer>
+                  <Search />
+                </SearchContainer>
 
                 <Routes>
                   <Route path="" element={<InfoFirst />} />
-
-                  <Route
-                    path="chart"
-                    element={<Chart chartData={chartData} />}
-                  />
+                  <Route path="chart" element={<Chart />} />
                   <Route
                     path="finance"
-                    element={
-                      <Finance
-                        chartData={chartData}
-                        financeData={financeData}
-                      />
-                    }
+                    element={<Finance financeData={financeData} />}
                   />
                   <Route
                     path="volume"
-                    element={
-                      <VolumePage
-                        chartData={chartData}
-                        volumeData={volumeData}
-                      />
-                    }
+                    element={<VolumePage volumeData={volumeData} />}
                   />
                   <Route
                     path="news"
-                    element={
-                      <NewsPage chartData={chartData} newsData={newsData} />
-                    }
+                    element={<NewsPage newsData={newsData} />}
                   />
                   <Route
                     path="dividend"
-                    element={
-                      <DividendPage
-                        chartData={chartData}
-                        dividendData={dividendData}
-                      />
-                    }
+                    element={<DividendPage dividendData={dividendData} />}
                   />
                   <Route
                     path="result"
                     element={
                       <Result
-                        chartData={chartData}
                         yearlyData={yearlyData}
                         quarterlyData={quarterlyData}
                       />
                     }
                   />
-                  <Route path="*" element={<div>404 Not Found</div>} />
+                  {/* /information/search 라우트 제거 */}
+                  {/* <Route path="search" element={<Search />} /> */}
                 </Routes>
 
                 <TopScrollBtn display={display} />

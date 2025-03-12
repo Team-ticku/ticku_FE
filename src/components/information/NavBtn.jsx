@@ -37,13 +37,23 @@ const NavComponentText = styled.p`
   margin: 8px 0;
 `;
 
-function NavBtn({ icon, text, bgColor, link }) {
+function NavBtn({ icon, text, bgColor, link, stockCode, stockName }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/information/" + link);
+    if (link === "chart") {
+      if (stockCode && stockName) {
+        // 차트 버튼이고, stockCode와 stockName이 있으면 /information/chart로 이동
+        navigate("/information/chart", { state: { stockCode, stockName } });
+      } else {
+        // 차트 버튼이고, stockCode나 stockName이 없으면 /information/search로 이동
+        navigate("/information/search");
+      }
+    } else {
+      // 다른 버튼은 /information/link로 이동
+      navigate("/information/" + link);
+    }
   };
-
   return (
     <NavDiv>
       <NavComponentBtn backgroundColor={bgColor} onClick={handleClick}>

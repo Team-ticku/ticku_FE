@@ -1,7 +1,9 @@
+// SearchBar.jsx
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
+// import yahooFinance from "yahoo-finance2"; // yahooFinance는 이제 여기서 필요 없음
 
 const Div = styled.div`
   margin-top: 20px;
@@ -9,6 +11,7 @@ const Div = styled.div`
   flex-direction: row;
   justify-content: center;
   position: relative;
+  z-index: 5;
 `;
 
 const Box = styled.div`
@@ -63,36 +66,27 @@ const SearchResultItem = styled.li`
 `;
 
 function SearchBar() {
-  const [query, setQuery] = useState(""); // query로 상태 변경
-  const [results, setResults] = useState([]); // 검색 결과
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
   const inputRef = useRef(null);
-  const navigate = useNavigate(); // 검색 후 페이지 이동
+  const navigate = useNavigate();
 
-  // 서버에서 검색 결과 가져오기 (디바운싱 적용)
   const fetchSearchResults = debounce(async (searchQuery) => {
     if (!searchQuery) {
-      setResults([]); // 검색어가 없으면 결과를 초기화
+      setResults([]);
       return;
     }
 
     try {
-      console.log("검색 요청 전송:", searchQuery);
-
       const response = await fetch(
         `http://localhost:5000/search?query=${searchQuery}`
       );
-
-      console.log(response);
-      console.log("응답 상태:", response.status);
-
       const data = await response.json();
 
-      console.log("서버 응답 데이터:", data);
-
       if (response.status === 404 || data.length === 0) {
-        setResults([]); // 검색 결과 없을 때
+        setResults([]);
       } else {
-        setResults(data); // 검색 결과 업데이트
+        setResults(data);
       }
     } catch (error) {
       console.error("검색 API 요청 중 오류 발생: ", error);
@@ -100,7 +94,6 @@ function SearchBar() {
     }
   }, 300);
 
-  // 키보드에서 Enter를 눌렀을 때
   const handleKeyDown = async (e) => {
     if (e.key === "Enter" && query) {
       try {
@@ -109,13 +102,16 @@ function SearchBar() {
         );
         const data = await response.json();
 
-        if (response.status === 404 || data[0].corp_name !== query) {
+        if (response.status === 404 || data.length === 0) {
           setQuery("");
           setResults([]);
-          alert("검색 결과가 없습니다."); // 검색 결과 없을 때 경고창
-        } else {
-          navigate(""); // 검색 페이지로 이동
-          setResults([]);
+          alert("검색 결과가 없습니다.");
+        } else if (data.length > 0) {
+          const stockCode = data[0].stock_code;
+          const stockName = data[0].corp_name;
+
+          // 여기를 /information/search로 변경! + state 정확히 전달
+          navigate(`/information/search`, { state: { stockCode, stockName } }); // state 객체 수정
         }
       } catch (error) {
         console.error("검색 요청 중 오류 발생:", error);
@@ -124,16 +120,13 @@ function SearchBar() {
     }
   };
 
-  // 입력값이 변경될 때마다 디바운싱 처리
   const handleChange = (e) => {
     setQuery(e.target.value);
     fetchSearchResults(e.target.value);
   };
 
-  // 검색 결과를 클릭했을 때 페이지 이동
   const handleSelectResult = (company) => {
-    console.log("선택한 회사:", company);
-    navigate(""); // 선택한 종목 상세 페이지로 이동
+    setQuery(company.corp_name);
     setResults([]);
   };
 
@@ -151,16 +144,14 @@ function SearchBar() {
       </Box>
       {results.length > 0 && (
         <SearchResults>
-          {results.map((company) => {
-            return (
-              <SearchResultItem
-                key={company._id}
-                onClick={() => handleSelectResult(company)}
-              >
-                {company.corp_name}
-              </SearchResultItem>
-            );
-          })}
+          {results.map((company) => (
+            <SearchResultItem
+              key={company._id}
+              onClick={() => handleSelectResult(company)}
+            >
+              {company.corp_name}
+            </SearchResultItem>
+          ))}
         </SearchResults>
       )}
     </Div>
