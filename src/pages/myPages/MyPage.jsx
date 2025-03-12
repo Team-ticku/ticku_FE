@@ -32,6 +32,8 @@ const Button = styled.button`
 `;
 
 function MyPage() {
+  const [userName, setUserName] = useState("");
+  const [userImage, setUserImage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -41,9 +43,31 @@ function MyPage() {
     setModalOpen(false);
   };
 
+  const fetchUserProfile = async () => {
+    const userId = localStorage.getItem("userId");
+    console.log(userId);
+
+    try {
+      const response = await fetch(`http://localhost:5000/user/${userId}`);
+      const userData = await response.json();
+      console.log(userData);
+
+      setUserName(userData.name);
+      setUserImage(userData.image);
+    } catch (err) {
+      console.error("사용자 데이터를 가져오는 데 실패했습니다.", err);
+    }
+  };
+
+  fetchUserProfile();
+  /*useEffect(() => {
+    fetchUserProfile();
+  }, []);*/
+
   return (
     <>
       <Div>
+        {/* 여기에 userName, userImage 넣으면 됨.  */}
         <UserProfile width="40" name="익명1" fontsize="28" />
         <Button onClick={openModal}>회원정보</Button>
       </Div>
@@ -66,8 +90,8 @@ function MyPage() {
       <MyPageModal
         isOpen={modalOpen}
         onClose={closeModal}
-        userName="익명1"
-        userImage="/images/profile_picture.png"
+        userName={userName}
+        userImage={userImage}
       />
 
       <BottomNavBar />
