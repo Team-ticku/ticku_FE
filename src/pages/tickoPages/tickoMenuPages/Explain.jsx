@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useMemo, useLayoutEffect } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import styled from "styled-components";
 import Header from "../../../components/tickoPages/common/header/Header";
 import StartSpeechBubble from "../../../components/tickoPages/common/SpeechBubble/StartSpeechBubble";
@@ -8,7 +8,6 @@ import { useParams } from "react-router-dom";
 const BodyWrap = styled.div`
   display: flex;
   width: 390px;
-  height: 150px;
   flex-direction: column;
   gap: 5px;
   padding: 55px 20px 10px 10px;
@@ -21,13 +20,11 @@ export default function Explain() {
   const { title } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/ticko/${menu}/${title}`)
+    fetch(`http://localhost:5000/explains/ticko/${menu}/${title}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-
         if (data) {
           setDescription(data);
         } else {
