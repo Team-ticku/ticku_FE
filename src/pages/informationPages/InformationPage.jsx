@@ -10,6 +10,7 @@ import {
   useLocation,
   Outlet,
   useNavigate,
+  Navigate,
 } from "react-router-dom";
 import TopScrollBtn from "../../components/common/TopScrollBtn";
 import Chart from "./Chart";
@@ -41,8 +42,9 @@ const SearchContainer = styled.div`
 function Information({ display }) {
   const contentContainerRef = useRef(null);
   const location = useLocation();
-  const navigate = useNavigate(); // useNavigate 추가
+  const navigate = useNavigate();
 
+  // ... (financeData, volumeData, dividendData, yearlyData, quarterlyData, newsData는 이전과 동일) ...
   const financeData = {
     ceo: "한종희", // 대표 이사
     establishedDate: "1969.01.13", // 설립일
@@ -196,24 +198,36 @@ function Information({ display }) {
       const contentHeight = contentContainerRef.current.scrollHeight;
       console.log(contentHeight);
     }
-  }, []); // 의존성 배열에 location.pathname, navigate 추가
+  }, []);
 
   return (
     <Wrap>
       <ContentWrapper ref={contentContainerRef}>
+        {/* 최상위 Route에서 /information 경로를 /information/search로 리디렉션 */}
+
         <Routes>
+          {/* /information 경로 (index route) */}
+          <Route
+            index
+            element={
+              <>
+                <Navigation />
+                <InfoFirst />
+              </>
+            }
+          />
+          {/* /information/* (나머지 경로) */}
           <Route
             path="*"
             element={
               <>
                 <Navigation />
-                {/* Search 컴포넌트를 모든 하위 경로에서 렌더링 */}
                 <SearchContainer>
                   <Search />
                 </SearchContainer>
-
                 <Routes>
-                  <Route path="" element={<InfoFirst />} />
+                  {/* <Route path="" element={<InfoFirst />} /> */}
+                  {/* InfoFirst는 index route에서 이미 렌더링되므로 제거 */}
                   <Route path="chart" element={<Chart />} />
                   <Route
                     path="finance"
@@ -240,17 +254,16 @@ function Information({ display }) {
                       />
                     }
                   />
-                  {/* /information/search 라우트 제거 */}
-                  {/* <Route path="search" element={<Search />} /> */}
                 </Routes>
-
-                <TopScrollBtn display={display} />
-                <BottomNavBar display={display} />
               </>
             }
           />
+          {/* /information으로 접속했을 때 /information/search로 리디렉션 */}
+          <Route path="/" element={<Navigate to="/information/search" />} />
         </Routes>
       </ContentWrapper>
+      <TopScrollBtn display={display} />
+      <BottomNavBar display={display} />
     </Wrap>
   );
 }
