@@ -50,8 +50,8 @@ export default function ImgMenu({ list, animationDelay }) {
       <Dummy></Dummy>
       <MenuWrap animationDelay={animationDelay}>
         <LinkButton
-          link={"/ticko/chart/1"}
-          title={"캔들스틱 표기 기간"}
+          link={"/ticko/chart/chart_1"}
+          title={"캔들스틱 표기 단위"}
           padding={"7px 49px"}
         ></LinkButton>
         {list.map((menu, idx) => {

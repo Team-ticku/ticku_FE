@@ -35,7 +35,7 @@ export default function ButtonMenu() {
         <MenuContainer>차트</MenuContainer>
       </StyledLink>
       <StyledLink to="/ticko/account">
-        <MenuContainer>계좌</MenuContainer>
+        <MenuContainer>절세 계좌</MenuContainer>
       </StyledLink>
     </MenuWrap>
   );
