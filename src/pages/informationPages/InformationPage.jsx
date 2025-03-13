@@ -1,5 +1,5 @@
 // InformationPage.jsx
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import Navigation from "../../components/information/Navigation";
@@ -8,7 +8,7 @@ import {
   Routes,
   Route,
   useLocation,
-  Outlet,
+  Outlet, // Outlet은 사용하지 않으므로 제거
   useNavigate,
   Navigate,
 } from "react-router-dom";
@@ -19,7 +19,7 @@ import VolumePage from "./Volume";
 import DividendPage from "./DividendPage";
 import Result from "./Result";
 import NewsPage from "./NewsPage";
-import Search from "./Search";
+import Search from "./Search"; // Search 컴포넌트
 
 const Wrap = styled.div`
   width: 390px;
@@ -27,32 +27,37 @@ const Wrap = styled.div`
 
 const ContentWrapper = styled.div`
   overflow-y: auto;
-  height: calc(100vh);
-  position: relative;
+  height: calc(100vh); // 뷰포트 높이 전체 사용
+  position: relative; // 상대 위치 지정
   padding-bottom: 100px;
 `;
 
-// Search 컴포넌트를 감싸는 div 추가 (스타일링 목적)
 const SearchContainer = styled.div`
-  /* padding: 10px; */
-  /* background-color: #f8f9fa; */
-  /* border-bottom: 1px solid #dee2e6; */
+  /* padding: 10px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6; */
 `;
 
 function Information({ display }) {
-  const contentContainerRef = useRef(null);
+  const contentContainerRef = useRef(null); // ref는 초기값 null
   const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
-  // ... (financeData, volumeData, dividendData, yearlyData, quarterlyData, newsData는 이전과 동일) ...
-  const financeData = {
-    ceo: "한종희", // 대표 이사
-    establishedDate: "1969.01.13", // 설립일
-    stockCode: "005930", //종목 코드
-    homepage: "www.samsung.com/sec", // 홈페이지
-  };
+  const [financeData, setFinanceData] = useState(null); // 초기값 null
+  const [yearResultData, setYearResultData] = useState(null); // yearResultData 상태 추가
 
-  // 거래량 데이터
+  // location.state 변경 감지 -> financeData 업데이트
+  useEffect(() => {
+    // location.state에서 financeData와 yearResultData를 가져옴
+    if (location.state && location.state.financeData) {
+      setFinanceData(location.state.financeData);
+    }
+    if (location.state && location.state.yearResultData) {
+      setYearResultData(location.state.yearResultData);
+    }
+  }, [location.state]);
+
+  // 거래량, 배당, 실적, 뉴스 데이터 (이전과 동일)
   const volumeData = [
     {
       date: "02.21",
@@ -193,18 +198,9 @@ function Information({ display }) {
     // ... 추가 뉴스 기사 데이터 ...
   ];
 
-  useEffect(() => {
-    if (contentContainerRef.current) {
-      const contentHeight = contentContainerRef.current.scrollHeight;
-      console.log(contentHeight);
-    }
-  }, []);
-
   return (
     <Wrap>
       <ContentWrapper ref={contentContainerRef}>
-        {/* 최상위 Route에서 /information 경로를 /information/search로 리디렉션 */}
-
         <Routes>
           {/* /information 경로 (index route) */}
           <Route
@@ -216,6 +212,7 @@ function Information({ display }) {
               </>
             }
           />
+
           {/* /information/* (나머지 경로) */}
           <Route
             path="*"
@@ -223,15 +220,20 @@ function Information({ display }) {
               <>
                 <Navigation />
                 <SearchContainer>
+                  {/* Search 컴포넌트 */}
                   <Search />
                 </SearchContainer>
                 <Routes>
-                  {/* <Route path="" element={<InfoFirst />} /> */}
-                  {/* InfoFirst는 index route에서 이미 렌더링되므로 제거 */}
+                  {/* 중첩 라우팅 */}
                   <Route path="chart" element={<Chart />} />
                   <Route
                     path="finance"
-                    element={<Finance financeData={financeData} />}
+                    element={
+                      <Finance
+                        financeData={financeData}
+                        yearResultData={yearResultData}
+                      />
+                    }
                   />
                   <Route
                     path="volume"
@@ -258,10 +260,11 @@ function Information({ display }) {
               </>
             }
           />
-          {/* /information으로 접속했을 때 /information/search로 리디렉션 */}
           <Route path="/" element={<Navigate to="/information/search" />} />
         </Routes>
       </ContentWrapper>
+
+      {/* TopScrollBtn, BottomNavBar는 그대로 */}
       <TopScrollBtn display={display} />
       <BottomNavBar display={display} />
     </Wrap>
