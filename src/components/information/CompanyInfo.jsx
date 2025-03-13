@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Star from "../../components/common/Star";
 
 const CompanyDiv = styled.div`
   max-width: 400px;
@@ -16,8 +17,9 @@ const TextDiv = styled.div`
 const CompanySubDiv = styled.div`
   display: flex;
   flex: 1;
-  margin-right: 15px;
-  gap: 5px;
+  //margin-right: 15px;
+  //gap: 5px;
+  justify-content: stretch;
   align-items: baseline;
   padding-bottom: 10px;
 `;
@@ -26,12 +28,14 @@ const CompanyName = styled.p`
   font-size: 20px;
   margin: 0;
   margin-right: 10px;
+  width: 200px;
 `;
 
 const CompanyCode = styled.span`
   color: #b3b3b3;
   font-size: 20px;
   margin: 0;
+  width: 200px;
 `;
 
 const CompanyPrice = styled.span`
@@ -51,6 +55,12 @@ const PriceWrap = styled.div`
   justify-content: space-between;
 `;
 
+const StarContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;
+
 function CompanyInfo(props) {
   const { logo, altText, name, code, price, change } = props;
 
@@ -60,6 +70,9 @@ function CompanyInfo(props) {
         <CompanySubDiv>
           <CompanyName>{name}</CompanyName>
           <CompanyCode>{code}</CompanyCode>
+          <StarContainer>
+            <Star />
+          </StarContainer>
         </CompanySubDiv>
         <PriceWrap>
           <CompanyPrice>{price} 원</CompanyPrice>
