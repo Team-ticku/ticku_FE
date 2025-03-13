@@ -87,6 +87,7 @@ function NewsCard({
   sourceName, //언론사 이름
   sourceImage, //언론사 로고
   defaultBookmarked, //북마크 되어있는지
+  onBookmarkToggle,
 }) {
   return (
     <>
@@ -104,7 +105,10 @@ function NewsCard({
           </LeftSection>
 
           <BookmarkContainer>
-            <BookMark defaultBookmarked={defaultBookmarked} />
+            <BookMark
+              isMarked={defaultBookmarked}
+              onBookmarkToggle={onBookmarkToggle}
+            />
           </BookmarkContainer>
 
           {/* 오른쪽 내용 */}
