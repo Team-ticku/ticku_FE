@@ -17,60 +17,72 @@ const PageTitle = styled.p`
 `;
 
 function FavoriteCompanies() {
-  //const [companies, setCompanies] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
-  const companies = [
-    {
-      id: 1,
-      name: "삼성전자",
-      isFavorite: true,
-    },
-    {
-      id: 2,
-      name: "LG 전자",
-      isFavorite: true,
-    },
-  ];
-
-  // 백엔드랑 연결할 때 사용하면 될 듯
   // 회사 목록을 가져오는 함수
-  /*const fetchCompanies = async () => {
+  const fetchCompanies = async () => {
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      console.error("사용자 ID가 없습니다.");
+      return;
+    }
+
     try {
-      const response = await fetch("http://localhost:5000/api/companies");
+      const response = await fetch(
+        `http://localhost:5000/user/favorites?userId=${userId}`
+      );
       const data = await response.json();
-      setCompanies(data); // MongoDB에서 가져온 데이터를 상태에 설정
+      setCompanies(data);
     } catch (error) {
-      console.error("Error fetching companies:", error);
+      console.error("회사 데이터를 가져오는 데 실패했습니다.", error);
     }
   };
 
   useEffect(() => {
     fetchCompanies();
-  }, []);*/
+  }, []);
 
-  // isFavorite 값을 반전시키는 역할
-  const handleToggleFavorite = useCallback((id) => {
-    setCompanies((prevCompanies) =>
-      prevCompanies.map((company) =>
-        company.id === id
-          ? { ...company, isFavorite: !company.isFavorite }
-          : company
-      )
-    );
+  // 즐겨찾기 상태 변경
+  const handleToggleFavorite = useCallback(async (id, isFavorite, name) => {
+    console.log("isFavorite : " + isFavorite);
+
+    if (isFavorite) {
+      try {
+        await fetch("http://localhost:5000/user/delete-favorite", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ companyId: id }),
+        });
+        fetchCompanies(); // 삭제 후 회사 목록을 다시 가져오기
+      } catch (error) {
+        console.error("회사 삭제에 실패했습니다.", error);
+      }
+    }
   }, []);
 
   return (
     <>
       <PageContainer>
-        <BackButton width="40" link="/mypage" />
+        <BackButton width="40" height="40" link="/mypage" />
         <PageTitle>관심 기업</PageTitle>
       </PageContainer>
 
       {companies.map((company) => {
         return (
           <CompanyList
-            key={company.id}
-            company={{ ...company, onToggleFavorite: handleToggleFavorite }}
+            key={company._id}
+            company={{
+              ...company,
+              onToggleFavorite: () =>
+                handleToggleFavorite(
+                  company._id,
+                  company.isFavorite,
+                  company.name
+                ),
+            }}
           />
         );
       })}
