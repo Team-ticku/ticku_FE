@@ -10,11 +10,12 @@ const Button = styled.button`
   background: none;
 `;
 
-function BookMark({ width, height, defaultBookmarked }) {
-  const [isBookMarkded, setIsBookMarked] = useState(defaultBookmarked);
+function BookMark({ width, height, isMarked, onBookmarkToggle }) {
+  const [isBookMarkded, setIsBookMarked] = useState(isMarked);
 
   function changeBookMark() {
     setIsBookMarked((prev) => !prev);
+    onBookmarkToggle();
   }
 
   return (
