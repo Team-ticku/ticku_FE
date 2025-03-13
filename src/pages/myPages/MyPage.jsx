@@ -48,7 +48,7 @@ function MyPage() {
     console.log(userId);
 
     try {
-      const response = await fetch(`http://localhost:5000/user/${userId}`);
+      const response = await fetch(`http://localhost:5000/user/info/${userId}`);
       const userData = await response.json();
       console.log(userData);
 
