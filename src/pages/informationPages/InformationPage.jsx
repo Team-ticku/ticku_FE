@@ -8,7 +8,6 @@ import {
   Routes,
   Route,
   useLocation,
-  Outlet, // Outlet은 사용하지 않으므로 제거
   useNavigate,
   Navigate,
 } from "react-router-dom";
@@ -45,6 +44,8 @@ function Information({ display }) {
 
   const [financeData, setFinanceData] = useState(null); // 초기값 null
   const [yearResultData, setYearResultData] = useState(null); // yearResultData 상태 추가
+  const [stockCode, setStockCode] = useState(null); // Add stockCode state
+  const [volumeData, setVolumeData] = useState(null); // Add volumeData state
 
   // location.state 변경 감지 -> financeData 업데이트
   useEffect(() => {
@@ -55,59 +56,61 @@ function Information({ display }) {
     if (location.state && location.state.yearResultData) {
       setYearResultData(location.state.yearResultData);
     }
+    if (location.state && location.state.stockCode) {
+      setStockCode(location.state.stockCode); // Store the stockCode
+      console.log(
+        "InformationPage useEffect - stockCode:",
+        location.state.stockCode
+      );
+    }
   }, [location.state]);
 
-  // 거래량, 배당, 실적, 뉴스 데이터 (이전과 동일)
-  const volumeData = [
-    {
-      date: "02.21",
-      closingPrice: "126,782원",
-      changeRate: "+5.18%",
-      volume: "15,128,831",
-    },
-    {
-      date: "02.20",
-      closingPrice: "120,535원",
-      changeRate: "+0.40%",
-      volume: "5,015,229",
-    },
-    {
-      date: "02.19",
-      closingPrice: "120,045원",
-      changeRate: "+1.29%",
-      volume: "5,948,149",
-    },
-    {
-      date: "02.18",
-      closingPrice: "118,505원",
-      changeRate: "+5.72%",
-      volume: "8,712,148",
-    },
-    {
-      date: "02.14",
-      closingPrice: "112,086원",
-      changeRate: "-1.21%",
-      volume: "9,875,485",
-    },
-    {
-      date: "02.13",
-      closingPrice: "113,467원",
-      changeRate: "-3.61%",
-      volume: "10,809,249",
-    },
-    {
-      date: "02.12",
-      closingPrice: "117,728원",
-      changeRate: "-2.32%",
-      volume: "6,427,373",
-    },
-    {
-      date: "02.11",
-      closingPrice: "115,238원",
-      changeRate: "-2.32%",
-      volume: "6,427,373",
-    },
-  ];
+  useEffect(() => {
+    const fetchVolumeData = async () => {
+      if (stockCode) {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/volumes/${stockCode}`
+          );
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+
+          if (!data.chartData || data.chartData.length === 0) {
+            setVolumeData([]); // No data, set empty array
+            return;
+          }
+          // Calculate changeRate here, *before* setting volumeData
+          const processedData = data.chartData.map((item, index, array) => {
+            let changeRate = null;
+            //  *** Change here: Use < array.length - 1 ***
+            if (index < array.length - 1) {
+              // Check if it's NOT the *last* element
+              const prevClose = array[index + 1].종가; //  + 1, *next* day's close
+              const currentClose = item.종가;
+              if (prevClose !== null && currentClose !== null) {
+                changeRate =
+                  (((currentClose - prevClose) / prevClose) * 100).toFixed(2) +
+                  "%";
+              }
+            }
+            return {
+              date: item.날짜,
+              closingPrice: item.종가 ? item.종가.toFixed(0) + "원" : null,
+              changeRate: changeRate,
+              volume: item.거래량 ? item.거래량.toLocaleString() : null,
+            };
+          });
+          processedData.pop();
+          setVolumeData(processedData);
+        } catch (error) {
+          console.error("Error fetching volume data:", error);
+        }
+      }
+    };
+    fetchVolumeData();
+  }, [stockCode]);
 
   // 배당 데이터
   const dividendData = [

@@ -7,12 +7,6 @@ import YQButton from "../../components/information/YQButton";
 function Result({ chartData, yearlyData, quarterlyData }) {
   return (
     <div>
-      <CompanyInfo
-        name={chartData.name}
-        code={chartData.code}
-        price={chartData.price}
-        change={chartData.change}
-      />
       <VolumeInfo title="실적"></VolumeInfo>
       <YQButton
         yearlyData={yearlyData}
