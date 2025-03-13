@@ -11,11 +11,12 @@ const Button = styled.button`
   background: none;
 `;
 
-function Star({ defaultStarred }) {
+function Star({ defaultStarred, onToggleFavorite }) {
   const [isStarred, setIsStarred] = useState(defaultStarred);
 
   function changeStar() {
     setIsStarred((prev) => !prev);
+    onToggleFavorite();
   }
 
   return (

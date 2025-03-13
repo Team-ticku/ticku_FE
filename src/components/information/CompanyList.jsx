@@ -34,7 +34,10 @@ function CompanyList({ company }) {
         <CompanyName>{company.name}</CompanyName> {/* {}에 기업 이름 */}
       </CompanySubContainer>
       <StarDiv>
-        <Star defaultStarred={company.isFavorite}></Star>
+        <Star
+          defaultStarred={company.isFavorite}
+          onToggleFavorite={company.onToggleFavorite}
+        ></Star>
       </StarDiv>
     </CompanyContainer>
   );
