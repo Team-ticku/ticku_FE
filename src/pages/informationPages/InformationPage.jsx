@@ -45,7 +45,9 @@ function Information({ display }) {
   const [financeData, setFinanceData] = useState(null); // 초기값 null
   const [yearResultData, setYearResultData] = useState(null); // yearResultData 상태 추가
   const [stockCode, setStockCode] = useState(null); // Add stockCode state
+  const [corpCode, setCorpCode] = useState(null);
   const [volumeData, setVolumeData] = useState(null); // Add volumeData state
+  const [dividendData, setDividendData] = useState(null);
 
   // location.state 변경 감지 -> financeData 업데이트
   useEffect(() => {
@@ -58,10 +60,9 @@ function Information({ display }) {
     }
     if (location.state && location.state.stockCode) {
       setStockCode(location.state.stockCode); // Store the stockCode
-      console.log(
-        "InformationPage useEffect - stockCode:",
-        location.state.stockCode
-      );
+    }
+    if (location.state && location.state.corpCode) {
+      setCorpCode(location.state.corpCode);
     }
   }, [location.state]);
 
@@ -112,24 +113,50 @@ function Information({ display }) {
     fetchVolumeData();
   }, [stockCode]);
 
-  // 배당 데이터
-  const dividendData = [
-    {
-      year: "2024",
-      dividendPrice: "1,446",
-      dividendRate: "2.72%",
-    },
-    {
-      year: "2023",
-      dividendPrice: "1,444",
-      dividendRate: "1.84%",
-    },
-    {
-      year: "2022",
-      dividendPrice: "1,444",
-      dividendRate: "2.61%",
-    },
-  ];
+  useEffect(() => {
+    const fetchDividendData = async () => {
+      if (!corpCode) {
+        console.log("corpCode가 음슴");
+
+        return;
+      } // corpCode가 없으면 아무것도 하지 않음
+
+      try {
+        console.log("corpCode : ", corpCode);
+
+        const response = await fetch(
+          `http://localhost:5000/dividend/${corpCode}`
+        ); // *** 수정: corpCode 사용
+        console.log("Response : ", response);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("dividendData:", data);
+
+        // 데이터 포맷 변환 (배열 형태)
+        const formattedData = data.map((item) => ({
+          year: item.year.toString(),
+          dividendPrice:
+            item.commonStockDividend !== null
+              ? `${item.commonStockDividend.toLocaleString()}원`
+              : "N/A",
+          dividendRate:
+            item.commonStockYield !== null
+              ? `${item.commonStockYield.toFixed(2)}%`
+              : "N/A",
+        }));
+
+        setDividendData(formattedData);
+      } catch (error) {
+        console.error("Error fetching dividend data:", error);
+        setDividendData([]); // 에러 발생 시 빈 배열로 설정
+      }
+    };
+
+    fetchDividendData();
+  }, [corpCode]); // corpCode가 변경될 때마다 실행
 
   //실적 연간 데이터
   const yearlyData = [
