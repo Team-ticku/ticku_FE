@@ -135,11 +135,78 @@ function SearchBar() {
           return;
         }
 
-        // 4. navigate (with companyInfoData)
+        // 4. 연간 매출액 가져오기
+        const yearSalesResponse = await fetch(
+          `http://localhost:5000/salesyear/${corpCode}`
+        );
+        const yearSalesData = await yearSalesResponse.json();
+
+        if (!yearSalesResponse.ok) {
+          alert("연간 매출출 정보를 가져오는 데 실패했습니다.");
+          return;
+        }
+
+        // 데이터 형식 변환
+        const transformedYearSalesData = [];
+        const sales = { category: "매출액(억)" };
+        const operatingProfit = { category: "영업이익(억)" };
+        const netIncome = { category: "순이익(억)" };
+
+        yearSalesData.forEach((item) => {
+          sales[item.reportYear] = item.data["매출액"]
+            ? item.data["매출액"].toLocaleString()
+            : "N/A";
+          operatingProfit[item.reportYear] = item.data["영업이익"]
+            ? item.data["영업이익"].toLocaleString()
+            : "N/A";
+          netIncome[item.reportYear] = item.data["당기순이익"]
+            ? item.data["당기순이익"].toLocaleString()
+            : "N/A";
+        });
+
+        transformedYearSalesData.push(sales, operatingProfit, netIncome);
+
+        // 5. 분기별 매출액 가져오기 및 데이터 변환
+        const quarterlySalesResponse = await fetch(
+          `http://localhost:5000/quarterlySales/${corpCode}`
+        );
+        const quarterlySalesData = await quarterlySalesResponse.json();
+
+        if (!quarterlySalesResponse.ok) {
+          alert("분기별 매출 정보를 가져오는 데 실패했습니다.");
+          return;
+        }
+        // Recharts에 맞는 데이터 형식으로 변환
+
+        const transformedQuarterlySalesData = [];
+        const Qsales = { category: "매출액(억)" };
+        const QoperatingProfit = { category: "영업이익(억)" };
+        const QnetIncome = { category: "순이익(억)" };
+
+        quarterlySalesData.forEach((item) => {
+          Qsales[item.quarter] = item.data["매출액"]
+            ? item.data["매출액"].toLocaleString()
+            : "N/A";
+          QoperatingProfit[item.quarter] = item.data["영업이익"]
+            ? item.data["영업이익"].toLocaleString()
+            : "N/A";
+          QnetIncome[item.quarter] = item.data["당기순이익"]
+            ? item.data["당기순이익"].toLocaleString()
+            : "N/A";
+        });
+
+        transformedQuarterlySalesData.push(
+          Qsales,
+          QoperatingProfit,
+          QnetIncome
+        );
+
+        // 6. navigate (with companyInfoData)
         navigate(`/information/search`, {
           state: {
             stockCode,
             stockName, // 여전히 필요
+            corpCode,
             financeData: {
               // financeData 객체 전달
               ceo: companyInfoData.대표이사,
@@ -148,6 +215,8 @@ function SearchBar() {
               homepage: companyInfoData.홈페이지,
             },
             yearResultData,
+            yearSalesData: transformedYearSalesData,
+            quarterlySalesData: transformedQuarterlySalesData,
           },
         });
       } catch (error) {
