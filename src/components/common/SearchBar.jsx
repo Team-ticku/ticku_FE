@@ -140,6 +140,7 @@ function SearchBar() {
           state: {
             stockCode,
             stockName, // 여전히 필요
+            corpCode,
             financeData: {
               // financeData 객체 전달
               ceo: companyInfoData.대표이사,
