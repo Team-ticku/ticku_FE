@@ -7,12 +7,6 @@ import React from "react";
 function NewsPage({ chartData, newsData }) {
   return (
     <div>
-      <CompanyInfo
-        name={chartData.name}
-        code={chartData.code}
-        price={chartData.price}
-        change={chartData.change}
-      />
       <VolumeInfo title="뉴스"></VolumeInfo>
       <div>
         {/* newsData 배열을 map 함수로 순회하며 NewsCard 렌더링 */}

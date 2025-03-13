@@ -3,7 +3,6 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
-// import yahooFinance from "yahoo-finance2"; // yahooFinance는 이제 여기서 필요 없음
 
 const Div = styled.div`
   margin-top: 20px;
