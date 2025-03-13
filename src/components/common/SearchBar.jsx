@@ -97,22 +97,60 @@ function SearchBar() {
   const handleKeyDown = async (e) => {
     if (e.key === "Enter" && query) {
       try {
-        const response = await fetch(
+        const searchResponse = await fetch(
           `http://localhost:5000/search?query=${query}`
         );
-        const data = await response.json();
+        const searchData = await searchResponse.json();
 
-        if (response.status === 404 || data.length === 0) {
+        if (searchResponse.status === 404 || searchData.length === 0) {
           setQuery("");
           setResults([]);
           alert("검색 결과가 없습니다.");
-        } else if (data.length > 0) {
-          const stockCode = data[0].stock_code;
-          const stockName = data[0].corp_name;
-
-          // 여기를 /information/search로 변경! + state 정확히 전달
-          navigate(`/information/search`, { state: { stockCode, stockName } }); // state 객체 수정
+          return;
         }
+
+        // 2. 회사 정보 가져오기 (companyInfo API)
+        const corpCode = searchData[0].corp_code;
+        const stockName = searchData[0].corp_name; // 회사이름도 전달
+        const stockCode = searchData[0].stock_code;
+
+        const companyInfoResponse = await fetch(
+          `http://localhost:5000/companyInfo/${corpCode}` // 수정된 부분
+        );
+
+        const companyInfoData = await companyInfoResponse.json();
+
+        if (companyInfoResponse.status !== 200) {
+          alert("회사 정보를 가져오는 데 실패했습니다."); // 또는 다른 오류 처리
+          return;
+        }
+
+        // 3. 연간 실적 가져오기
+        const yearResultResponse = await fetch(
+          `http://localhost:5000/yearResult/${corpCode}`
+        );
+        const yearResultData = await yearResultResponse.json();
+
+        if (!yearResultResponse.ok) {
+          alert("연간 실적 정보를 가져오는 데 실패했습니다.");
+          return;
+        }
+
+        // 4. navigate (with companyInfoData)
+        navigate(`/information/search`, {
+          state: {
+            stockCode,
+            stockName, // 여전히 필요
+            financeData: {
+              // financeData 객체 전달
+              ceo: companyInfoData.대표이사,
+              establishedDate: companyInfoData.설립일,
+              stockCode: companyInfoData.종목코드,
+              homepage: companyInfoData.홈페이지,
+            },
+            yearResultData,
+          },
+        });
       } catch (error) {
         console.error("검색 요청 중 오류 발생:", error);
         alert("검색 중 오류가 발생했습니다.");
@@ -128,6 +166,7 @@ function SearchBar() {
   const handleSelectResult = (company) => {
     setQuery(company.corp_name);
     setResults([]);
+    //  여기를 handleKeyDown과 비슷하게 구현해도 됩니다 (선택 사항)
   };
 
   return (
@@ -146,7 +185,7 @@ function SearchBar() {
         <SearchResults>
           {results.map((company) => (
             <SearchResultItem
-              key={company._id}
+              key={company.id}
               onClick={() => handleSelectResult(company)}
             >
               {company.corp_name}
