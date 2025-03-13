@@ -8,6 +8,7 @@ import volumeIcon from "../../../public/images/information/volumeIcon.png";
 import newsIcon from "../../../public/images/information/newsIcon.png";
 import dividendIcon from "../../../public/images/information/dividendIcon.png";
 import resultIcon from "../../../public/images/information/resultIcon.png";
+import { useLocation } from "react-router-dom";
 
 const NAVDIV = styled.div`
   display: flex;
@@ -56,6 +57,8 @@ function Navigation() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const location = useLocation(); // useLocation 훅 사용
+  const { stockCode, stockName } = location.state || {}; // state에서 정보 가져옴
 
   useEffect(() => {
     const container = containerRef.current;
@@ -130,6 +133,8 @@ function Navigation() {
                 text={button.text}
                 bgColor={button.bgColor}
                 link={button.link}
+                stockCode={stockCode}
+                stockName={stockName}
               />
             ))}
           </NavBar>

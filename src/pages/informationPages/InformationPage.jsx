@@ -1,17 +1,25 @@
-import React, { useRef, useEffect, useState } from "react";
+// InformationPage.jsx
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import Navigation from "../../components/information/Navigation";
 import InfoFirst from "../../components/information/InfoFirst";
-import { Routes, Route } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  Outlet,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
 import TopScrollBtn from "../../components/common/TopScrollBtn";
 import Chart from "./Chart";
-import List from "./List";
 import Finance from "./Finance";
 import VolumePage from "./Volume";
 import DividendPage from "./DividendPage";
 import Result from "./Result";
 import NewsPage from "./NewsPage";
+import Search from "./Search";
 
 const Wrap = styled.div`
   width: 390px;
@@ -24,16 +32,19 @@ const ContentWrapper = styled.div`
   padding-bottom: 100px;
 `;
 
+// Search 컴포넌트를 감싸는 div 추가 (스타일링 목적)
+const SearchContainer = styled.div`
+  /* padding: 10px; */
+  /* background-color: #f8f9fa; */
+  /* border-bottom: 1px solid #dee2e6; */
+`;
+
 function Information({ display }) {
   const contentContainerRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const chartData = {
-    name: "기업 이름", // 기업 이름
-    code: "기업 코드", // 기업 종목 코드
-    price: "가격", // 기업 현재가
-    change: "변화량", // 기업 가격 변화량
-  };
-
+  // ... (financeData, volumeData, dividendData, yearlyData, quarterlyData, newsData는 이전과 동일) ...
   const financeData = {
     ceo: "한종희", // 대표 이사
     establishedDate: "1969.01.13", // 설립일
@@ -187,79 +198,72 @@ function Information({ display }) {
       const contentHeight = contentContainerRef.current.scrollHeight;
       console.log(contentHeight);
     }
-  }, [yearlyData, quarterlyData, volumeData, dividendData]);
+  }, []);
 
   return (
     <Wrap>
       <ContentWrapper ref={contentContainerRef}>
+        {/* 최상위 Route에서 /information 경로를 /information/search로 리디렉션 */}
+
         <Routes>
-          <Route path="list" element={<List />} />
+          {/* /information 경로 (index route) */}
           <Route
-            path="*" // 와일드카드(*) 경로 사용
+            index
             element={
               <>
                 <Navigation />
-
+                <InfoFirst />
+              </>
+            }
+          />
+          {/* /information/* (나머지 경로) */}
+          <Route
+            path="*"
+            element={
+              <>
+                <Navigation />
+                <SearchContainer>
+                  <Search />
+                </SearchContainer>
                 <Routes>
-                  <Route path="" element={<InfoFirst />} />
-
-                  <Route
-                    path="chart"
-                    element={<Chart chartData={chartData} />}
-                  />
+                  {/* <Route path="" element={<InfoFirst />} /> */}
+                  {/* InfoFirst는 index route에서 이미 렌더링되므로 제거 */}
+                  <Route path="chart" element={<Chart />} />
                   <Route
                     path="finance"
-                    element={
-                      <Finance
-                        chartData={chartData}
-                        financeData={financeData}
-                      />
-                    }
+                    element={<Finance financeData={financeData} />}
                   />
                   <Route
                     path="volume"
-                    element={
-                      <VolumePage
-                        chartData={chartData}
-                        volumeData={volumeData}
-                      />
-                    }
+                    element={<VolumePage volumeData={volumeData} />}
                   />
                   <Route
                     path="news"
-                    element={
-                      <NewsPage chartData={chartData} newsData={newsData} />
-                    }
+                    element={<NewsPage newsData={newsData} />}
                   />
                   <Route
                     path="dividend"
-                    element={
-                      <DividendPage
-                        chartData={chartData}
-                        dividendData={dividendData}
-                      />
-                    }
+                    element={<DividendPage dividendData={dividendData} />}
                   />
                   <Route
                     path="result"
                     element={
                       <Result
-                        chartData={chartData}
                         yearlyData={yearlyData}
                         quarterlyData={quarterlyData}
                       />
                     }
                   />
-                  <Route path="*" element={<div>404 Not Found</div>} />
                 </Routes>
-
-                <TopScrollBtn display={display} />
-                <BottomNavBar display={display} />
               </>
             }
           />
+          {/* /information으로 접속했을 때 /information/search로 리디렉션 */}
+          <Route path="/" element={<Navigate to="/information/search" />} />
         </Routes>
       </ContentWrapper>
+      <TopScrollBtn display={display} />
+      <BottomNavBar display={display} />
     </Wrap>
   );
 }

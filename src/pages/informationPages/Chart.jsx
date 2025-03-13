@@ -1,19 +1,70 @@
-import React from "react";
-import CompanyInfo from "../../components/information/CompanyInfo";
+// pages/Chart.jsx
+import React, { useState } from "react";
+import AllChart from "../../components/information/AllChart";
+import { useLocation } from "react-router-dom";
+import styled from "styled-components";
 
-function ChartPage({ chartData }) {
+const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+`;
+
+const Button = styled.button`
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: ${(props) => (props.active ? "#007bff" : "#fff")};
+  color: ${(props) => (props.active ? "#fff" : "#007bff")};
+  border: 1px solid #007bff;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: ${(props) => (props.active ? "#0056b3" : "#f0f0f0")};
+  }
+`;
+
+function ChartPage() {
+  const location = useLocation();
+  const { stockCode, stockName } = location.state || {};
+
+  console.log("ChartPage - stockCode:", stockCode); // stockCode 확인
+
+  const [period, setPeriod] = useState("1w"); // 기본값: 1주일
+
+  const handlePeriodChange = (newPeriod) => {
+    setPeriod(newPeriod);
+  };
+
   return (
     <div>
-      <CompanyInfo
-        name={chartData.name}
-        code={chartData.code}
-        price={chartData.price}
-        change={chartData.change}
-      />
+      {/* <Search />  제거: InformationPage에서 이미 렌더링 */}
+      <ButtonWrap>
+        <Button
+          active={period === "1w"}
+          onClick={() => handlePeriodChange("1w")}
+        >
+          1주일
+        </Button>
+        <Button
+          active={period === "3m"}
+          onClick={() => handlePeriodChange("3m")}
+        >
+          3개월
+        </Button>
+        <Button
+          active={period === "1y"}
+          onClick={() => handlePeriodChange("1y")}
+        >
+          1년
+        </Button>
+      </ButtonWrap>
+
+      {stockCode && (
+        <AllChart stockCode={stockCode} stockName={stockName} period={period} />
+      )}
     </div>
   );
 }
-
-//폴더 이름 수정
 
 export default ChartPage;
