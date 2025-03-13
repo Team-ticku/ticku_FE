@@ -26,7 +26,6 @@ const ButtonContainer = styled.div`
 const PortButtons = () => {
   const handleDelete = () => {
     localStorage.removeItem("portfolio"); // localStorage에서 'portfolio' 데이터 삭제
-    alert("포트폴리오가 삭제되었습니다."); // 사용자에게 알림 (선택 사항)
     window.location.reload();
   };
   return (
