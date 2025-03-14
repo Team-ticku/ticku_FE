@@ -48,7 +48,6 @@ const SourceName = styled.p`
 // 카드 오른쪽 섹션
 const RightSection = styled.div`
   width: 20%;
-  /* display: ${(props) => (props.$hasImage ? "block" : "none")}; */
 `;
 
 const BookmarkContainer = styled.div`
@@ -66,7 +65,6 @@ function NewsCard({
   title,
   link,
   pubDate, // 이 prop 사용
-  hasImage,
   sourceName,
   defaultBookmarked,
   onBookmarkToggle,
@@ -92,7 +90,7 @@ function NewsCard({
     <NewsCardWrapper>
       {/* 왼쪽 내용 */}
 
-      <LeftSection $hasImage={hasImage}>
+      <LeftSection>
         <A href={link} target="_blank" rel="noopener noreferrer">
           {/* 제목과 내용을 묶는 div */}
           <NewsTitle>{title}</NewsTitle>
@@ -112,10 +110,8 @@ function NewsCard({
           onBookmarkToggle={onBookmarkToggle}
         />
       </BookmarkContainer>
-      {/* 오른쪽 내용 (이미지) */}
-      {/* hasImage가 true일 때만 이미지 표시 */}
-      {/* {hasImage && ( */}
-      <RightSection>{/* <ArticleImage src={image} /> */}</RightSection>
+
+      <RightSection />
     </NewsCardWrapper>
   );
 }
