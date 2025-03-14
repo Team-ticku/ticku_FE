@@ -1,4 +1,6 @@
 import styled, { keyframes } from "styled-components";
+import Chart from "chart.js/auto";
+import { Pie } from "react-chartjs-2";
 
 const AccordionItemWrapper = styled.div`
   width: 85%;
@@ -40,35 +42,88 @@ const AccordionContent = styled.div`
 `;
 
 const ChartContainer = styled.div`
-  background-color: lightblue;
-  width: 70%;
+  width: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 230px;
 `;
 
-const DoughnutChart = styled.div`
-  background-color: lightgrey;
-  width: 200px;
-  height: 200px;
-  border-radius: 100%;
+const LegendWrapper = styled.div`
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 10px;
+  top: 40px;
 `;
 
-const LegendContainer = styled.div`
-  background-color: lightcoral;
-  height: 230px;
-  width: 30%;
+const LegendItem = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+`;
+
+const LegendColorBox = styled.div`
+  width: 15px;
+  height: 15px;
+  background-color: ${(props) => props.color};
+  margin-right: 10px;
+  border-radius: 3px;
 `;
 
 function MyPortfolioAccordion({
   id,
-  isPinned,
-  name,
-  isOpen,
-  handleToggle,
-  handlePinned,
+  isPinned, // 핀 상태
+  name, // 포폴 제목
+  isOpen, // 열린 상태인지 아닌지
+  handleToggle, // 열거나 닫는 함수
+  handlePinned, // 핀 클릭 함수
+  tickers,
 }) {
+  const chartData = {
+    labels: tickers.map((item) => item.ticker),
+    datasets: [
+      {
+        label: "포트폴리오",
+        data: tickers.map((item) => item.percent),
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+          "rgba(255, 205, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(201, 203, 207, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+          "rgba(255, 205, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(201, 203, 207, 0.2)",
+        ],
+        borderWidth: 0,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+
+  const legendItems = tickers.map((item, index) => ({
+    text: item.ticker,
+    color: chartData.datasets[0].backgroundColor[index],
+  }));
+
   return (
     <>
       <AccordionItemWrapper $isPinned={isPinned}>
@@ -102,9 +157,18 @@ function MyPortfolioAccordion({
 
         <AccordionContent $isOpen={isOpen}>
           <ChartContainer>
-            <DoughnutChart></DoughnutChart>
+            <Pie data={chartData} options={chartOptions} />
+            {isOpen && (
+              <LegendWrapper>
+                {legendItems.map((item, index) => (
+                  <LegendItem key={index}>
+                    <LegendColorBox color={item.color} />
+                    {item.text}
+                  </LegendItem>
+                ))}
+              </LegendWrapper>
+            )}
           </ChartContainer>
-          <LegendContainer></LegendContainer>
         </AccordionContent>
       </AccordionItemWrapper>
     </>
