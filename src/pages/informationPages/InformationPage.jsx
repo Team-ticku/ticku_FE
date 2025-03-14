@@ -38,34 +38,87 @@ const SearchContainer = styled.div`
 `;
 
 function Information({ display }) {
-  const contentContainerRef = useRef(null); // ref는 초기값 null
+  const contentContainerRef = useRef(null);
   const location = useLocation();
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
 
-  const [financeData, setFinanceData] = useState(null); // 초기값 null
-  const [yearResultData, setYearResultData] = useState(null); // yearResultData 상태 추가
-  const [stockCode, setStockCode] = useState(null); // Add stockCode state
+
+  const [financeData, setFinanceData] = useState(null);
+  const [yearResultData, setYearResultData] = useState(null);
+  const [stockCode, setStockCode] = useState(null);
   const [corpCode, setCorpCode] = useState(null);
-  const [volumeData, setVolumeData] = useState(null); // Add volumeData state
+  const [volumeData, setVolumeData] = useState(null);
   const [dividendData, setDividendData] = useState(null);
+  const [yearSalesData, setYearSalesData] = useState(null); // 연간 매출 데이터 상태
+  const [quarterlySalesData, setQuarterlySalesData] = useState(null); // 분기별 데이터 상태 추가
 
-  // location.state 변경 감지 -> financeData 업데이트
+
   useEffect(() => {
-    // location.state에서 financeData와 yearResultData를 가져옴
     if (location.state && location.state.financeData) {
       setFinanceData(location.state.financeData);
     }
     if (location.state && location.state.yearResultData) {
       setYearResultData(location.state.yearResultData);
     }
+    if (location.state && location.state.salesData) {
+      setYearSalesData(location.state.salesData); // 이 부분은 필요 없을 수 있음
+    }
     if (location.state && location.state.stockCode) {
-      setStockCode(location.state.stockCode); // Store the stockCode
+
+      setStockCode(location.state.stockCode);
     }
     if (location.state && location.state.corpCode) {
       setCorpCode(location.state.corpCode);
     }
+    if (location.state && location.state.quarterlySalesData) {
+      // 분기별 데이터 설정
+      setQuarterlySalesData(location.state.quarterlySalesData);
+    }
   }, [location.state]);
 
+  // 연간 매출 데이터 가져오기 (useEffect 추가)
+  useEffect(() => {
+    const fetchYearSalesData = async () => {
+      if (corpCode) {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/salesyear/${corpCode}`
+          );
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+
+          // 데이터 포맷 변환
+          const formattedData = [];
+          const sales = { category: "매출액(억)" };
+          const operatingProfit = { category: "영업이익(억)" };
+          const netIncome = { category: "순이익(억)" };
+
+          data.forEach((item) => {
+            sales[item.reportYear] = item.data["매출액"]
+              ? item.data["매출액"].toLocaleString()
+              : "N/A";
+            operatingProfit[item.reportYear] = item.data["영업이익"]
+              ? item.data["영업이익"].toLocaleString()
+              : "N/A";
+            netIncome[item.reportYear] = item.data["당기순이익"]
+              ? item.data["당기순이익"].toLocaleString()
+              : "N/A";
+          });
+          formattedData.push(sales, operatingProfit, netIncome);
+          setYearSalesData(formattedData);
+        } catch (error) {
+          console.error("Error fetching year sales data:", error);
+          setYearSalesData([]); // 에러 발생 시 빈 배열로 설정
+        }
+      }
+    };
+
+    fetchYearSalesData();
+  }, [corpCode]); // corpCode가 변경될 때마다 실행
+
+  //거래량 데이터 가져오기
   useEffect(() => {
     const fetchVolumeData = async () => {
       if (stockCode) {
@@ -113,10 +166,52 @@ function Information({ display }) {
     fetchVolumeData();
   }, [stockCode]);
 
+
+  // 배당 데이터 가져오기
   useEffect(() => {
     const fetchDividendData = async () => {
       if (!corpCode) {
         console.log("corpCode가 음슴");
+        return;
+      } // corpCode가 없으면 아무것도 하지 않음
+
+      try {
+        console.log("corpCode : ", corpCode);
+
+        const response = await fetch(
+          `http://localhost:5000/dividend/${corpCode}`
+        ); // *** 수정: corpCode 사용
+        console.log("Response : ", response);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("dividendData:", data);
+
+        // 데이터 포맷 변환 (배열 형태)
+        const formattedData = data.map((item) => ({
+          year: item.year.toString(),
+          dividendPrice:
+            item.commonStockDividend !== null
+              ? `${item.commonStockDividend.toLocaleString()}원`
+              : "N/A",
+          dividendRate:
+            item.commonStockYield !== null
+              ? `${item.commonStockYield.toFixed(2)}%`
+              : "N/A",
+        }));
+
+        setDividendData(formattedData);
+      } catch (error) {
+        console.error("Error fetching dividend data:", error);
+        setDividendData([]); // 에러 발생 시 빈 배열로 설정
+      }
+    };
+
+    fetchDividendData();
+  }, [corpCode]); // corpCode가 변경될 때마다 실행
+
 
         return;
       } // corpCode가 없으면 아무것도 하지 않음
@@ -158,53 +253,6 @@ function Information({ display }) {
     fetchDividendData();
   }, [corpCode]); // corpCode가 변경될 때마다 실행
 
-  //실적 연간 데이터
-  const yearlyData = [
-    {
-      category: "매출액(억)",
-      2023: "2,589,354",
-      2022: "3,022,314",
-      2021: "2,796,048",
-    },
-    {
-      category: "영업이익(억)",
-      2023: "65,669",
-      2022: "433,766",
-      2021: "516,339",
-    },
-    {
-      category: "순이익(억)",
-      2023: "154,871",
-      2022: "556,541",
-      2021: "399,074",
-    },
-  ];
-
-  // 실적 분기 데이터
-  const quarterlyData = [
-    {
-      category: "매출액(억)",
-      "2023Q4": "677,799",
-      "2023Q3": "674,047",
-      "2023Q2": "600,055",
-      "2023Q1": "637,454",
-    },
-    {
-      category: "영업이익(억)",
-      "2023Q4": "28,247",
-      "2023Q3": "24,336",
-      "2023Q2": "6,685",
-      "2023Q1": "6,402",
-    },
-    {
-      category: "순이익(억)",
-      "2023Q4": "63,178",
-      "2023Q3": "174,995",
-      "2023Q2": "156,268",
-      "2023Q1": "110,430",
-    },
-  ];
-
   const newsData = [
     {
       title: "코스피, 개인·기관 순매수에 강보합 마감…",
@@ -232,7 +280,6 @@ function Information({ display }) {
     <Wrap>
       <ContentWrapper ref={contentContainerRef}>
         <Routes>
-          {/* /information 경로 (index route) */}
           <Route
             index
             element={
@@ -243,18 +290,15 @@ function Information({ display }) {
             }
           />
 
-          {/* /information/* (나머지 경로) */}
           <Route
             path="*"
             element={
               <>
                 <Navigation />
                 <SearchContainer>
-                  {/* Search 컴포넌트 */}
                   <Search />
                 </SearchContainer>
                 <Routes>
-                  {/* 중첩 라우팅 */}
                   <Route path="chart" element={<Chart />} />
                   <Route
                     path="finance"
@@ -281,8 +325,8 @@ function Information({ display }) {
                     path="result"
                     element={
                       <Result
-                        yearlyData={yearlyData}
-                        quarterlyData={quarterlyData}
+                        yearlyData={yearSalesData} // yearSalesData를 yearlyData prop으로 전달
+                        quarterlyData={quarterlySalesData}
                       />
                     }
                   />
@@ -293,8 +337,6 @@ function Information({ display }) {
           <Route path="/" element={<Navigate to="/information/search" />} />
         </Routes>
       </ContentWrapper>
-
-      {/* TopScrollBtn, BottomNavBar는 그대로 */}
       <TopScrollBtn display={display} />
       <BottomNavBar display={display} />
     </Wrap>
