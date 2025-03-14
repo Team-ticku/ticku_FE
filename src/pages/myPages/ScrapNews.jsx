@@ -18,20 +18,21 @@ const PageTitle = styled.p`
   padding: 0;
 `;
 
-function ScrapNews() {
-  const [newsList, setNewsList] = useState([]);
-
-  const navigate = useNavigate();
-
-  /*useEffect(() => {
+/*useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login");
     }
   }, [navigate]);*/
 
+// 스크랩한 뉴스를 가져오는 함수
+function ScrapNews() {
+  const [newsList, setNewsList] = useState([]);
+  const navigate = useNavigate();
+
   // 스크랩한 뉴스를 가져오는 함수
-  const fetchNews = async () => {
+  const fetchNews = useCallback(async () => {
+    // useCallback 사용
     const userId = localStorage.getItem("userId");
 
     if (!userId) {
@@ -43,35 +44,46 @@ function ScrapNews() {
       const response = await fetch(
         `http://localhost:5000/user/scrapnews?userId=${userId}`
       );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setNewsList(data);
     } catch (error) {
       console.error("뉴스 데이터를 가져오는 데 실패했습니다.", error);
     }
-  };
+  }, []); // 의존성 배열 비움 (fetchNews는 이제 외부 변수에 의존하지 않음)
 
   useEffect(() => {
     fetchNews();
-  }, []);
+  }, [fetchNews]); // fetchNews를 의존성 배열에 추가
 
-  // DB에서 삭제하는 함수
-  const handleBookmarkToggle = useCallback(async (newsId, isBookmarked) => {
-    if (isBookmarked) {
+  // 삭제
+  const handleDelete = useCallback(
+    async (newsId) => {
       try {
         const response = await fetch(
           `http://localhost:5000/user/delete-scrapnews`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ newsId }),
+            body: JSON.stringify({ newsId }), // newsId만 전송
           }
         );
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || "뉴스 삭제 실패");
+        }
+        // 성공적으로 삭제되면, 다시 뉴스 목록을 가져옴
         fetchNews();
+        alert("뉴스 스크랩이 취소되었습니다.");
       } catch (error) {
         console.error("북마크 삭제 중 오류 발생", error);
+        alert(error.message);
       }
-    }
-  }, []);
+    },
+    [fetchNews]
+  ); // fetchNews를 의존성 배열에 추가
 
   return (
     <>
@@ -80,23 +92,17 @@ function ScrapNews() {
         <PageTitle>스크랩한 뉴스</PageTitle>
       </PageContainer>
 
-      {newsList.map((item) => {
-        return (
-          <NewsCard
-            key={item._id}
-            title={item.title} // 기사 제목
-            content={item.content} // 기사 내용
-            hasImage={item.hasImage} // 기사 사진 있는지 없는지
-            image={`http://localhost:5000${item.image}`} // 기사 사진
-            sourceName={item.sourceName} // 언론사 이름
-            sourceImage={`http://localhost:5000${item.sourceImage}`} // 언론사 로고
-            defaultBookmarked={item.defaultBookmarked} // 북마크 되어있는지 없는지
-            onBookmarkToggle={() =>
-              handleBookmarkToggle(item._id, item.defaultBookmarked)
-            }
-          />
-        );
-      })}
+      {newsList.map((item) => (
+        <NewsCard
+          key={item._id}
+          title={item.title}
+          link={item.link}
+          pubDate={item.pubDate}
+          sourceName={item.sourceName}
+          defaultBookmarked={true} // 항상 true로 설정
+          onBookmarkToggle={() => handleDelete(item._id)} // newsId만 전달
+        />
+      ))}
     </>
   );
 }

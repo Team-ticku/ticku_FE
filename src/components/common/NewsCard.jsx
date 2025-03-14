@@ -1,8 +1,10 @@
-// NewsCard.jsx
-import React from "react";
+// NewsCard.jsx (최종 수정)
+import React, { useState, useEffect } from "react";
 import BookMark from "../../components/common/BookMark";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
+// ... (스타일 컴포넌트들) ...
 const NewsCardWrapper = styled.div`
   width: 80%;
   border-radius: 20px;
@@ -64,11 +66,78 @@ const A = styled.a`
 function NewsCard({
   title,
   link,
-  pubDate, // 이 prop 사용
+  pubDate,
   sourceName,
   defaultBookmarked,
-  onBookmarkToggle,
+  // onBookmarkToggle prop 제거
 }) {
+  // const location = useLocation();
+  // const { userId } = location.state || {};
+  const userId = localStorage.getItem("userId");
+  const [isBookmarked, setIsBookmarked] = useState(defaultBookmarked);
+
+  // 날짜 형식 변환 함수 (NewsCard 컴포넌트 내부)
+  const formatDate = (dateString) => {
+    try {
+      const date = new Date(dateString);
+      if (!isNaN(date)) {
+        return date.toISOString(); // ISO 8601 형식으로 서버에 전송
+      }
+    } catch (error) {
+      console.error("Invalid date format:", dateString);
+    }
+    return null; // 유효하지 않은 날짜는 null 반환
+  };
+
+  // 북마크 상태를 서버에 전송하는 함수
+  const handleBookmarkToggle = async () => {
+    // userId가 없으면(로그인이 안되어 있으면) 함수 실행 중단.
+    if (!userId) {
+      alert("로그인이 필요한 기능입니다."); // 경고창 표시
+      return; // 함수 실행 중단
+    }
+
+    const formattedPubDate = formatDate(pubDate); // 날짜 형식 변환
+    if (!formattedPubDate) {
+      alert("날짜 형식이 올바르지 않습니다.");
+      return;
+    }
+    try {
+      const response = await fetch("http://localhost:5000/user/scrapnews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: userId, // 사용자 ID (로그인 상태에 따라)
+          title,
+          link,
+          pubDate: formattedPubDate, // 변환된 날짜 사용
+          sourceName,
+          isMarked: !isBookmarked, // 현재 상태의 반대
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json(); // 에러 메시지 파싱
+        throw new Error(errorData.message || "뉴스 스크랩/취소 실패");
+      }
+
+      // 성공적으로 처리되면, 클라이언트 상태 업데이트
+      setIsBookmarked(!isBookmarked);
+
+      // (선택 사항) 사용자에게 알림
+      if (isBookmarked) {
+        alert("뉴스 스크랩이 취소되었습니다.");
+      } else {
+        alert("뉴스가 스크랩되었습니다.");
+      }
+    } catch (error) {
+      console.error("뉴스 스크랩/취소 중 오류:", error);
+      alert(error.message);
+    }
+  };
+
   // pubDate를 Date 객체로 변환 (에러 처리 추가)
   let formattedDate = "";
   try {
@@ -86,31 +155,24 @@ function NewsCard({
   const handleClick = () => {
     window.open(link, "_blank", "noopener,noreferrer"); // 새 탭에서 열기
   };
+
   return (
     <NewsCardWrapper>
-      {/* 왼쪽 내용 */}
-
       <LeftSection>
         <A href={link} target="_blank" rel="noopener noreferrer">
-          {/* 제목과 내용을 묶는 div */}
           <NewsTitle>{title}</NewsTitle>
-          {/* <NewsContent>{content}</NewsContent> */}
-
           <SourceContainer>
-            {/* {sourceImage && <SourceIcon src={sourceImage} />} */}
             <SourceName>{sourceName}</SourceName>
           </SourceContainer>
           {pubDate && <p>발행일: {formattedDate}</p>}
         </A>
       </LeftSection>
-      {/* 북마크 */}
       <BookmarkContainer>
         <BookMark
-          isMarked={defaultBookmarked}
-          onBookmarkToggle={onBookmarkToggle}
+          isMarked={isBookmarked}
+          onBookmarkToggle={handleBookmarkToggle}
         />
       </BookmarkContainer>
-
       <RightSection />
     </NewsCardWrapper>
   );
