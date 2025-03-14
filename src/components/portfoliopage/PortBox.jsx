@@ -91,12 +91,20 @@ const PortBox = ({ ticker, percent, link }) => {
     }
   }, [ticker, percent]);
 
+  const chartOptions = {
+    plugins: {
+      legend: {
+        display: false, // 기본 범례 비활성화
+      },
+    },
+  };
+
   return (
     <PortDiv onClick={link ? handleClick : null}>
       {chartData ? (
         <>
           <ChartContainer>
-            <Pie data={chartData} />
+            <Pie data={chartData} options={chartOptions} />
           </ChartContainer>
           <TickerList>
             {tickerLabels.map((name, index) => (
