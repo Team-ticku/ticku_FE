@@ -112,6 +112,7 @@ function SearchBar() {
         const corpCode = searchData[0].corp_code;
         const stockName = searchData[0].corp_name; // 회사이름도 전달
         const stockCode = searchData[0].stock_code;
+        const corpName = searchData[0].corp_name;
 
         const companyInfoResponse = await fetch(
           `http://localhost:5000/companyInfo/${corpCode}` // 수정된 부분
@@ -207,6 +208,7 @@ function SearchBar() {
             stockCode,
             stockName, // 여전히 필요
             corpCode,
+            corp_name: corpName,
             financeData: {
               // financeData 객체 전달
               ceo: companyInfoData.대표이사,

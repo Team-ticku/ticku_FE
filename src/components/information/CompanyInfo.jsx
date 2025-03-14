@@ -28,7 +28,7 @@ const CompanyName = styled.p`
   font-size: 20px;
   margin: 0;
   margin-right: 10px;
-  width: 200px;
+  width: 300px;
 `;
 
 const CompanyCode = styled.span`
