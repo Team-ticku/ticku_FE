@@ -42,7 +42,6 @@ function Information({ display }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-
   const [financeData, setFinanceData] = useState(null);
   const [yearResultData, setYearResultData] = useState(null);
   const [stockCode, setStockCode] = useState(null);
@@ -51,7 +50,7 @@ function Information({ display }) {
   const [dividendData, setDividendData] = useState(null);
   const [yearSalesData, setYearSalesData] = useState(null); // 연간 매출 데이터 상태
   const [quarterlySalesData, setQuarterlySalesData] = useState(null); // 분기별 데이터 상태 추가
-
+  const [newsData, setNewsData] = useState([]);
 
   useEffect(() => {
     if (location.state && location.state.financeData) {
@@ -64,7 +63,6 @@ function Information({ display }) {
       setYearSalesData(location.state.salesData); // 이 부분은 필요 없을 수 있음
     }
     if (location.state && location.state.stockCode) {
-
       setStockCode(location.state.stockCode);
     }
     if (location.state && location.state.corpCode) {
@@ -166,7 +164,6 @@ function Information({ display }) {
     fetchVolumeData();
   }, [stockCode]);
 
-
   // 배당 데이터 가져오기
   useEffect(() => {
     const fetchDividendData = async () => {
@@ -212,69 +209,40 @@ function Information({ display }) {
     fetchDividendData();
   }, [corpCode]); // corpCode가 변경될 때마다 실행
 
-
+  // 뉴스 데이터
+  useEffect(() => {
+    const fetchNewsData = async () => {
+      const corpCode = location.state?.corpCode;
+      const corpName = location.state?.corp_name;
+      console.log("corpCode:", corpCode, "corpName:", corpName); // 로그 추가
+      if (!corpCode || !corpName) {
+        console.log("뉴스의 회사 코드 또는 이름이 없습니다."); // 로그 추가
         return;
-      } // corpCode가 없으면 아무것도 하지 않음
+      }
 
       try {
-        console.log("corpCode : ", corpCode);
-
         const response = await fetch(
-          `http://localhost:5000/dividend/${corpCode}`
-        ); // *** 수정: corpCode 사용
-        console.log("Response : ", response);
-
+          `http://localhost:5000/news/${corpCode}?corp_name=${encodeURIComponent(
+            corpName
+          )}`
+        );
+        console.log("News API Response:", response); // 응답 객체 로그
         if (!response.ok) {
+          console.error(`HTTP error! Status: ${response.status}`); // 에러 로그
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const data = await response.json();
-        console.log("dividendData:", data);
-
-        // 데이터 포맷 변환 (배열 형태)
-        const formattedData = data.map((item) => ({
-          year: item.year.toString(),
-          dividendPrice:
-            item.commonStockDividend !== null
-              ? `${item.commonStockDividend.toLocaleString()}원`
-              : "N/A",
-          dividendRate:
-            item.commonStockYield !== null
-              ? `${item.commonStockYield.toFixed(2)}%`
-              : "N/A",
-        }));
-
-        setDividendData(formattedData);
+        const data = await response.json(); // JSON 응답 파싱
+        setNewsData(data); // 파싱된 데이터를 newsData 상태에 설정
+        console.log("News API Data:", data); // 파싱된 데이터 로그
+        setNewsData(data);
       } catch (error) {
-        console.error("Error fetching dividend data:", error);
-        setDividendData([]); // 에러 발생 시 빈 배열로 설정
+        console.error("Error fetching news data:", error);
+        setNewsData([]); // 에러 발생 시 빈 배열로 설정
       }
     };
 
-    fetchDividendData();
-  }, [corpCode]); // corpCode가 변경될 때마다 실행
-
-  const newsData = [
-    {
-      title: "코스피, 개인·기관 순매수에 강보합 마감…",
-      content: "코스피가 장 초반 하락세를 딛고...",
-      hasImage: true,
-      image: "../../public/images/information/NewsSampleImage.png", // 실제 이미지 URL
-      sourceName: "동아일보",
-      sourceImage: "../../public/images/information/dongaLogo.png", // 실제 로고 URL
-      defaultBookmarked: false,
-    },
-    {
-      title: "코스피, 개인·기관 순매수에 강보합 마감…",
-      content: "코스피가 장 초반 하락세를 딛고...",
-      hasImage: true,
-      image: "../../public/images/information/NewsSampleImage.png", // 실제 이미지 URL
-      sourceName: "동아일보",
-      sourceImage: "../../public/images/information/dongaLogo.png", // 실제 로고 URL
-      defaultBookmarked: false,
-    },
-
-    // ... 추가 뉴스 기사 데이터 ...
-  ];
+    fetchNewsData();
+  }, [location.state?.corpCode, location.state?.corp_name]);
 
   return (
     <Wrap>
