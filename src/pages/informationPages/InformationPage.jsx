@@ -246,62 +246,45 @@ function Information({ display }) {
 
   return (
     <Wrap>
-      <ContentWrapper ref={contentContainerRef}>
+      <ContentWrapper>
+        <Navigation />
+        {/* 현재 경로가 /information이면 Search 숨김 */}
+        {location.pathname !== "/information" && (
+          <SearchContainer>
+            <Search />
+          </SearchContainer>
+        )}
         <Routes>
+          <Route index element={<InfoFirst />} />
+          <Route path="chart" element={<Chart />} />
           <Route
-            index
+            path="finance"
             element={
-              <>
-                <Navigation />
-                <InfoFirst />
-              </>
+              <Finance
+                financeData={financeData}
+                yearResultData={yearResultData}
+              />
             }
           />
-
           <Route
-            path="*"
+            path="volume"
+            element={<VolumePage volumeData={volumeData} />}
+          />
+          <Route path="news" element={<NewsPage newsData={newsData} />} />
+          <Route
+            path="dividend"
+            element={<DividendPage dividendData={dividendData} />}
+          />
+          <Route
+            path="result"
             element={
-              <>
-                <Navigation />
-                <SearchContainer>
-                  <Search />
-                </SearchContainer>
-                <Routes>
-                  <Route path="chart" element={<Chart />} />
-                  <Route
-                    path="finance"
-                    element={
-                      <Finance
-                        financeData={financeData}
-                        yearResultData={yearResultData}
-                      />
-                    }
-                  />
-                  <Route
-                    path="volume"
-                    element={<VolumePage volumeData={volumeData} />}
-                  />
-                  <Route
-                    path="news"
-                    element={<NewsPage newsData={newsData} />}
-                  />
-                  <Route
-                    path="dividend"
-                    element={<DividendPage dividendData={dividendData} />}
-                  />
-                  <Route
-                    path="result"
-                    element={
-                      <Result
-                        yearlyData={yearSalesData} // yearSalesData를 yearlyData prop으로 전달
-                        quarterlyData={quarterlySalesData}
-                      />
-                    }
-                  />
-                </Routes>
-              </>
+              <Result
+                yearlyData={yearSalesData}
+                quarterlyData={quarterlySalesData}
+              />
             }
           />
+          {/* /information 자체로 들어왔을 때 /search로 이동 */}
           <Route path="/" element={<Navigate to="/information/search" />} />
         </Routes>
       </ContentWrapper>

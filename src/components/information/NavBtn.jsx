@@ -41,17 +41,12 @@ function NavBtn({ icon, text, bgColor, link, stockCode, stockName }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    const newState = { stockCode, stockName };
+
     if (link === "chart") {
-      if (stockCode && stockName) {
-        // 차트 버튼이고, stockCode와 stockName이 있으면 /information/chart로 이동
-        navigate("/information/chart", { state: { stockCode, stockName } });
-      } else {
-        // 차트 버튼이고, stockCode나 stockName이 없으면 /information/search로 이동
-        navigate("/information/search");
-      }
+      navigate("/information/chart", { state: newState });
     } else {
-      // 다른 버튼은 /information/link로 이동
-      navigate("/information/" + link);
+      navigate("/information/" + link, { state: newState });
     }
   };
   return (
