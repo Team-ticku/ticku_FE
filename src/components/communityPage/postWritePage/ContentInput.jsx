@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -25,19 +25,13 @@ const StyledTextarea = styled.textarea`
   }
 `;
 
-function ContentInput() {
-  const [content, setContent] = useState("");
+function ContentInput({ value, onChange }) {
   const textareaRef = useRef(null);
 
   const handleInput = () => {
     const textarea = textareaRef.current;
     textarea.style.height = "auto"; // 높이를 자동으로 리셋
     textarea.style.height = `${textarea.scrollHeight}px`; // 컨텐츠에 맞게 높이를 조정
-  };
-
-  const handleChange = (e) => {
-    setContent(e.target.value); // 타이핑 중에 상태 업데이트
-    console.log(content);
   };
 
   return (
@@ -49,9 +43,9 @@ function ContentInput() {
       <StyledTextarea
         ref={textareaRef}
         placeholder="유저들과 자유롭게 이야기해보세요!"
-        value={content}
+        value={value} // 부모에서 전달된 value 사용
         onInput={handleInput}
-        onChange={handleChange} // 타이핑하는 동안 상태 업데이트
+        onChange={onChange} // 부모에서 전달된 onChange 사용
       />
     </Div>
   );

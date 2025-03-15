@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import PostListItem from "./postListItem";
 
 const Div = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: flex-start;
-  justify-content: flex-start;
-  max-height: 666px;
-  overflow-y: auto;
+  justify-content: flex-start; /* 수직 정렬을 최상단으로 */
+  max-height: 666px; /* 높이를 제한 */
+  width: 390px;
+  overflow-y: auto; /* 세로 방향 스크롤을 허용 */
   overflow-x: hidden;
 `;
 
@@ -19,7 +19,7 @@ function PostList(props) {
     <Div>
       {posts.map((post) => (
         <PostListItem
-          key={post.id}
+          key={post._id}
           post={post}
           content={post.content}
           onClick={() => onClickItem(post)}
@@ -28,16 +28,5 @@ function PostList(props) {
     </Div>
   );
 }
-
-PostList.propTypes = {
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      title: PropTypes.string,
-      content: PropTypes.string,
-    })
-  ),
-  onClickItem: PropTypes.func,
-};
 
 export default PostList;

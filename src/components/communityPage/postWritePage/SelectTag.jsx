@@ -20,6 +20,10 @@ const StyledText = styled.p`
   color: #a9a9a9b6;
   font-size: 23px;
   font-weight: 500;
+  color: ${(props) =>
+    props.selectedTagColor
+      ? props.selectedTagColor
+      : "#a9a9a9b6"}; /* 선택된 태그 색상 표시 */
 `;
 
 const StyledImg = styled.img`
@@ -58,7 +62,25 @@ const Overlay = styled.div`
   z-index: 998;
 `;
 
-function SelectTag() {
+// 태그 색상 함수
+function getTagColor(tag) {
+  switch (tag) {
+    case "일상":
+      return "#FDA9AB";
+    case "질문":
+      return "#DAADDA";
+    case "정보/분석":
+      return "#97D09D";
+    case "포트폴리오":
+      return "#FFD885";
+    case "종목 추천":
+      return "#B2DADF";
+    default:
+      return "#607D8B";
+  }
+}
+
+function SelectTag({ onTagSelect }) {
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열고 닫을 상태
   const [isActive, setIsActive] = useState(false); // 아이콘 회전 상태
   const [selectedTag, setSelectedTag] = useState(null); // 선택된 태그 상태 추가
@@ -83,13 +105,16 @@ function SelectTag() {
     setSelectedTag(tag); // 태그 선택 시 선택된 태그 저장
     setIsModalOpen(false); // 모달 닫기
     setIsActive(false); // 아이콘 회전 상태 초기화
+    if (onTagSelect) onTagSelect(tag); // 부모 컴포넌트로 선택된 태그 전달
   };
 
   return (
     <>
       <Div onClick={handleDivClick}>
-        <StyledText>{selectedTag || "관심사 선택하기"}</StyledText>{" "}
-        {/* 선택된 태그가 있으면 표시, 없으면 기본 텍스트 */}
+        <StyledText selectedTagColor={getTagColor(selectedTag)}>
+          {selectedTag || "관심사 선택하기"}
+        </StyledText>{" "}
+        {/* 선택된 태그가 있으면 해당 색상으로 표시 */}
         <StyledImg
           src="../../../../public/images/down-arrow.png"
           isActive={isActive} // isActive 상태를 StyledImg로 전달
@@ -102,7 +127,14 @@ function SelectTag() {
           <Modal>
             {/* TagTitles 배열을 순회하면서 태그를 Tags 컴포넌트에 전달 */}
             {TagTitles.map((tag, index) => (
-              <Tags key={index} tag={tag} onClick={handleTagSelect} />
+              <Tags
+                key={index}
+                tag={tag}
+                onClick={() => handleTagSelect(tag)}
+                height="40px"
+                width="120px"
+                fontSize="18px"
+              />
             ))}
           </Modal>
         </>

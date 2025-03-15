@@ -19,7 +19,7 @@ const StyledText = styled.p`
   font-weight: 600;
   color: white;
 `;
-function TopBar() {
+function TopBar({ handleSubmit }) {
   return (
     <Div>
       <BackButton
@@ -29,7 +29,7 @@ function TopBar() {
         link="/communityposts"
       />
       <StyledText>글 쓰기</StyledText>
-      <Button title="완료" fontsize={22} width={70} />
+      <Button title="완료" fontsize={22} width={70} onClick={handleSubmit} />
     </Div>
   );
 }

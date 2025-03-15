@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -34,13 +34,9 @@ const StyledTextarea = styled.textarea`
   }
 `;
 
-function TitleInput() {
-  const [title, setTitle] = useState("");
+function TitleInput({ value, onChange }) {
   const inputRef = useRef(null);
 
-  const handleChange = (e) => {
-    setTitle(e.target.value);
-  };
   return (
     <Div
       onClick={() => {
@@ -51,8 +47,8 @@ function TitleInput() {
         ref={inputRef}
         placeholder="제목을 입력하세요."
         maxLength={50}
-        onChange={handleChange}
-        value={title}
+        onChange={onChange} // 부모 컴포넌트에서 전달된 onChange 사용
+        value={value} // 부모 컴포넌트에서 전달된 value 사용
       />
     </Div>
   );
