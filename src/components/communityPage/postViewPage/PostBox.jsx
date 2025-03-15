@@ -16,7 +16,7 @@ const Box = styled.div`
 
 function PostBox(props) {
   const { post } = props;
-
+  console.log(post.userId);
   return (
     <Box>
       <Div>
@@ -29,7 +29,7 @@ function PostBox(props) {
           <Post
             title={post.title}
             content={post.content}
-            imageUrl={post.image ? `http://localhost:5000${post.image}` : null}
+            imageUrl={post.image ? post.image : null}
           />
         </div>
         <div style={{ paddingLeft: 25 }}>

@@ -25,7 +25,6 @@ function PostList(props) {
           <PostListItem
             key={post._id}
             post={post}
-            content={post.content}
             onClick={() => onClickItem(post)}
           />
         ))}
