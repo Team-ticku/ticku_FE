@@ -1,35 +1,37 @@
-import NewsCard from "../../components/common/NewsCard";
-import styled from "styled-components";
-import CompanyInfo from "../../components/information/CompanyInfo";
-import VolumeInfo from "../../components/information/VolumeInfo";
+// NewsPage.jsx
 import React from "react";
+import NewsCard from "../../components/common/NewsCard"; // NewsCard import
+import VolumeInfo from "../../components/information/VolumeInfo";
+import styled from "styled-components";
 
-function NewsPage({ chartData, newsData }) {
+const NewsContainer = styled.div`
+  /* padding: 10px; */
+`;
+
+function NewsPage({ newsData }) {
   return (
     <div>
-      <CompanyInfo
-        name={chartData.name}
-        code={chartData.code}
-        price={chartData.price}
-        change={chartData.change}
-      />
-      <VolumeInfo title="뉴스"></VolumeInfo>
-      <div>
-        {/* newsData 배열을 map 함수로 순회하며 NewsCard 렌더링 */}
-        {newsData &&
-          newsData.map((newsItem, index) => (
+      <VolumeInfo title="뉴스" />
+      <NewsContainer>
+        {newsData && newsData.length > 0 ? (
+          newsData.map((item, index) => (
             <NewsCard
-              key={index} // 각 NewsCard에 고유한 key prop 전달 (React 권장 사항)
-              title={newsItem.title}
-              content={newsItem.content}
-              hasImage={newsItem.hasImage}
-              image={newsItem.image}
-              sourceName={newsItem.sourceName}
-              sourceImage={newsItem.sourceImage}
-              defaultBookmarked={newsItem.defaultBookmarked}
+              key={index}
+              title={item.title}
+              content={item.content}
+              link={item.link}
+              pubDate={item.pubDate}
+              hasImage={item.hasImage}
+              image={item.image}
+              sourceName={item.sourceName}
+              sourceImage={item.sourceImage}
+              defaultBookmarked={item.defaultBookmarked}
             />
-          ))}
-      </div>
+          ))
+        ) : (
+          <p>뉴스를 불러오는 중...</p>
+        )}
+      </NewsContainer>
     </div>
   );
 }

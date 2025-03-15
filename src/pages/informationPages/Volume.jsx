@@ -1,16 +1,9 @@
 import VolumeInfo from "../../components/information/VolumeInfo";
-import CompanyInfo from "../../components/information/CompanyInfo";
 import VolumeTable from "../../components/information/VolumeTable";
 
-function VolumePage({ chartData, volumeData }) {
+function VolumePage({ volumeData }) {
   return (
     <div>
-      <CompanyInfo
-        name={chartData.name}
-        code={chartData.code}
-        price={chartData.price}
-        change={chartData.change}
-      />
       <VolumeInfo title="거래량"></VolumeInfo>
       <VolumeTable data={volumeData} />
     </div>

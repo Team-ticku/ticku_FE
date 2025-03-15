@@ -1,12 +1,13 @@
+// NewsCard.jsx
+import React from "react";
 import BookMark from "../../components/common/BookMark";
 import styled from "styled-components";
 
-// 카드 컨테이너
 const NewsCardWrapper = styled.div`
   width: 80%;
   border-radius: 20px;
   margin: 0 auto;
-  padding: 20px 15px;
+  padding: 20px 15px 10px 15px;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -17,7 +18,7 @@ const NewsCardWrapper = styled.div`
 
 // 뉴스 카드 왼쪽 섹션
 const LeftSection = styled.div`
-  width: ${(props) => (props.$hasImage ? "66%" : "100%")};
+  width: 100%;
 `;
 
 const NewsTitle = styled.p`
@@ -32,38 +33,21 @@ const NewsTitle = styled.p`
   color: #2a343d;
 `;
 
-// 뉴스 내용
-const NewsContent = styled.p`
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 90%;
-  color: #494949;
-`;
-
 const SourceContainer = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const SourceIcon = styled.img`
-  width: 22px;
-  height: 22px;
-  border-radius: 100%;
-`;
-
 const SourceName = styled.p`
   margin: 0;
-  margin-left: 10px;
+  margin-top: 10px;
   font-size: 12px;
   color: #6e6e6e;
 `;
 
 // 카드 오른쪽 섹션
 const RightSection = styled.div`
-  width: 34%;
-  display: ${(props) => (props.$hasImage ? "block" : "none")};
+  width: 20%;
 `;
 
 const BookmarkContainer = styled.div`
@@ -72,48 +56,63 @@ const BookmarkContainer = styled.div`
   right: 20px;
 `;
 
-const ArticleImage = styled.img`
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+const A = styled.a`
+  text-decoration: none;
+  color: black;
 `;
 
 function NewsCard({
-  title, // 기사 제목
-  content, // 기사 내용
-  hasImage, //사진이 있는지 없는지
-  image, //기사 사진
-  sourceName, //언론사 이름
-  sourceImage, //언론사 로고
-  defaultBookmarked, //북마크 되어있는지
+  title,
+  link,
+  pubDate, // 이 prop 사용
+  sourceName,
+  defaultBookmarked,
+  onBookmarkToggle,
 }) {
+  // pubDate를 Date 객체로 변환 (에러 처리 추가)
+  let formattedDate = "";
+  try {
+    const date = new Date(pubDate);
+    if (!isNaN(date)) {
+      formattedDate = date.toLocaleDateString("ko-KR"); // YYYY년 MM월 DD일
+    } else {
+      formattedDate = "날짜 정보 없음"; //혹은 빈 문자열: ""
+    }
+  } catch (error) {
+    console.error("Invalid date format:", pubDate);
+    formattedDate = "날짜 정보 없음"; // 또는 다른 기본값
+  }
+
+  const handleClick = () => {
+    window.open(link, "_blank", "noopener,noreferrer"); // 새 탭에서 열기
+  };
   return (
-    <>
-      <div>
-        <NewsCardWrapper>
-          {/* 왼쪽 내용 */}
-          <LeftSection $hasImage={hasImage}>
-            <NewsTitle>{title}</NewsTitle>
-            <NewsContent>{content}</NewsContent>
+    <NewsCardWrapper>
+      {/* 왼쪽 내용 */}
 
-            <SourceContainer>
-              <SourceIcon src={sourceImage} />
-              <SourceName>{sourceName}</SourceName>
-            </SourceContainer>
-          </LeftSection>
+      <LeftSection>
+        <A href={link} target="_blank" rel="noopener noreferrer">
+          {/* 제목과 내용을 묶는 div */}
+          <NewsTitle>{title}</NewsTitle>
+          {/* <NewsContent>{content}</NewsContent> */}
 
-          <BookmarkContainer>
-            <BookMark defaultBookmarked={defaultBookmarked} />
-          </BookmarkContainer>
+          <SourceContainer>
+            {/* {sourceImage && <SourceIcon src={sourceImage} />} */}
+            <SourceName>{sourceName}</SourceName>
+          </SourceContainer>
+          {pubDate && <p>발행일: {formattedDate}</p>}
+        </A>
+      </LeftSection>
+      {/* 북마크 */}
+      <BookmarkContainer>
+        <BookMark
+          isMarked={defaultBookmarked}
+          onBookmarkToggle={onBookmarkToggle}
+        />
+      </BookmarkContainer>
 
-          {/* 오른쪽 내용 */}
-          <RightSection $hasImage={hasImage}>
-            <ArticleImage src={image} />
-          </RightSection>
-        </NewsCardWrapper>
-      </div>
-    </>
+      <RightSection />
+    </NewsCardWrapper>
   );
 }
 

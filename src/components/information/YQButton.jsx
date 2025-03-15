@@ -1,13 +1,8 @@
-// FinanceInfo.jsx (타입스크립트 제거, 간결화)
+// YQButton.jsx (Corrected)
 import React, { useState } from "react";
 import styled from "styled-components";
 import ResultTable from "./ResultTable";
-
-// 스타일 컴포넌트 정의 (이전과 동일)
-
-const MainContainer = styled.div`
-  position: relative;
-`;
+import QuarterlyTable from "./QuarterlyTable"; // Import QuarterlyTable
 
 const TabContainer = styled.div`
   display: flex;
@@ -38,38 +33,45 @@ const ContentContainer = styled.div`
   margin-right: 10px;
 `;
 
-// 메인 컴포넌트
-function YQButton({ yearlyData, quarterlyData }) {
-  const [activeTab, setActiveTab] = useState("yearly"); // 'yearly' or 'quarterly'
+function YQButton({ yearlyData, quarterlyData, onButtonClick }) {
+  const [activeTab, setActiveTab] = useState("yearly"); // Add activeTab state
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    onButtonClick(tab); // Call the onButtonClick prop
+  };
 
   // 탭 내용 렌더링
   const content =
     activeTab === "yearly" ? (
       <ResultTable data={yearlyData} />
     ) : (
-      <ResultTable data={quarterlyData} />
+      <ResultTable data={quarterlyData} /> // Use QuarterlyTable here
     );
 
+  const isYearlyActive = yearlyData && yearlyData.length > 0;
+  const isQuarterlyActive = quarterlyData && quarterlyData.length > 0;
+
   return (
-    <div>
-      <MainContainer>
-        <TabContainer>
-          <TabButton
-            active={activeTab === "yearly"}
-            onClick={() => setActiveTab("yearly")}
-          >
-            연간
-          </TabButton>
-          <TabButton
-            active={activeTab === "quarterly"}
-            onClick={() => setActiveTab("quarterly")}
-          >
-            분기
-          </TabButton>
-        </TabContainer>
-      </MainContainer>
+    <>
+      <TabContainer>
+        <TabButton
+          active={activeTab === "yearly"} // Use activeTab for active state
+          onClick={() => handleTabClick("yearly")}
+          disabled={!isYearlyActive}
+        >
+          연간
+        </TabButton>
+        <TabButton
+          active={activeTab === "quarterly"} // Use activeTab for active state
+          onClick={() => handleTabClick("quarterly")}
+          disabled={!isQuarterlyActive}
+        >
+          분기
+        </TabButton>
+      </TabContainer>
       <ContentContainer>{content}</ContentContainer>
-    </div>
+    </>
   );
 }
 

@@ -21,15 +21,28 @@ function MyPortfolio() {
   const [openPortfolio, setOpenPortfolio] = useState(null);
   const [portfolioList, setPortfolioList] = useState([]);
 
+  const fetchPortfolio = async () => {
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      console.error("사용자 ID가 없습니다.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/user/myportfolio?userId=${userId}`
+      );
+      const data = await response.json();
+      setPortfolioList(data);
+      console.log(data);
+    } catch (err) {
+      console.error("포트폴리오 데이터를 가져오는 데 실패했습니다.", err);
+    }
+  };
+
   useEffect(() => {
-    const portfolioListEX = [
-      { id: 1, isPinned: false, name: "내 포트폴리오 1" },
-      { id: 2, isPinned: false, name: "내 포트폴리오 2" },
-      { id: 3, isPinned: false, name: "내 포트폴리오 3" },
-      { id: 4, isPinned: false, name: "내 포트폴리오 4" },
-      { id: 5, isPinned: false, name: "내 포트폴리오 5" },
-    ];
-    setPortfolioList(portfolioListEX);
+    fetchPortfolio();
   }, []);
 
   // 포트폴리오의 내용을 열거나 닫는 함수
@@ -37,16 +50,35 @@ function MyPortfolio() {
     setOpenPortfolio((prev) => (prev === id ? null : id));
   };
 
-  // 핀을 누르면 상태가 업데이트되고, 이에 따라 컴포넌트가 리렌더링된다.
-  const handlePinned = (id) => {
+  // 핀을 누르면 상태가 업데이트
+  const handlePinned = async (id) => {
+    console.log("id : " + id);
+
     setPortfolioList((prevList) =>
       prevList.map(
         (item) =>
-          item.id === id
+          item._id === id
             ? { ...item, isPinned: !item.isPinned } // 클릭한 포트폴리오는 핀을 고정
             : { ...item, isPinned: false } // 나머지는 핀을 해제
       )
     );
+
+    const userId = localStorage.getItem("userId");
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/user/myportfolio-change`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, userId: userId }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      console.error("포트폴리오 데이터를 수정하는 데 실패했습니다.", err);
+    }
   };
 
   // 핀이 선택된 포폴은 맨 위로 고정
@@ -58,19 +90,20 @@ function MyPortfolio() {
   return (
     <>
       <PageContainer>
-        <BackButton width="40" link="/mypage" />
-        <PageTitle>관심 기업</PageTitle>
+        <BackButton width="40" height="40" link="/mypage" />
+        <PageTitle>내 포트폴리오</PageTitle>
       </PageContainer>
 
       {sortedPorfolist.map((item) => (
         <MyPortfolioAccordion
-          key={item.id}
-          id={item.id}
-          isPinned={item.isPinned}
-          name={item.name}
-          isOpen={openPortfolio === item.id}
-          handleToggle={handleToggle}
-          handlePinned={handlePinned}
+          key={item._id}
+          id={item._id}
+          isPinned={item.isPinned} // 핀 상태
+          name={item.name} // 포폴 제목
+          isOpen={openPortfolio === item._id} // 열린 상태인지 아닌지
+          handleToggle={handleToggle} // 열거나 닫는 함수
+          handlePinned={handlePinned} // 핀 누르는 함수
+          tickers={item.tickers}
         />
       ))}
     </>

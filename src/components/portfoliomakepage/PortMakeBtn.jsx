@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 const MakeDiv = styled.div`
@@ -15,12 +16,18 @@ const MakeBtn = styled.button`
   text-align: center;
   font-size: 20px;
   cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #d3d3d3;
+  }
 `;
 
-function PortMakeBtn() {
+function PortMakeBtn({ onClick, disabled }) {
   return (
     <MakeDiv>
-      <MakeBtn>제작하기</MakeBtn>
+      <MakeBtn onClick={onClick} disabled={disabled}>
+        제작하기
+      </MakeBtn>
     </MakeDiv>
   );
 }

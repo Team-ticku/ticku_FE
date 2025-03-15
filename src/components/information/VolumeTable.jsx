@@ -42,7 +42,7 @@ const Td = styled.td`
         ? "red"
         : props.value && props.value.startsWith("-")
         ? "blue"
-        : "black" // 기본 색상 (옵션)
+        : "red" // 기본 색상 (옵션)
     };
   `}
 `;

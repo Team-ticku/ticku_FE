@@ -1,8 +1,8 @@
-// FinanceInfo.jsx (타입스크립트 제거, 간결화)
+// FinanceInfo.jsx
 import React, { useState } from "react";
 import styled from "styled-components";
-
-// 스타일 컴포넌트 정의 (이전과 동일)
+import YearResultTable from "./YearResult"; // YearResultTable import
+import YearResultChart from "./YearResultChart";
 
 const MainContainer = styled.div`
   position: relative;
@@ -47,7 +47,6 @@ const TabButton = styled.button`
 const ContentContainer = styled.div`
   padding: 20px;
   position: relative;
-  margin-left: 10px;
   margin-right: 10px;
 `;
 
@@ -77,15 +76,7 @@ const NoData = styled.p`
   font-style: italic;
 `;
 
-const FinanceImage = styled.img`
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-`;
-
-// 기업 정보 컴포넌트 (export 불필요)
+// 기업 정보 컴포넌트
 function CompanyInfoContent({ ceo, establishedDate, stockCode, homepage }) {
   return (
     <CompanyInfoContainer>
@@ -117,28 +108,27 @@ function CompanyInfoContent({ ceo, establishedDate, stockCode, homepage }) {
   );
 }
 
-// 재무 제표 컴포넌트 (export 불필요)
-function FinancialStatementsContent({ imageUrl }) {
+// 재무 제표 컴포넌트
+function FinancialStatementsContent({ yearResultData }) {
+  // yearResultData prop 받기
   return (
     <div>
-      {imageUrl ? (
-        <FinanceImage src={imageUrl} alt="재무 제표" />
-      ) : (
-        <NoData>재무 제표 정보가 없습니다.</NoData>
-      )}
+      {/* yearResultData를 YearResultTable에 전달 */}
+      <YearResultChart data={yearResultData} />
+      <YearResultTable data={yearResultData} />
     </div>
   );
 }
 
-// 메인 컴포넌트
-function FinanceInfo({ companyInfo, financialStatements }) {
+function FinanceInfo({ companyInfo, yearResultData }) {
+  // yearResultData prop 추가
   const [activeTab, setActiveTab] = useState("companyInfo");
 
-  // 탭 내용 렌더링을 위한 객체
   const tabContents = {
     companyInfo: <CompanyInfoContent {...companyInfo} />,
+    // yearResultData 전달
     financialStatements: (
-      <FinancialStatementsContent {...financialStatements} />
+      <FinancialStatementsContent yearResultData={yearResultData} />
     ),
   };
 
