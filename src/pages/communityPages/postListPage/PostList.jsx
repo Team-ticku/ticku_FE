@@ -4,10 +4,10 @@ import PostListItem from "./postListItem";
 
 const Div = styled.div`
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start; /* 수직 정렬을 최상단으로 */
-  max-height: 666px; /* 높이를 제한 */
+  justify-content: flex-start;
+  max-height: 666px;
   width: 390px;
   overflow-y: auto; /* 세로 방향 스크롤을 허용 */
   overflow-x: hidden;
@@ -15,16 +15,19 @@ const Div = styled.div`
 
 function PostList(props) {
   const { posts, onClickItem } = props;
+
   return (
     <Div>
-      {posts.map((post) => (
-        <PostListItem
-          key={post._id}
-          post={post}
-          content={post.content}
-          onClick={() => onClickItem(post)}
-        />
-      ))}
+      {posts
+        .slice()
+        .reverse() // 배열을 역순으로 정렬
+        .map((post) => (
+          <PostListItem
+            key={post._id}
+            post={post}
+            onClick={() => onClickItem(post)}
+          />
+        ))}
     </Div>
   );
 }

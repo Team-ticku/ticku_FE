@@ -33,11 +33,11 @@ function CommentListItem(props) {
     <Box>
       <Div>
         <UserProfile
-          userId={comment.id}
           height={35}
           width={35}
           fontsize={15}
           padding={0}
+          userId={comment.userId}
         />
         <CommentText>{comment.content}</CommentText>
       </Div>

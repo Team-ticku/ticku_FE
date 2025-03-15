@@ -207,7 +207,7 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
                     sampleImg
                       ? sampleImg
                       : updateImg
-                      ? `http://localhost:5000${updateImg}`
+                      ? updateImg
                       : "/images/profile_picture.png"
                   }
                   alt="프로필 이미지"
@@ -223,11 +223,7 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
             // 편집 모드 아닐 때
             <ProfileContainer>
               <ProfileImg
-                src={
-                  updateImg
-                    ? `http://localhost:5000${updateImg}`
-                    : "/images/profile_picture.png"
-                }
+                src={updateImg ? updateImg : "/images/profile_picture.png"}
                 alt="프로필 이미지"
               />
 

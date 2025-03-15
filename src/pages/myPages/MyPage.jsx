@@ -65,7 +65,7 @@ function MyPage() {
   return (
     <>
       <Div>
-        <UserProfile width="40" height="40" fontsize="28" />
+        <UserProfile width="40" height="40" fontsize="28" isMypage={true} />
         <Button onClick={openModal}>회원정보</Button>
       </Div>
       <Hr />

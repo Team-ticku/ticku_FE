@@ -96,10 +96,10 @@ function PostListItem(props) {
       <Tags tag={post.tag} />
       <Box>
         <UserProfile
-          userId={post.userId}
           height={40}
           width={40}
           fontsize={18}
+          userId={post.userId}
           isAnonymous={post.anonymous}
         />
         <Stats
@@ -116,9 +116,7 @@ function PostListItem(props) {
           <ContentText>{post.content}</ContentText>
         </TextContainer>
         <PictureContainer>
-          {post.image && (
-            <Thumbnail src={`http://localhost:5000${post.image}`} />
-          )}
+          {post.image && <Thumbnail src={post.image} />}
         </PictureContainer>
       </ContextContainer>
     </Div>
