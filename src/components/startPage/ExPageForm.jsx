@@ -15,10 +15,12 @@ const Filter = styled.div`
   height: 100%;
   background-color: black;
   opacity: 0.3;
+  z-index: 6;
 `;
 
 const InsWrap = styled.div`
   visibility: hidden;
+  z-index: 7;
 `;
 
 export default function ExPageForm({
