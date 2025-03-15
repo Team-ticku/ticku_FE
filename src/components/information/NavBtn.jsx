@@ -35,9 +35,11 @@ const NavComponentImg = styled.img`
 const NavComponentText = styled.p`
   text-align: center;
   margin: 8px 0;
+  font-weight: ${(props) =>
+    props.active ? "bold" : "normal"}; // 폰트 굵기 스타일
 `;
 
-function NavBtn({ icon, text, bgColor, link, stockCode, stockName }) {
+function NavBtn({ icon, text, bgColor, link, active, stockCode, stockName }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -54,7 +56,7 @@ function NavBtn({ icon, text, bgColor, link, stockCode, stockName }) {
       <NavComponentBtn backgroundColor={bgColor} onClick={handleClick}>
         <NavComponentImg src={icon} alt={text} />
       </NavComponentBtn>
-      <NavComponentText>{text}</NavComponentText>
+      <NavComponentText active={active}>{text}</NavComponentText>
     </NavDiv>
   );
 }
