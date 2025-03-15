@@ -17,17 +17,15 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Ticko = styled.div`
-  width: 150px;
-  height: 150px;
-  border-radius: 100%;
-  background-color: #d9d9d9;
+const Ticko = styled.img`
+  width: 170px;
+  height: 170px;
 `;
 
 const IdInput = styled.input`
   width: 95%;
   height: 46px;
-  margin-top: 50px;
+  margin-top: 20px;
   border: none;
   background-color: transparent;
   border-bottom: solid 2px #b2c4df;
@@ -146,7 +144,7 @@ function JoinPage() {
     <>
       <Div>
         <Container>
-          <Ticko></Ticko>
+          <Ticko src="/images/logo.png"></Ticko>
 
           <IdInput
             type="text"

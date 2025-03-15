@@ -37,6 +37,7 @@ const Character = styled.div`
 `;
 const Explain = styled.div`
   background-color: white;
+  color: black;
   box-sizing: border-box;
   border-radius: 20px;
   border: 1px solid #b2c4df;

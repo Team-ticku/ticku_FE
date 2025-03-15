@@ -14,9 +14,8 @@ const ContentDiv = styled.div`
 `;
 
 const Character = styled.img`
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  width: 230px;
+  height: 230px;
 `;
 
 const ContentText = styled.p`
@@ -26,7 +25,7 @@ const ContentText = styled.p`
 function FirstContent() {
   return (
     <ContentDiv>
-      <Character src="../public/images/Information/InformationContentCharacter.PNG"></Character>
+      <Character src="/images/ticko.png"></Character>
       <ContentText>궁금한 기업, 바로 검색!</ContentText>
     </ContentDiv>
   );
