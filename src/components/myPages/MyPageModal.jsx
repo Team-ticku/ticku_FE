@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 const Backdrop = styled.div`
@@ -115,6 +116,8 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
   const [sampleImg, setSampleImg] = useState(userImage); // 편집모드일 때 보여주는 샘플 이미지
   const [isEditing, setIsEditing] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleImgChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -174,6 +177,12 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
     } catch (err) {
       console.error("프로필 업데이트 중 오류 발생", err);
     }
+  };
+
+  // 로그아웃
+  const handleLogOut = () => {
+    localStorage.removeItem("userId");
+    navigate("/login");
   };
 
   // 백그라운드 클릭 시 모달 닫기
@@ -239,7 +248,10 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
               <SaveButton onClick={handleSaveClick}>수정하기</SaveButton>
             </div>
           ) : (
-            <NameText>{updateName}</NameText>
+            <>
+              <NameText>{updateName}</NameText>
+              <SaveButton onClick={handleLogOut}>로그아웃</SaveButton>
+            </>
           )}
         </Modal>
       </Backdrop>
