@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "styled-components";
 
@@ -8,7 +8,9 @@ const ScheduleContainer = styled.div`
   margin-left: 25px;
   font-family: Arial;
 `;
-
+const Initial = styled.div`
+  font-weight: bold;
+`;
 const ScheduleHeader = styled.div`
   //padding: 15px;
   display: flex;
@@ -35,6 +37,7 @@ const ScheduleItem = styled.div`
   display: flex;
   align-items: center;
   padding: 10px;
+  cursor: pointer;
 `;
 
 const Dotdiv = styled.div`
@@ -43,31 +46,28 @@ const Dotdiv = styled.div`
   margin-right: 5px;
 `;
 
-
-const StockcalendarSchedule = ({ schedules, showScheduleHeader }) => {
-
+const StockcalendarSchedule = ({ schedules = [], showScheduleHeader }) => {
   return (
-    <>
-      <ScheduleContainer>
-        {showScheduleHeader && ( // showScheduleHeader가 true일 때만 Header 표시
-          <ScheduleHeader>Today's 배당락일</ScheduleHeader>
-        )}
-        <ScheduleList>
-          {schedules && schedules.length > 0 ? (
-            schedules.map((schedule, index) => (
-              <ScheduleItem key={index}>
-                {" "}
-                <Dotdiv>•</Dotdiv> {schedule.company}
-              </ScheduleItem>
-            ))
-          ) : (
-            <ScheduleItem style={{ listStyle: "inside" }}>
-              <Dotdiv>•</Dotdiv> 일정 없음
+    <ScheduleContainer>
+      {showScheduleHeader ? (
+        <ScheduleHeader>Today's 배당락일</ScheduleHeader>
+      ) : (
+        <Initial>Monthly 배당락일</Initial>
+      )}
+      <ScheduleList>
+        {schedules.length > 0 ? (
+          schedules.map((schedule, index) => (
+            <ScheduleItem key={index}>
+              <Dotdiv>•</Dotdiv> {schedule.company}
             </ScheduleItem>
-          )}
-        </ScheduleList>
-      </ScheduleContainer>
-    </>
+          ))
+        ) : (
+          <ScheduleItem>
+            <Dotdiv>•</Dotdiv> 일정 없음
+          </ScheduleItem>
+        )}
+      </ScheduleList>
+    </ScheduleContainer>
   );
 };
 
