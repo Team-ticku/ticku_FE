@@ -4,16 +4,12 @@ const CharIntroduceWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 `;
 
-const Character = styled.div`
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background-color: #b9b9b9;
-  text-align: center;
-  line-height: 220px;
+const Character = styled.img`
+  width: 210px;
+  height: 210px;
 `;
 
 const Introduce = styled.div`
@@ -29,7 +25,7 @@ const StyledP = styled.p`
 export default function CharIntroduce() {
   return (
     <CharIntroduceWrap>
-      <Character>캐릭터 이미지 배치 예정</Character>
+      <Character src="/images/ticko.png"></Character>
       <Introduce>
         <StyledP>안녕! 나는 티코야~</StyledP>
         <StyledP>이해가 잘 가지 않는 게 있다면</StyledP>
