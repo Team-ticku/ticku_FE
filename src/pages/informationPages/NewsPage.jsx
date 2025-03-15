@@ -9,8 +9,6 @@ const NewsContainer = styled.div``;
 
 function NewsPage({ newsData }) {
   const location = useLocation();
-  const { userId } = location.state || {}; // userId를 여기서 가져옵니다.
-  // userId가 null 또는 undefined일 때 빈 배열([])을 할당
   const safeNewsData = newsData || [];
 
   return (
@@ -28,8 +26,6 @@ function NewsPage({ newsData }) {
                 link={item.link}
                 pubDate={item.pubDate}
                 sourceName={item.sourceName}
-                defaultBookmarked={item.defaultBookmarked}
-                userId={userId} // userId를 NewsCard에 전달
               />
             )
           )
