@@ -8,7 +8,7 @@ import volumeIcon from "../../../public/images/information/volumeIcon.png";
 import newsIcon from "../../../public/images/information/newsIcon.png";
 import dividendIcon from "../../../public/images/information/dividendIcon.png";
 import resultIcon from "../../../public/images/information/resultIcon.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NAVDIV = styled.div`
   display: flex;
@@ -44,12 +44,48 @@ const NavBar = styled.div`
 `;
 
 const navButtons = [
-  { icon: chartIcon, text: "차트", bgColor: "#F5D3F3", link: "chart" },
-  { icon: financeIcon, text: "기업 재무", bgColor: "#D9DFB2", link: "finance" },
-  { icon: volumeIcon, text: "거래량", bgColor: "#B2DFBF", link: "volume" },
-  { icon: newsIcon, text: "뉴스", bgColor: "#BDB2DF", link: "news" },
-  { icon: dividendIcon, text: "배당", bgColor: "#B2D1DF", link: "dividend" },
-  { icon: resultIcon, text: "실적", bgColor: "#FDC7AC", link: "result" },
+  {
+    icon: chartIcon,
+    text: "차트",
+    bgColor: "#F8E7F7",
+    activeBgColor: "#f5b3f0",
+    link: "chart",
+  },
+  {
+    icon: financeIcon,
+    text: "기업 재무",
+    bgColor: "#dde6ac",
+    activeBgColor: "#d6e480",
+    link: "finance",
+  },
+  {
+    icon: volumeIcon,
+    text: "거래량",
+    bgColor: "#B2DFBF",
+    activeBgColor: "#69e26d",
+    link: "volume",
+  },
+  {
+    icon: newsIcon,
+    text: "뉴스",
+    bgColor: "#BDB2DF",
+    activeBgColor: "#9c74e6",
+    link: "news",
+  },
+  {
+    icon: dividendIcon,
+    text: "배당",
+    bgColor: "#B2D1DF",
+    activeBgColor: "#7dcee9",
+    link: "dividend",
+  },
+  {
+    icon: resultIcon,
+    text: "실적",
+    bgColor: "#FDC7AC",
+    activeBgColor: "#fdc168",
+    link: "result",
+  },
 ];
 
 function Navigation() {
@@ -57,8 +93,11 @@ function Navigation() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const location = useLocation(); // useLocation 훅 사용
-  const { stockCode, stockName } = location.state || {}; // state에서 정보 가져옴
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [activeLink, setActiveLink] = useState("");
+
+  const { stockCode, stockName } = location.state || {};
 
   useEffect(() => {
     const container = containerRef.current;
@@ -120,6 +159,15 @@ function Navigation() {
     };
   }, [isDragging, startX, scrollLeft]);
 
+  useEffect(() => {
+    const path = location.pathname.split("/information/")[1];
+    setActiveLink(path || "");
+  }, [location.pathname]);
+
+  const handleNavBtnClick = (link) => {
+    navigate(`/information/${link}`, { state: location.state });
+  };
+
   return (
     <>
       <SearchBar />
@@ -131,10 +179,16 @@ function Navigation() {
                 key={index}
                 icon={button.icon}
                 text={button.text}
-                bgColor={button.bgColor}
+                bgColor={
+                  activeLink === button.link
+                    ? button.activeBgColor // 활성화 색상 사용
+                    : button.bgColor
+                }
                 link={button.link}
                 stockCode={stockCode}
                 stockName={stockName}
+                onClick={() => handleNavBtnClick(button.link)}
+                active={activeLink === button.link} // active prop 추가
               />
             ))}
           </NavBar>
