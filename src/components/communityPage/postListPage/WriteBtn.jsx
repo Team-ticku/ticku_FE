@@ -8,11 +8,11 @@ const Btn = styled.button`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border: none;
   cursor: pointer;
-  bottom: 30px;
+  bottom: 100px;
   right: 20px;
   background-color: transparent;
 `;
