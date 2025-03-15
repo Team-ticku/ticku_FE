@@ -27,7 +27,7 @@ function CommentList(props) {
   return (
     <Div>
       {comments.map((comment) => {
-        return <CommentListItem key={comment.id} comment={comment} />;
+        return <CommentListItem key={comment._id} comment={comment} />;
       })}
     </Div>
   );
