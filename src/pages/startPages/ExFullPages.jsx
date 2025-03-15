@@ -65,7 +65,7 @@ const comList = [
     ],
   },
   {
-    page: <Information display="none" />,
+    page: <Information display="none" hideSearch={true} />,
     instruction: (
       <Instruction
         key="Infor_1"

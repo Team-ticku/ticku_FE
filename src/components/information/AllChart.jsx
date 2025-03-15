@@ -16,6 +16,7 @@ function AllChart({ stockCode, period }) {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [chartWidth, setChartWidth] = useState(0); // 차트 너비 상태 추가
 
   useEffect(() => {
     const fetchData = async () => {
@@ -97,6 +98,20 @@ function AllChart({ stockCode, period }) {
     fetchData();
   }, [stockCode, period]);
 
+  // 차트 너비 업데이트
+  useEffect(() => {
+    const handleResize = () => {
+      if (document.getElementById("chart-container")) {
+        // 컨테이너 존재 확인
+        setChartWidth(document.getElementById("chart-container").offsetWidth);
+      }
+    };
+
+    handleResize(); // 초기 렌더링 시 너비 설정
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -162,32 +177,61 @@ function AllChart({ stockCode, period }) {
     return [minVal, maxVal];
   };
 
+  // 동적 패딩 계산 (픽셀 기반)
+  const calculatePixelPadding = () => {
+    const dataLength = chartData.length;
+    const barGap = 2; // 막대 사이의 간격 (recharts의 기본 gap은 픽셀 단위)
+    const totalBarWidth = dataLength * 40 + (dataLength - 1) * barGap; // barSize 40
+    const availableWidth = chartWidth - 60; // 좌우 여백 30px씩 제외
+
+    if (totalBarWidth >= availableWidth) {
+      return 0; // 막대가 꽉 차면 패딩 없음
+    }
+
+    // 남은 공간을 데이터 포인트 개수로 나누어 패딩 계산 (데이터 포인트 간 간격 기준)
+    const paddingRatio = (availableWidth - totalBarWidth) / (2 * dataLength); // 양쪽에 나누어 적용. 데이터 개수로 나눠 비율 계산
+
+    return paddingRatio;
+  };
+  const padding = calculatePixelPadding();
+
   return (
-    <ResponsiveContainer width="100%" height={300}>
-      <BarChart
-        data={chartData}
-        margin={{
-          top: 20,
-          right: 30,
-          left: 0,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis
-          dataKey="dateString"
-          type="category"
-          interval={period === "3m" ? 13 : "preserveStartEnd"} // 3개월일 때 틱 간격 조정
-        />
-        <YAxis domain={yAxisDomain()} />
-        <Tooltip content={<CustomTooltip />} />
-        <Bar dataKey="openClose" name="주가" fill="rgba(0,0,0,0)" barSize={40}>
-          {chartData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={getBarColor(entry)} />
-          ))}
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+    <div id="chart-container" style={{ width: "100%", height: 300 }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={chartData}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 10, // 왼쪽 margin도 30으로 변경
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="dateString"
+            type="category"
+            interval={period === "3m" ? 13 : "preserveStartEnd"}
+            padding={{ left: padding, right: padding }} // 동적 패딩 적용
+          />
+          <YAxis
+            domain={yAxisDomain()}
+            tick={{ fontSize: 10 }} // Y축 tick 글자 크기 조정
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Bar
+            dataKey="openClose"
+            name="주가"
+            fill="rgba(0,0,0,0)"
+            barSize={40}
+          >
+            {chartData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={getBarColor(entry)} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 
