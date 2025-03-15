@@ -1,3 +1,4 @@
+import styled, { keyframes } from "styled-components";
 import WelcomeEx from "./ExplainPages/WelcomeEx";
 import MainPage from "../mainpage/MainPage";
 import Information from "../InformationPages/InformationPage";
@@ -6,8 +7,8 @@ import PortfolioMainPage from "../portfolioPages/PortfolioMainPage";
 import TickoPage from "../tickoPages/TickoPage";
 import PostListPage from "../communityPages/postListPage/PostListPage";
 import Instruction from "../../components/startPage/Instruction";
+import ExPageForm from "../../components/startPage/ExPageForm";
 
-import styled, { keyframes } from "styled-components";
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -53,13 +54,13 @@ const comList = [
       ></Instruction>,
       <Instruction
         key="Main_2"
-        bottom="90px"
-        left="35px"
+        bottom="150px"
+        left="15px"
         context="내가 설정한 대표 포트폴리오가 여기에 뜰 거야!"
         animationDelay="3s"
         flexDirection="column-reverse"
-        width="315px"
-        height="195px"
+        width="220px"
+        height="50px"
         alignItems="end"
       ></Instruction>,
     ],
@@ -85,22 +86,22 @@ const comList = [
       <Instruction
         key="Calen_1"
         top="30px"
-        left="15px"
+        left="10px"
         context="날짜를 선택해봐~"
         animationDelay="1s"
-        width="350px"
+        width="360px"
         height="300px"
         flexDirection="column-reverse"
         alignItems="end"
       ></Instruction>,
       <Instruction
         key="Calen_2"
-        bottom="260px"
-        left="5px"
+        bottom="220px"
+        left="20px"
         context="그 날짜가 배당일인 기업 목록이 나올 거야!"
         animationDelay="2s"
-        width="140px"
-        height="40px"
+        width="340px"
+        height="60px"
         alignItems="end"
       ></Instruction>,
     ],
@@ -171,12 +172,12 @@ const comList = [
     instruction: (
       <Instruction
         key="Portfolio_1"
-        bottom="90px"
+        bottom="98px"
         left="20px"
         context="주식 초보가 이해하기 쉽게 티코가 설명해줄게! 궁금한 게 생기면 날 보러와~"
         animationDelay="1s"
         width="345px"
-        height="280px"
+        height="270px"
         maxWidth="285px"
         flexDirection="column-reverse"
         alignItems="end"
@@ -184,8 +185,6 @@ const comList = [
     ),
   },
 ];
-
-import ExPageForm from "../../components/startPage/ExPageForm";
 
 export default function ExFullPages({ curPage, transition, insKey }) {
   const exPageList = comList.map((com, idx) => (

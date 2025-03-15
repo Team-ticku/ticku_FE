@@ -23,7 +23,7 @@ const Skip = styled.div`
 const Button = styled.div`
   visibility: ${(props) => props.visibility || "visible"};
   position: fixed;
-  bottom: 80px;
+  bottom: 70px;
   right: ${(props) => props.right || "auto"};
   left: ${(props) => props.left || "auto"};
   color: #ffffffdc;
