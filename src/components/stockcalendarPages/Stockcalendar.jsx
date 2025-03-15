@@ -79,7 +79,8 @@ const DayCell = styled.div`
     color: #ffffff;
   }
   &.selected {
-    color: #000000;
+    color: #ffffff !important;
+    background-color: #4287f5 !important; //선택된 날짜와 today 색상과 동일 적용
   }
   &.other-month {
     color: #999;
@@ -90,7 +91,7 @@ const DayCell = styled.div`
     color: #000000;
   }
   &:hover {
-    background-color: #ddd;
+    background-color: #b2c4df;
   }
 `;
 
@@ -142,11 +143,10 @@ const isSameDay = (date1, date2) => {
   );
 };
 
-
 const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
   // onMonthChange props 추가
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date()); //오늘 날짜 상태
+  const [selectedDate, setSelectedDate] = useState(null); //선택된 날짜 상태
   const [isMonthDropdownOpen, setMonthDropdownOpen] = useState(false);
 
   //useRef를 통해 monthLabelRef를 초기화
@@ -158,15 +158,16 @@ const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
       currentDate.getMonth(),
       day.day
     );
-    setSelectedDate(clickedDate);
-
+    setSelectedDate(clickedDate); //선택된 날짜 상태 업데이트
+    if (onScheduleSelect) {
+      onScheduleSelect(clickedDate);
+    }
 
     // 선택된 날짜에 해당하는 스케줄만 필터링
     const events = scheduleData.filter((schedule) => {
       const scheduleDate = new Date(schedule.date); // 스케줄의 date를 Date 객체로 변환
       return isSameDay(scheduleDate, clickedDate); // 선택된 날짜와 스케줄의 날짜가 같은지 비교
     });
-
 
     if (onScheduleSelect) {
       onScheduleSelect(events);
@@ -227,7 +228,6 @@ const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
 
   const daysArray = getDaysArray();
 
-
   // 월 선택 핸들러 추가
   const selectMonth = (monthIndex) => {
     const newMonth = new Date(currentDate.getFullYear(), monthIndex, 1);
@@ -244,7 +244,6 @@ const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
     if (onMonthChange) {
       onMonthChange(newDate); // StockcalenPages 컴포넌트로 새 달 정보 전달
     }
-
   };
 
   return (
