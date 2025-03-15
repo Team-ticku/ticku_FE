@@ -206,12 +206,12 @@ const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
         i
       );
       const hasSchedule = scheduleData.some((schedule) => {
-        console.log(
-          "isSameDay",
-          currentDay,
-          schedule.date,
-          isSameDay(currentDay, schedule.date)
-        ); // isSameDay 함수 확인
+        // console.log(
+        //   "isSameDay",
+        //   currentDay,
+        //   schedule.date,
+        //   isSameDay(currentDay, schedule.date)
+        // ); // isSameDay 함수 확인
         return isSameDay(schedule.date, currentDay);
       });
       days.push({
@@ -222,7 +222,7 @@ const Calendar = ({ onScheduleSelect, scheduleData, onMonthChange }) => {
         hasSchedule,
       });
     }
-    console.log("days", days); // days 배열 확인
+    // console.log("days", days); // days 배열 확인
     return days;
   };
 
