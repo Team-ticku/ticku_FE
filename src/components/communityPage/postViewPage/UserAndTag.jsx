@@ -34,7 +34,7 @@ const TagBox = styled.div`
 `;
 
 function UserAndTag(props) {
-  const { tag, userId } = props;
+  const { tag, userId, anonymous } = props;
   return (
     <Div>
       <UserBox>
@@ -45,6 +45,7 @@ function UserAndTag(props) {
           width={50}
           fontsize={22}
           padding={0}
+          isAnonymous={anonymous}
         />
       </UserBox>
       <TagBox>
