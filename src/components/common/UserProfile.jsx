@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
-import userData from "../../pages/communityPages/user.json"; // 커뮤니티 페이지 테스트를 위한 가짜 데이터
 
 const Div = styled.div`
   display: flex;
@@ -11,7 +9,7 @@ const Div = styled.div`
 const ProfilePicture = styled.img`
   ${(props) => props.height && `height: ${props.height}px;`}
   ${(props) => props.width && `width: ${props.width}px;`}
-  border-radius:100px;
+  border-radius: 100px;
   object-fit: cover;
   margin-right: 10px;
 `;
@@ -19,22 +17,44 @@ const ProfilePicture = styled.img`
 const UserName = styled.p`
   ${(props) => props.fontsize && `font-size: ${props.fontsize}px;`}
   ${(props) => props.padding && `padding-bottom: ${props.padding}px;`}
-  white-space:nowrap;
+  width:150px;
+  overflow: hidden;
+
+  white-space: nowrap;
 `;
 
-function UserProfile({ userId, height, width, fontsize, padding }) {
-  const [userInfo, setUserInfo] = useState(null);
+function UserProfile({ height, width, fontsize, padding }) {
+  const [userName, setUserName] = useState("익명");
+  const [userImage, setUserImage] = useState(
+    "/public/images/profile_picture.png"
+  );
 
   useEffect(() => {
-    const user = userData.find((user) => user.userId === userId);
-    setUserInfo(user);
-  }, [userId]);
+    const userId = localStorage.getItem("userId"); // localStorage에서 userId 가져오기
 
-  const userImage =
-    userInfo && userInfo.image
-      ? userInfo.image
-      : "/public/images/profile_picture.png";
-  const userName = userInfo && userInfo.name ? userInfo.name : "익명";
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/user/info/${userId}`
+        );
+        const data = await response.json();
+
+        setUserName(data.name || "익명"); // name이 없으면 익명으로 설정
+
+        // 서버에서 받은 이미지 경로가 상대경로라면 절대경로로 변경
+        const imageUrl = data.image
+          ? `http://localhost:5000${data.image}`
+          : "/public/images/profile_picture.png";
+        setUserImage(imageUrl);
+      } catch (err) {
+        console.error("사용자 정보를 가져오는 데 실패했습니다.", err);
+      }
+    };
+
+    if (userId) {
+      fetchUserProfile(); // userId가 있으면 사용자 정보를 가져오기
+    }
+  }, []); // 컴포넌트 마운트 시 한 번만 실행
 
   return (
     <Div>
@@ -50,13 +70,5 @@ function UserProfile({ userId, height, width, fontsize, padding }) {
     </Div>
   );
 }
-
-UserProfile.propTypes = {
-  userId: PropTypes.number.isRequired,
-  height: PropTypes.number,
-  width: PropTypes.number,
-  padding: PropTypes.number,
-  fontsize: PropTypes.number,
-};
 
 export default UserProfile;

@@ -37,7 +37,7 @@ const SearchContainer = styled.div`
   border-bottom: 1px solid #dee2e6; */
 `;
 
-function Information({ display }) {
+function Information({ display, hideSearch }) {
   const contentContainerRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -249,11 +249,13 @@ function Information({ display }) {
       <ContentWrapper>
         <Navigation />
         {/* 현재 경로가 /information이면 Search 숨김 */}
-        {location.pathname !== "/information" && (
-          <SearchContainer>
-            <Search />
-          </SearchContainer>
-        )}
+        {!hideSearch &&
+          location.pathname !== "/information" &&
+          location.pathname !== "/information/" && (
+            <SearchContainer>
+              <Search />
+            </SearchContainer>
+          )}
         <Routes>
           <Route index element={<InfoFirst />} />
           <Route path="chart" element={<Chart />} />
