@@ -45,12 +45,10 @@ function MyPage() {
 
   const fetchUserProfile = async () => {
     const userId = localStorage.getItem("userId");
-    console.log(userId);
 
     try {
       const response = await fetch(`http://localhost:5000/user/info/${userId}`);
       const userData = await response.json();
-      console.log(userData);
 
       setUserName(userData.name);
       setUserImage(userData.image);
@@ -62,13 +60,12 @@ function MyPage() {
   fetchUserProfile();
   /*useEffect(() => {
     fetchUserProfile();
-  }, []);*/
+  }, [userName, userImage]);*/
 
   return (
     <>
       <Div>
-        {/* 여기에 userName, userImage 넣으면 됨.  */}
-        <UserProfile width="40" name="익명1" fontsize="28" />
+        <UserProfile width="40" height="40" fontsize="28" />
         <Button onClick={openModal}>회원정보</Button>
       </Div>
       <Hr />

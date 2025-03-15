@@ -112,8 +112,7 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
   const [isClosing, setIsClosing] = useState(false); // 모달이 닫힐 때 애니메이션을 위해 추가
   const [updateName, setUpdateName] = useState(userName);
   const [updateImg, setUpdateImg] = useState(userImage);
-
-  const [sampleImg, setSampleImg] = useState(userImage); // 편집모드일 때 보여주는 샘플 이미지
+  const [sampleImg, setSampleImg] = useState(""); // 편집모드일 때 보여주는 샘플 이미지
   const [isEditing, setIsEditing] = useState(false);
 
   const navigate = useNavigate();
@@ -191,6 +190,7 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
     setTimeout(() => {
       setIsClosing(false);
       onClose(); // 애니메이션 후 모달 닫기
+      window.location.reload();
     }, 300); // 애니메이션 시간(0.3초) 후에 모달을 닫음
   };
 
@@ -204,11 +204,11 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
               <label>
                 <ProfileImg
                   src={
-                    sampleImg // 사용자가 이미지를 선택한 경우
+                    sampleImg
                       ? sampleImg
-                      : updateImg // `updateImg`가 있으면 그 이미지를 보여줌
-                      ? `http://localhost:5000${updateImg}` // 서버에서 받아온 이미지
-                      : "/images/profile_picture.png" // 기본 이미지
+                      : updateImg
+                      ? `http://localhost:5000${updateImg}`
+                      : "/images/profile_picture.png"
                   }
                   alt="프로필 이미지"
                 />
