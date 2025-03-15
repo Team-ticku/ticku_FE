@@ -63,18 +63,18 @@ const A = styled.a`
   color: black;
 `;
 
+const P = styled.p`
+  font-size: 12px;
+  color: #6e6e6e;
+`;
+
 function NewsCard({
-  title,
-  link,
-  pubDate,
-  sourceName,
-  defaultBookmarked,
-  // onBookmarkToggle prop 제거
+  title, // 기사 제목
+  link, // 기사 링크
+  pubDate, // 기사 날짜
+  sourceName, // 언론사
 }) {
-  // const location = useLocation();
-  // const { userId } = location.state || {};
-  const userId = localStorage.getItem("userId");
-  const [isBookmarked, setIsBookmarked] = useState(defaultBookmarked);
+  const [bookMarkState, setBookMarkState] = useState(false);
 
   // 날짜 형식 변환 함수 (NewsCard 컴포넌트 내부)
   const formatDate = (dateString) => {
@@ -89,52 +89,75 @@ function NewsCard({
     return null; // 유효하지 않은 날짜는 null 반환
   };
 
-  // 북마크 상태를 서버에 전송하는 함수
-  const handleBookmarkToggle = async () => {
-    // userId가 없으면(로그인이 안되어 있으면) 함수 실행 중단.
-    if (!userId) {
-      alert("로그인이 필요한 기능입니다."); // 경고창 표시
-      return; // 함수 실행 중단
-    }
+  //북마크 상태 가져오기
+  const fetchBookMarkrState = async () => {
+    const userId = localStorage.getItem("userId");
 
+    try {
+      const response = await fetch(
+        `http://localhost:5000/bookmark/state?userId=${userId}&title=${title}`
+      );
+      const data = await response.json();
+
+      if (data.isMarked) {
+        setBookMarkState(true);
+      } else {
+        setBookMarkState(false);
+      }
+    } catch (err) {
+      console.error("데이터를 가져오는 데 실패했습니다.", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchBookMarkrState();
+  }, []);
+
+  // 북마크 상태 업데이트
+  const handleChangeBookMark = async () => {
+    const userId = localStorage.getItem("userId");
     const formattedPubDate = formatDate(pubDate); // 날짜 형식 변환
     if (!formattedPubDate) {
       alert("날짜 형식이 올바르지 않습니다.");
       return;
     }
-    try {
-      const response = await fetch("http://localhost:5000/user/scrapnews", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: userId, // 사용자 ID (로그인 상태에 따라)
-          title,
-          link,
-          pubDate: formattedPubDate, // 변환된 날짜 사용
-          sourceName,
-          isMarked: !isBookmarked, // 현재 상태의 반대
-        }),
-      });
+    setBookMarkState((prev) => !prev);
 
-      if (!response.ok) {
-        const errorData = await response.json(); // 에러 메시지 파싱
-        throw new Error(errorData.message || "뉴스 스크랩/취소 실패");
+    // true -> 저장
+    if (!bookMarkState) {
+      try {
+        const response = await fetch(`http://localhost:5000/bookmark/add`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: title,
+            link: link,
+            pubDate: formattedPubDate,
+            sourceName: sourceName,
+            isMarked: true,
+            userId: userId,
+          }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+      } catch (err) {
+        console.error("뉴스를 저장하는 데 실패했습니다.", err);
       }
+    } // false -> 삭제
+    else {
+      try {
+        const response = await fetch(`http://localhost:5000/bookmark/remove`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title: title, userId: userId }),
+        });
 
-      // 성공적으로 처리되면, 클라이언트 상태 업데이트
-      setIsBookmarked(!isBookmarked);
-
-      // (선택 사항) 사용자에게 알림
-      if (isBookmarked) {
-        alert("뉴스 스크랩이 취소되었습니다.");
-      } else {
-        alert("뉴스가 스크랩되었습니다.");
+        const data = await response.json();
+        console.log(data);
+      } catch (err) {
+        console.error("데이터를 삭제하는 데 실패했습니다.", err);
       }
-    } catch (error) {
-      console.error("뉴스 스크랩/취소 중 오류:", error);
-      alert(error.message);
     }
   };
 
@@ -152,10 +175,6 @@ function NewsCard({
     formattedDate = "날짜 정보 없음"; // 또는 다른 기본값
   }
 
-  const handleClick = () => {
-    window.open(link, "_blank", "noopener,noreferrer"); // 새 탭에서 열기
-  };
-
   return (
     <NewsCardWrapper>
       <LeftSection>
@@ -164,13 +183,13 @@ function NewsCard({
           <SourceContainer>
             <SourceName>{sourceName}</SourceName>
           </SourceContainer>
-          {pubDate && <p>발행일: {formattedDate}</p>}
+          {pubDate && <P>발행일: {formattedDate}</P>}
         </A>
       </LeftSection>
       <BookmarkContainer>
         <BookMark
-          isMarked={isBookmarked}
-          onBookmarkToggle={handleBookmarkToggle}
+          isMarked={bookMarkState}
+          toggleBookMark={handleChangeBookMark}
         />
       </BookmarkContainer>
       <RightSection />
