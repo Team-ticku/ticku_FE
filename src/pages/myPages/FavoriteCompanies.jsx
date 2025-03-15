@@ -41,27 +41,7 @@ function FavoriteCompanies() {
 
   useEffect(() => {
     fetchCompanies();
-  }, []);
-
-  // 즐겨찾기 상태 변경
-  const handleToggleFavorite = useCallback(async (id, isFavorite, name) => {
-    console.log("isFavorite : " + isFavorite);
-
-    if (isFavorite) {
-      try {
-        await fetch("http://localhost:5000/user/delete-favorite", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ companyId: id }),
-        });
-        fetchCompanies(); // 삭제 후 회사 목록을 다시 가져오기
-      } catch (error) {
-        console.error("회사 삭제에 실패했습니다.", error);
-      }
-    }
-  }, []);
+  }, [companies]);
 
   return (
     <>
@@ -76,12 +56,6 @@ function FavoriteCompanies() {
             key={company._id}
             company={{
               ...company,
-              onToggleFavorite: () =>
-                handleToggleFavorite(
-                  company._id,
-                  company.isFavorite,
-                  company.name
-                ),
             }}
           />
         );
