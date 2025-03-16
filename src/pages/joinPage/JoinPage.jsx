@@ -31,6 +31,7 @@ const IdInput = styled.input`
   border-bottom: solid 2px #b2c4df50;
   font-size: 16px;
   outline: none;
+  color: white;
   &::placeholder {
     color: #bebebe;
   }
@@ -55,6 +56,7 @@ const PassWordInput = styled.input`
   border-bottom: solid 2px #b2c4df50;
   font-size: 16px;
   outline: none;
+  color: white;
   &::placeholder {
     color: #bebebe;
   }
@@ -69,6 +71,7 @@ const NameInput = styled.input`
   border-bottom: solid 2px #b2c4df50;
   font-size: 16px;
   outline: none;
+  color: white;
   &::placeholder {
     color: #bebebe;
   }
