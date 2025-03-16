@@ -16,23 +16,22 @@ const Table = styled.table`
   table-layout: fixed;
   border-radius: 10px; /* 둥근 모서리 */
   overflow: hidden; /* 중요: 바깥쪽으로 나가는 border를 감춤 */
-  border: 2px solid #b2c4df; /* 전체 테두리 */
+  border: 2px solid #394a5d; /* 전체 테두리 */
 `;
 
 const Th = styled.th`
-  background-color: rgba(178, 196, 223, 0.22);
+  background-color: #1c2f43a5;
   padding: 8px 10px;
-  border: 1px solid #b2c4df;
+  border: 1px solid #394a5d;
   /* border-bottom: 0; */
   text-align: center;
   font-weight: bold;
-  color: #333;
 `;
 
 const Td = styled.td`
   padding: 8px 12px;
   text-align: center;
-  border: 1px solid #b2c4df;
+  border: 1px solid #394a5d;
 `;
 
 const NoData = styled.p`

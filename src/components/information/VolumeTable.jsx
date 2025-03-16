@@ -5,7 +5,7 @@ import styled from "styled-components";
 const TableContainer = styled.div`
   width: 100%;
   overflow-x: auto; /* 가로 스크롤 (필요한 경우) */
-  padding: 0 10px; // 여백
+  padding: 0 20px; // 여백
 `;
 
 // 테이블 스타일
@@ -19,10 +19,9 @@ const Table = styled.table`
 const Th = styled.th`
   /* background-color: rgba(178, 196, 223, 0.22); 헤더 배경색 */
   padding: 8px 10px;
-  border-bottom: 1px solid #b2c4df; /* 하단 테두리 */
+  border-bottom: 1px solid #394a5d; /* 하단 테두리 */
   text-align: left; /* 왼쪽 정렬 */
   font-weight: bold; /* 굵은 글씨 */
-  color: #333; // 헤더 글자 색상
 `;
 
 // 테이블 데이터 셀 스타일

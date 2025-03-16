@@ -17,24 +17,23 @@ const Table = styled.table`
   table-layout: fixed;
   border-radius: 10px;
   overflow: hidden;
-  border: 2px solid #b2c4df;
+  border: 2px solid #394a5d;
   font-size: 12px;
 `;
 
 const Th = styled.th`
-  background-color: rgba(178, 196, 223, 0.22);
+  background-color: #1c2f43a5;
   padding: 8px 10px;
-  border: 1px solid #b2c4df;
+  border: 1px solid #394a5d;
   text-align: center;
   font-weight: bold;
-  color: #333;
   white-space: nowrap;
 `;
 
 const Td = styled.td`
   padding: 8px 12px;
   text-align: center;
-  border: 1px solid #b2c4df;
+  border: 1px solid #394a5d;
 `;
 
 const NoData = styled.p`

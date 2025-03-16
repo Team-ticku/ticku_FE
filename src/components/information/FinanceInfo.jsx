@@ -13,7 +13,7 @@ const MainContainer = styled.div`
     left: 20px;
     right: 20px;
     height: 2px;
-    background-color: #b2c4df;
+    background-color: #394a5dcb;
   }
 `;
 
@@ -29,18 +29,19 @@ const TabButton = styled.button`
   padding: 10px;
   border: none;
   background-color: transparent;
-  color: ${(props) => (props.active ? "black" : "#B3B3B3")};
+  color: ${(props) => (props.active ? "white" : "#B3B3B3")};
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
   outline: none;
 
   &:first-child {
-    border-right: 1px solid #b2c4df;
+    border-right: 1px solid #394a5dcb;
   }
 
   &:hover {
-    background-color: #f0f0f0;
+    border-radius: 10px;
+    background-color: #1c2f43a5;
   }
 `;
 
