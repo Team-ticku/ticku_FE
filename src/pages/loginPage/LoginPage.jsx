@@ -28,7 +28,7 @@ const IdInput = styled.input`
   margin-top: 20px;
   border: none;
   background-color: transparent;
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #b2c4df50;
   font-size: 16px;
   outline: none;
   &::placeholder {
@@ -42,7 +42,7 @@ const PassWordInput = styled.input`
   margin-top: 20px;
   border: none;
   background-color: transparent;
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #b2c4df50;
   font-size: 16px;
   outline: none;
   &::placeholder {
@@ -55,7 +55,7 @@ const LoginButton = styled.button`
   height: 47px;
   border-radius: 10px;
   border: none;
-  background-color: #b2c4df;
+  background-color: #00ffc3ab;
   color: #ffffff;
   margin-top: 40px;
   font-size: 16px;
@@ -69,11 +69,11 @@ const JoinContainer = styled.div`
 
 const JoinA = styled.a`
   text-decoration: none;
-  color: #b2c4df;
+  color: #b2c4df8e;
   margin-top: 20px;
   display: block;
   &:visited {
-    color: #b2c4df;
+    color: #b2c4df8e;
   }
 `;
 
