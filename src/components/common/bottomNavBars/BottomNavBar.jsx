@@ -64,9 +64,12 @@ export default function BottomNavBar({ display }) {
   useEffect(() => {
     if (location.pathname === "/information") {
       setActiveNav(1);
-    } else if (location.pathname === "/portmn") {
+    } else if (location.pathname.startsWith("/portmn")) {
       setActiveNav(2);
-    } else if (location.pathname === "/communityposts") {
+    } else if (
+      location.pathname.startsWith("/communityposts") ||
+      location.pathname === "/communitywrite"
+    ) {
       setActiveNav(4);
     } else if (location.pathname === "/mypage") {
       setActiveNav(5);
