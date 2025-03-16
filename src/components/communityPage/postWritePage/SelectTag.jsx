@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Tags from "../postListPage/Tags"; // Tags 컴포넌트 import
 
@@ -62,28 +62,34 @@ const Overlay = styled.div`
   z-index: 998;
 `;
 
-// 태그 색상 함수
 function getTagColor(tag) {
   switch (tag) {
     case "일상":
-      return "#FDA9AB";
+      return "#644ca2d1";
     case "질문":
-      return "#DAADDA";
+      return "#3e77e9ca";
     case "정보/분석":
-      return "#97D09D";
+      return "#ff5852d0";
     case "포트폴리오":
-      return "#FFD885";
+      return "#4fc775d1";
     case "종목 추천":
-      return "#B2DADF";
+      return "#ffdb28bf";
     default:
       return "#607D8B";
   }
 }
 
-function SelectTag({ onTagSelect }) {
+function SelectTag({ onTagSelect, value }) {
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열고 닫을 상태
   const [isActive, setIsActive] = useState(false); // 아이콘 회전 상태
-  const [selectedTag, setSelectedTag] = useState(null); // 선택된 태그 상태 추가
+  const [selectedTag, setSelectedTag] = useState(null); // 선택된 태그 상태, 처음엔 null로 초기화
+
+  useEffect(() => {
+    // value가 변경되었을 때 한 번만 selectedTag를 업데이트
+    if (value && selectedTag === null) {
+      setSelectedTag(value); // value로 selectedTag 초기화
+    }
+  }, [value, selectedTag]); // value가 변경되었을 때만 실행
 
   // 태그 이름 배열
   const TagTitles = ["종목 추천", "일상", "질문", "포트폴리오", "정보/분석"];
