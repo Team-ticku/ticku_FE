@@ -98,6 +98,7 @@ const LiveIndexText = styled.div`
   font-size: 20px;
   font-weight: 500;
   margin: 5px;
+  color: white;
 `;
 
 const LiveIndexChartBox = styled.div`
@@ -113,10 +114,12 @@ const LiveIndexChartBox = styled.div`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   margin-bottom: 20px;
+  color: white;
 `;
 
 const IndexValue = styled.div`
   font-size: 17px;
+  color: white;
   font-weight: bold;
 `;
 
@@ -204,23 +207,30 @@ function LiveIndexChart() {
         title: {
           display: true,
           text: selectedPeriod === "3months" ? "Month" : "Date",
+          color: "white", // X축 제목 색상 변경
         },
-        ticks:
-          selectedPeriod === "1week"
-            ? {
-                autoSkip: false, // 자동 건너뛰기 비활성화
-                maxTicksLimit: 7, // 최대 7개 눈금 표시
-                stepSize: 1, // 하루 단위로 강제 표시
-              }
-            : {
-                autoSkip: true,
-                maxTicksLimit: 7,
-              },
+        ticks: {
+          color: "white", // X축 눈금 색상 변경
+          autoSkip: selectedPeriod !== "1week",
+          maxTicksLimit: 7,
+          stepSize: selectedPeriod === "1week" ? 1 : undefined,
+        },
+        grid: {
+          color: "rgba(255, 255, 255, 0.2)", // X축 그리드 색상 변경
+        },
       },
       y: {
-        title: { display: true, text: "Price" },
+        title: {
+          display: true,
+          text: "Price",
+          color: "white", // Y축 제목 색상 변경
+        },
         ticks: {
+          color: "white", // Y축 눈금 색상 변경
           callback: (value) => `${value.toLocaleString()}`,
+        },
+        grid: {
+          color: "rgba(255, 255, 255, 0.2)", // Y축 그리드 색상 변경
         },
       },
     },
