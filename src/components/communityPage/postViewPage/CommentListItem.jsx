@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import UserProfile from "../../common/UserProfile";
 import PropTypes from "prop-types";
-
+import CommentDate from "./CommentDate";
 /*
 
 CommentListItem.jsx
@@ -40,6 +40,9 @@ function CommentListItem(props) {
           userId={comment.userId}
         />
         <CommentText>{comment.content}</CommentText>
+        <div>
+          <CommentDate comment={comment} />
+        </div>
       </Div>
     </Box>
   );

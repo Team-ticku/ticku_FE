@@ -16,30 +16,28 @@ function WriteComment({ postId, setPost }) {
   const userId = localStorage.getItem("userId");
 
   const handleCommentSubmit = async () => {
-    // userId가 없으면 로그인되지 않은 상태
     if (!userId) {
       alert("로그인 후 댓글을 작성할 수 있습니다.");
       return;
     }
 
-    // 댓글이 비어있는지 확인
     if (!comment.trim()) {
       alert("댓글을 입력하세요.");
       return;
     }
 
     try {
-      // 댓글을 서버로 전송
-      const response = await axios.post(
-        `http://localhost:5000/community/${postId}/comments`,
-        {
-          userId: userId,
-          content: comment,
-        }
-      );
+      await axios.post(`http://localhost:5000/community/${postId}/comments`, {
+        userId,
+        content: comment,
+      });
 
-      // 댓글 추가 후 최신 게시글 데이터로 갱신
-      setPost(response.data);
+      // 댓글 등록 후 서버에서 최신 데이터 가져오기
+      const updatedPost = await axios.get(
+        `http://localhost:5000/community/${postId}`
+      );
+      setPost(updatedPost.data);
+
       setComment("");
     } catch (err) {
       console.error("댓글 추가 오류:", err);
@@ -53,6 +51,7 @@ function WriteComment({ postId, setPost }) {
         value={comment}
         placeholder="댓글을 입력하세요."
         background="#1c2f43a5"
+        color="#ffffff"
         onChange={(event) => setComment(event.target.value)}
       />
       <Button

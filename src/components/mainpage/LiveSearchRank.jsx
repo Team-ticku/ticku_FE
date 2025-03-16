@@ -17,7 +17,7 @@ const Box = styled.div`
 
 const SearchRankText = styled.div`
   width: 100%;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 5px;
   margin-right: 10px;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -10,18 +10,26 @@ const Div = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   padding: 5px 20px;
 `;
 
+const Box = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+  gap: 10px;
+`;
 const PictureBox = styled.div`
   display: flex;
   height: 48px;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  width: 45%;
   cursor: pointer;
-  flex: 1;
 `;
 
 const Picture = styled.img`
@@ -43,9 +51,32 @@ const Check = styled.img`
   height: 24px;
 `;
 
-function BottomBar({ handleImageChange, handleAnonymousChange, anonymous }) {
+const AnonymousBox = styled.div`
+  display: flex;
+  height: 48px;
+  flex-direction: row;
+  align-items: center;
+  width: 45%;
+  cursor: pointer;
+  gap: 10px;
+`;
+
+function BottomBar({
+  handleImageChange,
+  handleAnonymousChange,
+  anonymous,
+  value,
+}) {
   const [imageName, setImageName] = useState("사진");
   const [imageSelected, setImageSelected] = useState(false);
+
+  useEffect(() => {
+    // value가 변경되었을 때, 초기 한 번만 실행
+    if (value) {
+      setImageName(value);
+      setImageSelected(true);
+    }
+  }, []); // 빈 배열을 전달하여 처음 한 번만 실행되도록 함
 
   const handleImageClick = () => {
     const input = document.createElement("input");
@@ -59,7 +90,7 @@ function BottomBar({ handleImageChange, handleAnonymousChange, anonymous }) {
       if (file) {
         setImageName(file.name);
         setImageSelected(true);
-        handleImageChange(file);
+        handleImageChange(file); // 부모 컴포넌트에 이미지 변경 전달
       }
     };
   };
@@ -81,16 +112,18 @@ function BottomBar({ handleImageChange, handleAnonymousChange, anonymous }) {
         />
         <StyledText>{imageName}</StyledText>
       </PictureBox>
-      <PictureBox onClick={handleCheckClick} style={{ paddingLeft: 120 }}>
-        <Check
-          src={
-            anonymous
-              ? "../../../../public/images/check-box-fill.png"
-              : "../../../../public/images/check-box.png"
-          }
-        />
-        <StyledText>익명</StyledText>
-      </PictureBox>
+      <AnonymousBox onClick={handleCheckClick}>
+        <Box>
+          <Check
+            src={
+              anonymous
+                ? "../../../../public/images/check-box-fill.png"
+                : "../../../../public/images/check-box.png"
+            }
+          />
+          <StyledText>익명</StyledText>
+        </Box>
+      </AnonymousBox>
     </Div>
   );
 }

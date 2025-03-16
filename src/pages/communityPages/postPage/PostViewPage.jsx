@@ -6,7 +6,7 @@ import BottomNavBar from "../../../components/common/bottomNavBars/BottomNavBar"
 import PostBox from "../../../components/communityPage/postViewPage/PostBox";
 import WriteComment from "../../../components/communityPage/postViewPage/WriteComment";
 import CommentList from "../../../components/communityPage/postViewPage/CommentList";
-import BackButton from "../../../components/common/BackButton";
+import Topbar from "../../../components/communityPage/postViewPage/Topbar";
 
 const Div = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ function PostViewPage() {
         console.log(response.data);
         setPost(response.data);
       } catch (err) {
-        setError("게시글을 불러오는 중 오류가 발생했습니다.");
+        setError("게시글을 불러오는 중 오류가 발생했습니다.", err);
       } finally {
         setLoading(false);
       }
@@ -51,7 +51,7 @@ function PostViewPage() {
       <BottomNavBar />
       <Div>
         <Header>
-          <BackButton width={29} height={29} link={"/communityposts"} />
+          <Topbar post={post} />
         </Header>
         <PostBox post={post} />
         <WriteComment postId={postId} setPost={setPost} />

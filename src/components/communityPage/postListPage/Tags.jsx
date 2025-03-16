@@ -41,15 +41,15 @@ const TagText = styled.p`
 function getTagColor(tag) {
   switch (tag) {
     case "일상":
-      return "#FDA9AB";
+      return "#644ca2d1";
     case "질문":
-      return "#DAADDA";
+      return "#3e77e9ca";
     case "정보/분석":
-      return "#97D09D";
+      return "#ff5852d0";
     case "포트폴리오":
-      return "#FFD885";
+      return "#4fc775d1";
     case "종목 추천":
-      return "#B2DADF";
+      return "#ffdb28bf";
     default:
       return "#607D8B";
   }
@@ -58,17 +58,17 @@ function getTagColor(tag) {
 function getTagHoverColor(tag) {
   switch (tag) {
     case "일상":
-      return "#F79B9B";
+      return "#644ca2";
     case "질문":
-      return "#C59EC1";
+      return "#3e77e9";
     case "정보/분석":
-      return "#7DBA7D";
+      return "#ff5852";
     case "포트폴리오":
-      return "#FFB94D";
+      return "#4fc775";
     case "종목 추천":
-      return "#9DC8D7";
+      return "#ffdb28";
     default:
-      return "#A0B0B5";
+      return "#607D8B";
   }
 }
 

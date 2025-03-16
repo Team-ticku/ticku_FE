@@ -8,6 +8,7 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 100px;
+  align-items: center;
 `;
 
 const Box = styled.div`
@@ -16,15 +17,17 @@ const Box = styled.div`
   flex-direction: column;
 `;
 
-const PortfolioText = styled.div`
-  font-size: 21px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  margin-left: 1px;
+const PortfolioText = styled.p`
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 10px;
+  width: 280px;
+  padding-left: 30px;
 `;
 
 const PortfoliotBox = styled.div`
-  height: 180px;
+  height: 150px;
   border: 1px solid #1c2f43a5;
   border-radius: 10px;
   background-color: #1c2f43a5;
@@ -136,7 +139,7 @@ function MainPortfolio() {
   return (
     <Div>
       <Box>
-        <PortfolioText>나의 대표 포트폴리오</PortfolioText>
+        <PortfolioText>📌 나의 대표 포트폴리오</PortfolioText>
         <PortfoliotBox>
           {tickers.length === 0 ? (
             <AddPortfolioText>
