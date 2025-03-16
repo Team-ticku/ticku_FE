@@ -29,18 +29,16 @@ const Wrap = styled.div`
   animation-delay: ${(props) => props.animationDelay || "0s"};
 `;
 
-const Character = styled.div`
-  background-color: #74a9d8;
+const Character = styled.img`
   border-radius: 50%;
   width: 50px;
   height: 50px;
 `;
 const Explain = styled.div`
-  background-color: white;
+  background-color: #ffffff;
   color: black;
   box-sizing: border-box;
   border-radius: 20px;
-  border: 1px solid #b2c4df;
   padding: 13px;
   max-width: ${(props) => props.maxWidth || "260px"};
 `;
@@ -82,7 +80,7 @@ export default function Instruction({
     >
       <ExArea width={width} height={height} alignSelf={alignSelf}></ExArea>
       <ExSpeech alignItems={alignItems}>
-        <Character />
+        <Character src="/images/ticko_profile.png" />
         <Explain maxWidth={maxWidth}>{context}</Explain>
       </ExSpeech>
     </Wrap>
