@@ -170,7 +170,7 @@ const comList = [
         animationDelay="1s"
         width="320px"
         height="250px"
-        maxWidth="285px"
+        maxWidth="260px"
         flexDirection="column-reverse"
         alignItems="end"
       ></Instruction>
