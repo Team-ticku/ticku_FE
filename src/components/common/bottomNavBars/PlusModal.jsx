@@ -19,12 +19,12 @@ const ModalContainer = styled.div`
   align-items: center;
   position: fixed;
   right: 0;
-  bottom: 65px;
+  bottom: 66px;
   z-index: 2;
-  background-color: white;
+  background-color: #0d1b2a;
   width: 130px;
   height: 175px;
-  border: 2px solid #b2c4df;
+  border: 2px solid #353c45;
   border-radius: 10px 10px 0 10px;
   box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
     rgba(42, 51, 69, 0.04) -1px -1px 1px -0.5px,
@@ -47,7 +47,7 @@ const GridMenu = styled.div`
   justify-content: center;
   flex: 33%;
   width: 100%;
-  border-bottom: 1px solid #b2c4df;
+  border-bottom: 1px solid #353c45;
 `;
 const GridMenuLast = styled(GridMenu)`
   border-bottom: none;
@@ -63,7 +63,7 @@ const ClickedGridMenuName = styled.div`
   padding-left: 8px;
   font-size: 12px;
   font-weight: bold;
-  color: #111111;
+  color: #00ffc4;
 `;
 
 export default function PlusModal({ isOpen, modalClose }) {
