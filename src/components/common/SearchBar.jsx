@@ -14,13 +14,16 @@ const Div = styled.div`
 `;
 
 const Box = styled.div`
-  background-color: #eeeded;
+  background-color: #1c2f43a5;
   display: flex;
   flex-direction: row;
   align-items: center;
   border-radius: 30px;
   height: 50px;
   width: 300px;
+  ::placeholder {
+    color: #d3d3d376;
+  }
 `;
 
 const SearchIcon = styled.img`
@@ -39,13 +42,14 @@ const StyledTextInput = styled.input`
   background-color: transparent;
   border: none;
   outline: none;
+  color: white;
 `;
 
 const SearchResults = styled.ul`
   position: absolute;
   font-size: 18px;
   top: 55px;
-  background: white;
+  background: #1c2f43;
   border-radius: 10px;
   width: 250px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
