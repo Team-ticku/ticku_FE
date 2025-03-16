@@ -50,13 +50,11 @@ const StockInfo = styled.div`
 const StockRank = styled.p`
   font-size: 18px;
   font-weight: 700;
-  /* color: #374151; */
 `;
 
 const StockName = styled.p`
   font-size: 16px;
   font-weight: 600;
-  /* color: #1f2937; */
   flex: 1 0 80px; /* 길이에 맞춰서 flex 크기 조절 */
   white-space: nowrap;
   overflow: hidden;
@@ -66,7 +64,6 @@ const StockName = styled.p`
 const StockPrice = styled.p`
   font-size: 13px;
   font-weight: 700;
-  /* color: #111827; */
   flex: 0 1 80px; /* 가격의 고정된 크기 */
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -105,12 +102,16 @@ const RankingItem = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 20px;
-  padding: 5px 0;
-  border-bottom: 1px solid #3e5671;
+  padding: 5px;
+  border-radius: 10px;
   cursor: pointer;
   &:hover {
-    background-color: #f0f0f0;
+    background-color: #354d66ba;
   }
+`;
+const RankingItemWrap = styled.div`
+  border-bottom: 1px solid #3e5671;
+  padding: 3px 0;
 `;
 
 const LiveSearchRank = () => {
@@ -166,12 +167,16 @@ const LiveSearchRank = () => {
         </SearchBar>
         <FullRanking show={showRanking}>
           {rankings.map((stock, idx) => (
-            <RankingItem key={idx} onClick={() => handleItemClick(stock)}>
-              <StockRank>{stock.rank}.</StockRank>
-              <StockName title={stock.name}>{stock.name}</StockName>
-              <StockPrice>{stock.price ? `${stock.price}원` : "-"}</StockPrice>
-              <StockRatio ratio={stock.ratio}>{stock.ratio}</StockRatio>
-            </RankingItem>
+            <RankingItemWrap key={idx}>
+              <RankingItem key={idx} onClick={() => handleItemClick(stock)}>
+                <StockRank>{stock.rank}.</StockRank>
+                <StockName title={stock.name}>{stock.name}</StockName>
+                <StockPrice>
+                  {stock.price ? `${stock.price}원` : "-"}
+                </StockPrice>
+                <StockRatio ratio={stock.ratio}>{stock.ratio}</StockRatio>
+              </RankingItem>
+            </RankingItemWrap>
           ))}
         </FullRanking>
       </Box>
