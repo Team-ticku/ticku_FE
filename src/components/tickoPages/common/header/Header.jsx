@@ -11,6 +11,7 @@ const HeaderContainer = styled.div`
   background-color: #0d1b2a;
   align-items: center;
   z-index: 1;
+  padding: 5px;
 `;
 
 export default function Header({ link }) {
