@@ -68,7 +68,8 @@ export default function BottomNavBar({ display }) {
       setActiveNav(2);
     } else if (
       location.pathname.startsWith("/communityposts") ||
-      location.pathname === "/communitywrite"
+      location.pathname === "/communitywrite" ||
+      location.pathname.startsWith("/editpost")
     ) {
       setActiveNav(4);
     } else if (location.pathname === "/mypage") {
