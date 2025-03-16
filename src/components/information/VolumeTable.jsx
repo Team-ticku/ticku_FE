@@ -17,7 +17,6 @@ const Table = styled.table`
 
 // 테이블 헤더 셀 스타일
 const Th = styled.th`
-  /* background-color: rgba(178, 196, 223, 0.22); 헤더 배경색 */
   padding: 8px 10px;
   border-bottom: 1px solid #394a5d; /* 하단 테두리 */
   text-align: left; /* 왼쪽 정렬 */
@@ -38,10 +37,10 @@ const Td = styled.td`
     `
     color: ${
       props.value && props.value.startsWith("+")
-        ? "red"
+        ? "#ff5656"
         : props.value && props.value.startsWith("-")
-        ? "blue"
-        : "red" // 기본 색상 (옵션)
+        ? "#43aaff"
+        : "#ff6363" // 기본 색상 (옵션)
     };
   `}
 `;

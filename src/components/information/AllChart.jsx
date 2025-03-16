@@ -203,7 +203,7 @@ function AllChart({ stockCode, period }) {
           margin={{
             top: 20,
             right: 30,
-            left: 10, // 왼쪽 margin도 30으로 변경
+            left: 10,
             bottom: 5,
           }}
         >
@@ -213,10 +213,11 @@ function AllChart({ stockCode, period }) {
             type="category"
             interval={period === "3m" ? 13 : "preserveStartEnd"}
             padding={{ left: padding, right: padding }} // 동적 패딩 적용
+            tick={{ fontSize: 10, fill: "white" }}
           />
           <YAxis
             domain={yAxisDomain()}
-            tick={{ fontSize: 10 }} // Y축 tick 글자 크기 조정
+            tick={{ fontSize: 10, fill: "white" }} // Y축 tick 글자 크기 조정
           />
           <Tooltip content={<CustomTooltip />} />
           <Bar
