@@ -5,7 +5,8 @@ import Information from "../InformationPages/InformationPage";
 import StockcalenPages from "../stockcalendarPages/StockcalenPages";
 import PortfolioMainPage from "../portfolioPages/PortfolioMainPage";
 import TickoPage from "../tickoPages/TickoPage";
-import PostListPage from "../communityPages/postListPage/PostListPage";
+
+import PostWritePage from "../communityPages/postWritePage/PostWritePage";
 import Instruction from "../../components/startPage/Instruction";
 import ExPageForm from "../../components/startPage/ExPageForm";
 
@@ -59,8 +60,8 @@ const comList = [
         context="내가 설정한 대표 포트폴리오가 여기에 뜰 거야!"
         animationDelay="3s"
         flexDirection="column-reverse"
-        width="220px"
-        height="50px"
+        width="195px"
+        height="35px"
         alignItems="end"
       ></Instruction>,
     ],
@@ -96,12 +97,12 @@ const comList = [
       ></Instruction>,
       <Instruction
         key="Calen_2"
-        bottom="220px"
-        left="20px"
-        context="그 날짜가 배당일인 기업 목록이 나올 거야!"
+        bottom="240px"
+        left="15px"
+        context="그 날짜가 배당락일인 기업 목록으로 바뀔 거야!"
         animationDelay="2s"
-        width="340px"
-        height="60px"
+        width="165px"
+        height="35px"
         alignItems="end"
       ></Instruction>,
     ],
@@ -111,7 +112,7 @@ const comList = [
     instruction: [
       <Instruction
         key="Portfolio_1"
-        top="75px"
+        top="70px"
         left="36px"
         context="여길 누르면 너만의 포트폴리오를 만들 수 있어~"
         animationDelay="1s"
@@ -122,8 +123,8 @@ const comList = [
       ></Instruction>,
       <Instruction
         key="Portfolio_2"
-        bottom="280px"
-        left="35px"
+        bottom="278px"
+        left="33px"
         context="만든 포트폴리오를 저장하고 싶으면 꼭 저장하기를 눌러줘!"
         animationDelay="4s"
         flexDirection="column-reverse"
@@ -133,7 +134,7 @@ const comList = [
       ></Instruction>,
       <Instruction
         key="Portfolio_3"
-        bottom="200px"
+        bottom="194px"
         left="36px"
         context="만든 포트폴리오가 마음에 들지 않으면 삭제할 수 있어!"
         animationDelay="7s"
@@ -144,40 +145,31 @@ const comList = [
     ],
   },
   {
-    page: <PostListPage display="none" />,
-    instruction: [
+    page: <PostWritePage display="none" />,
+    instruction: (
       <Instruction
         key="PostList_1"
-        top="110px"
-        left="20px"
-        context="얘기하고 싶은 주제를 선택해서 글을 작성해봐~"
+        top="65px"
+        left="95px"
+        context="얘기하고 싶은 주제로 사람들과 소통할 수 있어!"
         animationDelay="1s"
-        width="60px"
+        width="200px"
         height="40px"
-      ></Instruction>,
-      <Instruction
-        key="PostList_2"
-        bottom="270px"
-        right="10px"
-        context="실시간으로 다른 사람들과 소통할 수 있어!"
-        animationDelay="3s"
-        width="50px"
-        height="40px"
-        alignSelf="flex-end"
-      ></Instruction>,
-    ],
+        maxWidth="200px"
+      ></Instruction>
+    ),
   },
   {
     page: <TickoPage display="none" />,
     instruction: (
       <Instruction
         key="Portfolio_1"
-        bottom="98px"
-        left="20px"
+        bottom="120px"
+        left="30px"
         context="주식 초보가 이해하기 쉽게 티코가 설명해줄게! 궁금한 게 생기면 날 보러와~"
         animationDelay="1s"
-        width="345px"
-        height="270px"
+        width="320px"
+        height="250px"
         maxWidth="285px"
         flexDirection="column-reverse"
         alignItems="end"
