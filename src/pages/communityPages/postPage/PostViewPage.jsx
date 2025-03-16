@@ -15,6 +15,9 @@ const Div = styled.div`
 
   padding-bottom: 65px; // 여백 추가 (댓글이나 내용이 잘리는 것을 방지)
 `;
+const Header = styled.div`
+  padding-top: 15px;
+`;
 function PostViewPage() {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
@@ -47,9 +50,9 @@ function PostViewPage() {
     <>
       <BottomNavBar />
       <Div>
-        <div>
+        <Header>
           <BackButton width={29} height={29} link={"/communityposts"} />
-        </div>
+        </Header>
         <PostBox post={post} />
         <WriteComment postId={postId} setPost={setPost} />
         <CommentList comments={post.comments} />

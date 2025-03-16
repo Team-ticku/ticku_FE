@@ -52,13 +52,13 @@ function WriteComment({ postId, setPost }) {
         height={40}
         value={comment}
         placeholder="댓글을 입력하세요."
-        background="#EEEEEE"
+        background="#1c2f43a5"
         onChange={(event) => setComment(event.target.value)}
       />
       <Button
         height={40}
         title="등록"
-        background="#B2C4DF"
+        background="#00ffc3b3"
         onClick={handleCommentSubmit}
       />
     </Div>

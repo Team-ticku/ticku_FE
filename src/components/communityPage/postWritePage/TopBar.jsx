@@ -6,7 +6,7 @@ import BackButton from "../../common/BackButton";
 const Div = styled.div`
   width: 100vw;
   height: 50px;
-  background-color: #b2c4df;
+  background-color: #0d1b2a;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,7 +29,13 @@ function TopBar({ handleSubmit }) {
         link="/communityposts"
       />
       <StyledText>글 쓰기</StyledText>
-      <Button title="완료" fontsize={22} width={70} onClick={handleSubmit} />
+      <Button
+        title="완료"
+        fontsize={22}
+        width={70}
+        onClick={handleSubmit}
+        background="transparent"
+      />
     </Div>
   );
 }

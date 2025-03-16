@@ -10,7 +10,7 @@ const Div = styled.div`
 `;
 
 const Box = styled.div`
-  border-bottom: 10px solid #b2c4df22;
+  border-bottom: 10px solid #1c2f43a5;
   margin-bottom: 15px;
 `;
 

@@ -42,7 +42,7 @@ const Modal = styled.div`
   transform: translateX(-50%); /* 가로 중앙 정렬 */
   width: 100%;
   height: 50%; /* 모달의 높이는 50%로 설정 */
-  background-color: white;
+  background-color: #172433;
   border-radius: 80px;
   display: flex;
   justify-content: center;
