@@ -30,7 +30,7 @@ const slideUp = keyframes`
 const Modal = styled.div`
   position: fixed;
   bottom: 0;
-  background-color: #ffffff;
+  background-color: #1c2f43a5;
   width: 100%;
   height: 500px;
   border-radius: 50px 50px 0 0;
@@ -50,7 +50,7 @@ const Title = styled.h2`
   text-align: left;
   margin-left: 65px;
   padding: 0 7px;
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #00ffc4;
   color: #c9c9c9;
 `;
 
@@ -63,7 +63,8 @@ const TitleText = styled.h2`
 const TitleInput = styled.input`
   border: none;
   font-size: 20px;
-  color: #000;
+  background-color: transparent;
+  color: #ffffff;
   width: 100%;
   padding: 5px;
 `;
@@ -81,7 +82,7 @@ const TotalLabel = styled.p`
   width: 150px;
   text-align: left;
   margin: 0; //불필요한 여백 제거
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #00ffc4;
 `;
 
 const TotalInput = styled.p`
@@ -97,7 +98,9 @@ const PercentInput = styled.input`
   padding: 0 10px;
   /* margin-right: 80px; */
   border: none;
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #00ffc4;
+  background-color: transparent;
+  color: #ffffff;
   font-size: 20px;
   /* margin-bottom: 20px; */
   cursor: ${(props) => (props.readOnly ? "not-allowed" : "text")};
@@ -106,11 +109,10 @@ const PercentInput = styled.input`
 
 //InputField와 Percent 표시를 감싸는 컨데이너
 const InputWrapper = styled.div`
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  width:100%
-  padding:5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const InputField2 = styled.input`
@@ -119,9 +121,10 @@ const InputField2 = styled.input`
   border: none;
   margin-left: 57px;
   margin-right: 25px;
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #00ffc4;
   font-size: 20px;
-  color: #000;
+  color: #ffffff;
+  background-color: transparent;
   //margin-top: 10px;
   //margin-bottom: 20px;
 `;
@@ -140,9 +143,10 @@ const PercentInput2 = styled.input`
   width: 45px;
   padding: 0 13px;
   border: none;
-
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #00ffc4;
   font-size: 20px;
+  background-color: transparent;
+  color: #ffffff;
 `;
 
 const AddButtonImage = styled.img`

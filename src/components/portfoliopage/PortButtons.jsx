@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = styled.button`
-  background-color: rgba(178, 196, 223, 0.2);
-
+  background-color: #1c2f43a5;
+  color: #ffffffd2;
   padding: 20px 10px;
   border-radius: 10px;
   border: none;
@@ -11,7 +11,8 @@ const Button = styled.button`
   width: 140px;
   height: 50px;
   text-align: center;
-  line-height: 13px;
+  line-height: 11px;
+  font-size: 17px;
 `;
 
 const ButtonContainer = styled.div`
@@ -68,8 +69,8 @@ const PortButtons = (handleSave) => {
   };
   return (
     <ButtonContainer>
-      <Button onClick={handleCreatePortfolio}> 저장하기</Button>
-      <Button onClick={handleDelete}>삭제하기</Button>
+      <Button onClick={handleCreatePortfolio}>save</Button>
+      <Button onClick={handleDelete}>reset</Button>
       {/* onClick 이벤트 핸들러 추가 */}
     </ButtonContainer>
   );
