@@ -18,7 +18,8 @@ const Introduce = styled.div`
 const StyledP = styled.p`
   font-size: 18px;
   text-align: center;
-  /* font-weight: bold; */
+  font-weight: bold;
+  color: #ffffffe9;
   margin: 10px;
 `;
 
