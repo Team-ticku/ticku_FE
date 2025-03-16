@@ -14,7 +14,7 @@ const StyledTextarea = styled.textarea`
   border: none;
   width: 330px;
   font-size: 19px;
-  color: #1b1a1a;
+  color: white;
   font-weight: 500;
   background: transparent;
   caret-color: #b2c4df;

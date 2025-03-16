@@ -24,9 +24,17 @@ const StyledTextarea = styled.textarea`
   padding: 10px;
   resize: none;
   border: none;
+  color: white;
   margin-left: 25px;
   margin-right: 10px;
   width: 260px;
+
+  &:focus {
+    outline: none; /* 기본 테두리 제거 */
+    border: none; /* 클릭 시 보더 제거 */
+    box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.5); /* 커서 위치에 따른 강조 효과 */
+    cursor: text; /* 커서 추가 */
+  }
 `;
 
 function TextInput({ height, background, placeholder, value, onChange }) {

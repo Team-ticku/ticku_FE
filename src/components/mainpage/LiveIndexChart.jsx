@@ -29,9 +29,10 @@ const Div = styled.div`
   margin-top: 45px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  width: 100%;
-  gap: 30px;
+  width: 390px;
+  gap: 18px;
 `;
 
 const Box = styled.div`
@@ -53,7 +54,7 @@ const Button = styled.button`
       ? "linear-gradient(145deg, #00ffc3bb, #00ebff)" // 활성화된 버튼
       : "linear-gradient(145deg, #00ffc3bb, #00ebff)"};
   color: #fff;
-  padding: 12px 24px;
+  padding: 9px 20px;
   font-size: 16px;
   font-weight: 600;
   border: none;
@@ -115,8 +116,18 @@ const LiveIndexChartBox = styled.div`
 `;
 
 const IndexValue = styled.div`
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bold;
+`;
+
+const TitleText = styled.div`
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  width: 280px;
 `;
 
 const fetchData = async (setData, setLoading, index, period) => {
@@ -268,6 +279,7 @@ function LiveIndexChart() {
 
   return (
     <Div>
+      <TitleText>📈 실시간 지수 차트 📉</TitleText>
       <Box>
         {/* KOSPI / KOSDAQ 버튼 */}
         <ButtonGroup>
