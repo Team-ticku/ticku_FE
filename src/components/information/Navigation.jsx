@@ -21,7 +21,7 @@ const NAVDIV = styled.div`
     left: 20px;
     right: 20px;
     height: 2px;
-    background-color: #b2c4df;
+    background-color: #b2c4df50;
   }
 `;
 
@@ -47,43 +47,43 @@ const navButtons = [
   {
     icon: chartIcon,
     text: "차트",
-    bgColor: "#F8E7F7",
-    activeBgColor: "#f5b3f0",
+    bgColor: "#1c2f43a5",
+    activeBgColor: "#F8E7F7",
     link: "chart",
   },
   {
     icon: financeIcon,
     text: "기업 재무",
-    bgColor: "#dde6ac",
-    activeBgColor: "#d6e480",
+    bgColor: "#1c2f43a5",
+    activeBgColor: "#dde6ac",
     link: "finance",
   },
   {
     icon: volumeIcon,
     text: "거래량",
-    bgColor: "#B2DFBF",
-    activeBgColor: "#69e26d",
+    bgColor: "#1c2f43a5",
+    activeBgColor: "#B2DFBF",
     link: "volume",
   },
   {
     icon: newsIcon,
     text: "뉴스",
-    bgColor: "#BDB2DF",
-    activeBgColor: "#9c74e6",
+    bgColor: "#1c2f43a5",
+    activeBgColor: "#BDB2DF",
     link: "news",
   },
   {
     icon: dividendIcon,
     text: "배당",
-    bgColor: "#B2D1DF",
-    activeBgColor: "#7dcee9",
+    bgColor: "#1c2f43a5",
+    activeBgColor: "#B2D1DF",
     link: "dividend",
   },
   {
     icon: resultIcon,
     text: "실적",
-    bgColor: "#FDC7AC",
-    activeBgColor: "#fdc168",
+    bgColor: "#1c2f43a5",
+    activeBgColor: "#FDC7AC",
     link: "result",
   },
 ];

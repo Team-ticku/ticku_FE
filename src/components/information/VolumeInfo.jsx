@@ -15,6 +15,7 @@ const TabP = styled.p`
   font-weight: bold;
   font-size: 20px;
   margin-top: 8px;
+  margin-bottom: 0;
 `;
 
 function VolumeInfo(props) {

@@ -139,10 +139,10 @@ function AllChart({ stockCode, period }) {
         <div
           className="custom-tooltip"
           style={{
-            backgroundColor: "white",
-            border: "1px solid #ccc",
+            backgroundColor: "#1c2f43",
+            border: "1px solid #1c2f43",
             padding: "10px",
-            borderRadius: "5px",
+            borderRadius: "10px",
           }}
         >
           <p>{`날짜: ${label}`}</p>
