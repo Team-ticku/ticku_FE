@@ -37,7 +37,7 @@ const TickerList = styled.div`
   position: absolute;
   top: 10px;
   right: 12px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #394a5db1;
   padding: 5px 15px;
   border-radius: 8px;
   font-size: 12px;
@@ -85,6 +85,15 @@ const PortBox = ({ ticker, percent, link }) => {
               "rgba(255, 159, 64, 0.6)",
             ],
             borderWidth: 1,
+            borderColor: [
+              // 각 데이터 조각의 색상 지정
+              "rgba(255, 99, 132, 0.6)",
+              "rgba(54, 162, 235, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(153, 102, 255, 0.6)",
+              "rgba(255, 159, 64, 0.6)",
+            ],
           },
         ],
       });
