@@ -3,6 +3,7 @@ import styled from "styled-components";
 import UserAndTag from "./UserAndTag";
 import Post from "./Post";
 import Stats from "../postListPage/Stats";
+import PostDate from "../postListPage/PostDate";
 
 const Div = styled.div`
   display: flex;
@@ -40,6 +41,7 @@ function PostBox(props) {
             commentsCount={post.comments.length}
           />
         </div>
+        <PostDate post={post} />
       </Div>
     </Box>
   );

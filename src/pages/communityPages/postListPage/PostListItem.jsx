@@ -3,6 +3,7 @@ import styled from "styled-components";
 import UserProfile from "../../../components/common/UserProfile";
 import Stats from "../../../components/communityPage/postListPage/Stats";
 import Tags from "../../../components/communityPage/postListPage/Tags";
+import PostDate from "../../../components/communityPage/postListPage/PostDate";
 
 const Div = styled.div`
   display: flex;
@@ -72,7 +73,7 @@ const TitleText = styled.p`
 const ContentText = styled.p`
   font-size: 16px;
   font-weight: 400;
-  color: #666;
+  color: #c3c3c3;
   white-space: normal;
   word-wrap: break-word;
   margin-top: 6px;
@@ -119,6 +120,7 @@ function PostListItem(props) {
           {post.image && <Thumbnail src={post.image} />}
         </PictureContainer>
       </ContextContainer>
+      <PostDate post={post} />
     </Div>
   );
 }
