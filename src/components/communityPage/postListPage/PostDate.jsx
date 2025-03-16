@@ -20,15 +20,21 @@ const Spacer = styled.div`
 `;
 
 function PostDate({ post }) {
-  // UTC 시간을 한국 시간으로 변환
-  const postTime = new Date(post.updatedAt);
-  const koreaTimeOffset = 9 * 60 * 60 * 1000; // 한국은 UTC+9
-  postTime.setMinutes(postTime.getMinutes() + koreaTimeOffset);
+  // 1. Date 객체로 변환 (post.updatedAt이 ISO 8601 형식 문자열이라고 가정)
+  const updatedAtDate = new Date(post.createdAt);
 
-  // 날짜와 시간 추출
-  const date = postTime.toISOString().slice(0, 10); // 날짜 부분 (YYYY-MM-DD)
-  const hour = postTime.getHours().toString().padStart(2, "0"); // 시간 부분 (HH)
-  const min = postTime.getMinutes().toString().padStart(2, "0"); // 분 부분 (MM)
+  // 2. 한국 시간으로 변환 (getTimezoneOffset()은 분 단위로 반환하므로, 9시간을 분으로 환산)
+  const kstDate = new Date(updatedAtDate.getTime() + 9 * 60 * 60 * 1000);
+
+  // 3. 년, 월, 일, 시, 분 추출 (padStart로 2자리 맞추기)
+  const year = kstDate.getUTCFullYear();
+  const month = String(kstDate.getUTCMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1
+  const day = String(kstDate.getUTCDate()).padStart(2, "0");
+  const hour = String(kstDate.getUTCHours()).padStart(2, "0");
+  const min = String(kstDate.getUTCMinutes()).padStart(2, "0");
+
+  const date = `${year}-${month}-${day}`;
+
   return (
     <Div>
       <StyledText>작성일 : {date}</StyledText>
