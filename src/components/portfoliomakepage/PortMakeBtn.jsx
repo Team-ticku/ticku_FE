@@ -2,9 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const MakeDiv = styled.div`
-  width: 390px;
+  /* width: 390px; */
+  width: 100%;
   position: fixed;
   bottom: 65px;
+  left: 0;
+  z-index: 3;
 `;
 
 const MakeBtn = styled.button`
@@ -19,7 +22,7 @@ const MakeBtn = styled.button`
   cursor: pointer;
   &:disabled {
     cursor: not-allowed;
-    background-color: #1c2f43a5;
+    background-color: #162a3f;
   }
 `;
 

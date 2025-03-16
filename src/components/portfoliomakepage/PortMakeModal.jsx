@@ -37,7 +37,20 @@ const Modal = styled.div`
   text-align: center;
   z-index: 2;
   animation: ${slideUp} 0.3s ease-out forwards;
-  overflow: auto;
+  overflow-y: hidden;
+  display: flex; // 추가
+  flex-direction: column; // 추가
+`;
+
+const ModalSubContent = styled.div`
+  padding: 20px 0 16px 65px; // Title과 TotalContainer를 위한 패딩
+  /* background-color: #1c2f43a5; // 배경색 (Modal과 동일) */
+`;
+
+const ModalContent = styled.div`
+  flex: 1; // 남은 공간을 모두 차지하도록 설정
+  overflow-y: auto; // 내용이 넘칠 경우 스크롤
+  padding-bottom: 80px; // 하단 여백 (제작하기 버튼 높이 고려)
 `;
 
 //이름 입력창
@@ -45,7 +58,6 @@ const Modal = styled.div`
 const Title = styled.h2`
   width: 60%;
   font-size: 24px;
-  margin-top: 45px;
   margin-bottom: 16px;
   text-align: left;
   margin-left: 65px;
@@ -125,8 +137,6 @@ const InputField2 = styled.input`
   font-size: 20px;
   color: #ffffff;
   background-color: transparent;
-  //margin-top: 10px;
-  //margin-bottom: 20px;
 `;
 const PercentInputContainer2 = styled.div`
   position: relative;
@@ -157,6 +167,7 @@ const AddButtonImage = styled.img`
   display: flex;
   margin-top: 15px;
   margin-bottom: 20px;
+  padding-bottom: 50px;
   &:hover {
     opacity: 0.8;
   }
@@ -236,7 +247,7 @@ function PortMakeModal({ isOpen, onClose }) {
   }, [inputFields]);
 
   // isFormValid 변수 추가
-  const isFormValid = name.trim() !== "" && totalPercent <= 100;
+  const isFormValid = name.trim() !== "" && totalPercent === 100;
   console.log("isFormValid:", isFormValid);
 
   //제작하기 버튼 클릭 시 포트폴리오 데이터를 localStorage에 저장 후 Portfoliopage로 이동
@@ -257,7 +268,8 @@ function PortMakeModal({ isOpen, onClose }) {
     <>
       <Backdrop onClick={() => navigate("/portmn")}>
         <Modal onClick={(e) => e.stopPropagation()}>
-          <>
+          <ModalSubContent />
+          <ModalContent>
             <Title>
               <TitleText></TitleText>
               <TitleInput
@@ -314,14 +326,11 @@ function PortMakeModal({ isOpen, onClose }) {
               }
             />
             {/* 제작하기 버튼 */}
-            <PortMakeBtn
-              disabled={!isFormValid}
-              onClick={handleCreatePortfolio}
-            >
-              제작하기
-            </PortMakeBtn>
-          </>
+          </ModalContent>
         </Modal>
+        <PortMakeBtn disabled={!isFormValid} onClick={handleCreatePortfolio}>
+          제작하기
+        </PortMakeBtn>
       </Backdrop>
       <BottomNavBar />
     </>
