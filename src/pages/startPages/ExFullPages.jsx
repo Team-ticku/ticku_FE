@@ -55,14 +55,15 @@ const comList = [
       ></Instruction>,
       <Instruction
         key="Main_2"
-        bottom="150px"
-        left="15px"
+        bottom="95px"
+        left="47px"
         context="내가 설정한 대표 포트폴리오가 여기에 뜰 거야!"
         animationDelay="3s"
         flexDirection="column-reverse"
         width="195px"
         height="35px"
         alignItems="end"
+        maxWidth="230px"
       ></Instruction>,
     ],
   },
