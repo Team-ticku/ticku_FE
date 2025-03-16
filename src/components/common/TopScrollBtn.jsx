@@ -5,7 +5,7 @@ const Btn = styled.button`
   position: fixed;
   bottom: 100px;
   right: 30px;
-  background-color: #b2c4df;
+  background-color: transparent;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -18,8 +18,8 @@ const Btn = styled.button`
 `;
 
 const Image = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   /* object-position: 0px 10px; */
   display: block;
@@ -36,7 +36,7 @@ function ScrollToTopButton({ display }) {
   return (
     <>
       <Btn onClick={scrollToTop} display={display}>
-        <Image src="../public/images/TopScrollBtn2.png"></Image>
+        <Image src="../public/images/top-scroll-btn.png"></Image>
       </Btn>
     </>
   );
