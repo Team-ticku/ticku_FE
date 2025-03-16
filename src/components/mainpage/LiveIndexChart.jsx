@@ -201,7 +201,14 @@ function LiveIndexChart() {
 
   const chartOptions = {
     responsive: true,
-    plugins: { tooltip: { mode: "index", intersect: false } },
+    plugins: {
+      tooltip: { mode: "index", intersect: false },
+      legend: {
+        labels: {
+          color: "white", // KOSPI, KOSDAQ 범례 색상을 흰색으로 변경
+        },
+      },
+    },
     scales: {
       x: {
         title: {
