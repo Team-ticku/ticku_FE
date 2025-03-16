@@ -50,7 +50,7 @@ const Title = styled.h2`
   text-align: left;
   margin-left: 65px;
   padding: 0 7px;
-  border-bottom: solid 2px #00ffc4;
+  border-bottom: solid 2px #b2c4df50;
   color: #c9c9c9;
 `;
 
@@ -82,7 +82,7 @@ const TotalLabel = styled.p`
   width: 150px;
   text-align: left;
   margin: 0; //불필요한 여백 제거
-  border-bottom: solid 2px #00ffc4;
+  border-bottom: solid 2px #b2c4df50;
 `;
 
 const TotalInput = styled.p`
@@ -98,7 +98,7 @@ const PercentInput = styled.input`
   padding: 0 10px;
   /* margin-right: 80px; */
   border: none;
-  border-bottom: solid 2px #00ffc4;
+  border-bottom: solid 2px #b2c4df50;
   background-color: transparent;
   color: #ffffff;
   font-size: 20px;
@@ -121,7 +121,7 @@ const InputField2 = styled.input`
   border: none;
   margin-left: 57px;
   margin-right: 25px;
-  border-bottom: solid 2px #00ffc4;
+  border-bottom: solid 2px #b2c4df50;
   font-size: 20px;
   color: #ffffff;
   background-color: transparent;
@@ -143,7 +143,7 @@ const PercentInput2 = styled.input`
   width: 45px;
   padding: 0 13px;
   border: none;
-  border-bottom: solid 2px #00ffc4;
+  border-bottom: solid 2px #b2c4df50;
   font-size: 20px;
   background-color: transparent;
   color: #ffffff;
