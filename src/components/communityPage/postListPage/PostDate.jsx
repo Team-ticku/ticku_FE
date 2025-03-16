@@ -20,10 +20,15 @@ const Spacer = styled.div`
 `;
 
 function PostDate({ post }) {
-  const date = post.updatedAt.slice(0, 10); // 날짜 부분
-  const hour = post.updatedAt.slice(11, 13); // 시간 부분
-  const min = post.updatedAt.slice(14, 16);
+  // UTC 시간을 한국 시간으로 변환
+  const postTime = new Date(post.updatedAt);
+  const koreaTimeOffset = 9 * 60 * 60 * 1000; // 한국은 UTC+9
+  postTime.setMinutes(postTime.getMinutes() + koreaTimeOffset);
 
+  // 날짜와 시간 추출
+  const date = postTime.toISOString().slice(0, 10); // 날짜 부분 (YYYY-MM-DD)
+  const hour = postTime.getHours().toString().padStart(2, "0"); // 시간 부분 (HH)
+  const min = postTime.getMinutes().toString().padStart(2, "0"); // 분 부분 (MM)
   return (
     <Div>
       <StyledText>작성일 : {date}</StyledText>

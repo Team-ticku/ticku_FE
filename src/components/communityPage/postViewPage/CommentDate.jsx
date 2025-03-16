@@ -21,9 +21,14 @@ const Spacer = styled.div`
 `;
 
 function CommentDate({ comment }) {
-  const date = comment.createdAt.slice(0, 10); // 날짜 부분
-  const hour = comment.createdAt.slice(11, 13); // 시간 부분
-  const min = comment.createdAt.slice(14, 16);
+  const postTime = new Date(comment.createdAt);
+  const koreaTimeOffset = 9 * 60 * 60 * 1000; // 한국은 UTC+9
+  postTime.setMinutes(postTime.getMinutes() + koreaTimeOffset);
+
+  // 날짜와 시간 추출
+  const date = postTime.toISOString().slice(0, 10); // 날짜 부분 (YYYY-MM-DD)
+  const hour = postTime.getHours().toString().padStart(2, "0"); // 시간 부분 (HH)
+  const min = postTime.getMinutes().toString().padStart(2, "0"); // 분 부분 (MM)
 
   return (
     <Div>
