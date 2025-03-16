@@ -13,7 +13,8 @@ const fadeIn = keyframes`
 `;
 
 const SpeechWrap = styled.div`
-  border: 2px solid #b2c4df;
+  background-color: #1b2f44cd;
+  border: 2px solid #1b2f44cd;
   border-radius: 0 15px 15px 15px;
   padding: 11px 15px;
   max-width: 245px;

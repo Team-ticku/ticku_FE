@@ -28,7 +28,8 @@ const MenuWrap = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  border: 2px solid #b2c4df;
+  background-color: #1b2f44cd;
+  border: 2px solid #1b2f44cd;
   border-radius: 15px;
   padding: 25px 15px;
   gap: 10px 5px;

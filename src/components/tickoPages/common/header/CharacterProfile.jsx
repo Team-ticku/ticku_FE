@@ -7,16 +7,10 @@ const HeaderWrap = styled.div`
 `;
 
 // 더미 - 캐릭터 이미지 배치 공간
-const DummyImage = styled.div`
+const CharacterImg = styled.img`
   width: 35px;
   height: 35px;
-
-  // 나중에 지워질 속성
-  background-color: #c7c7c7;
   border-radius: 50%;
-  font-size: 10px;
-  text-align: center;
-  line-height: 40px;
 `;
 
 const CharacterName = styled.div`
@@ -26,7 +20,7 @@ const CharacterName = styled.div`
 export default function CharacterProfile() {
   return (
     <HeaderWrap>
-      <DummyImage></DummyImage>
+      <CharacterImg src="/images/ticko_profile.png"></CharacterImg>
       <CharacterName>티코</CharacterName>
     </HeaderWrap>
   );
