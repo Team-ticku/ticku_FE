@@ -25,9 +25,9 @@ const PortfolioText = styled.div`
 
 const PortfoliotBox = styled.div`
   height: 180px;
-  border: 1px solid #eeeeee;
+  border: 1px solid #1c2f43a5;
   border-radius: 10px;
-  background-color: #eeeeee;
+  background-color: #1c2f43a5;
   padding: 20px;
   position: relative;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -43,7 +43,7 @@ const AddPortfolioText = styled.div`
 const InnerText = styled.p`
   font-size: 25px;
   font-weight: 500;
-  color: #666666;
+  color: #ffffffab;
 `;
 
 const LegendWrapper = styled.div`
