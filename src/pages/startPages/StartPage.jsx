@@ -114,9 +114,9 @@ export default function StartPage() {
             key={idx}
             borderColor={() => {
               if (idx === curPage) {
-                return "#878787";
+                return "#4c4c4c";
               } else {
-                return "#E4E4E4";
+                return "#b5b5b5";
               }
             }}
           ></Circle>
