@@ -19,17 +19,61 @@ const ChartContainer = styled.div`
   /* background-color: #f8f9fa;  배경색 (선택 사항) */
 `;
 
+// 커스텀 툴팁 컴포넌트
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload; // payload에서 데이터 가져옴
+    return (
+      <div
+        className="custom-tooltip"
+        style={{
+          backgroundColor: "#1c2f43", // 툴팁 배경색
+          border: "1px solid #1c2f43",
+          padding: "10px",
+          borderRadius: "10px",
+          color: "white", // 텍스트 색상
+        }}
+      >
+        <p>{`분기: ${label}`}</p>
+        <p>{`매출액: ${
+          data["매출액(억)"] ? data["매출액(억)"].toLocaleString() : "N/A"
+        } 억`}</p>
+        <p>{`영업이익: ${
+          data["영업이익(억)"] ? data["영업이익(억)"].toLocaleString() : "N/A"
+        } 억`}</p>
+        <p>{`순이익: ${
+          data["순이익(억)"] ? data["순이익(억)"].toLocaleString() : "N/A"
+        } 억`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 function SalesquarterChart({ data }) {
   // 데이터 가공: rechart에 맞는 형태로 변환
 
-  // data가 undefined나 null일 경우 빈 배열로 처리
-  const safeData = data || [];
+  // data가 undefined나 null일 경우 빈 배열로 처리,
+  // 그리고 data 배열의 각 객체가 "category" 속성을 가지는지 확인
+  const safeData =
+    data && Array.isArray(data) && data.every((item) => "category" in item)
+      ? data
+      : [];
 
   const chartData =
     safeData.length > 0
       ? Object.keys(safeData[0])
           .filter((key) => key !== "category")
-          .sort((a, b) => b - a)
+          // 분기 문자열을 숫자로 변환하여 정렬
+          .sort((a, b) => {
+            const [yearA, quarterA] = a.split(".").map(Number);
+            const [yearB, quarterB] = b.split(".").map(Number);
+            if (yearA !== yearB) {
+              return yearA - yearB; // 연도가 다르면 연도 오름차순
+            }
+            return quarterA - quarterB; // 같으면 분기 오름차순
+          })
           .map((quarter) => {
             const quarterData = { quarter };
             safeData.forEach((item) => {
@@ -55,8 +99,8 @@ function SalesquarterChart({ data }) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="quarter" />
-          <Tooltip />
+          <XAxis dataKey="quarter" tick={{ fill: "white" }} reversed />
+          <Tooltip content={<CustomTooltip />} />
           <Legend />
           <Bar dataKey="매출액(억)" fill="#82ca9d" name="매출액" /> {/* 녹색 */}
           <Bar dataKey="영업이익(억)" fill="#8884d8" name="영업이익" />{" "}

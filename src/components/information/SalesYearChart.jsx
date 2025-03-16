@@ -19,17 +19,46 @@ const ChartContainer = styled.div`
   /* background-color: #f8f9fa;  배경색 (선택 사항) */
 `;
 
-function SalesYearChart({ data }) {
-  // 데이터 가공: rechart에 맞는 형태로 변환
+// 커스텀 툴팁 컴포넌트
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload; // payload에서 데이터 가져옴
+    return (
+      <div
+        className="custom-tooltip"
+        style={{
+          backgroundColor: "#1c2f43", // 툴팁 배경색
+          border: "1px solid #1c2f43",
+          padding: "10px",
+          borderRadius: "10px",
+          color: "white", // 텍스트 색상
+        }}
+      >
+        <p>{`연도: ${label}`}</p>
+        <p>{`매출액: ${
+          data["매출액(억)"] ? data["매출액(억)"].toLocaleString() : "N/A"
+        } 억`}</p>
+        <p>{`영업이익: ${
+          data["영업이익(억)"] ? data["영업이익(억)"].toLocaleString() : "N/A"
+        } 억`}</p>
+        <p>{`순이익: ${
+          data["순이익(억)"] ? data["순이익(억)"].toLocaleString() : "N/A"
+        } 억`}</p>
+      </div>
+    );
+  }
 
-  // data가 undefined나 null일 경우 빈 배열로 처리
+  return null;
+};
+
+function SalesYearChart({ data }) {
   const safeData = data || [];
 
   const chartData =
     safeData.length > 0
       ? Object.keys(safeData[0])
           .filter((key) => key !== "category")
-          .sort((a, b) => b - a)
+          .sort((a, b) => a - b)
           .map((year) => {
             const yearData = { year };
             safeData.forEach((item) => {
@@ -55,8 +84,8 @@ function SalesYearChart({ data }) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="year" />
-          <Tooltip />
+          <XAxis dataKey="year" tick={{ fill: "white" }} />
+          <Tooltip content={<CustomTooltip />} />
           <Legend />
           <Bar dataKey="매출액(억)" fill="#82ca9d" name="매출액" /> {/* 녹색 */}
           <Bar dataKey="영업이익(억)" fill="#8884d8" name="영업이익" />{" "}

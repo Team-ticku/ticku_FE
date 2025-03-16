@@ -70,7 +70,17 @@ const Label = styled.span`
   /* color: #777; */
 `;
 
-const Value = styled.span``;
+const Value = styled.span`
+  /* 홈페이지 a 태그 스타일 */
+  a {
+    color: white; /* 글자색을 흰색으로 */
+    text-decoration: none; /* 밑줄 제거 (선택 사항) */
+
+    &:hover {
+      text-decoration: underline; /* 마우스 오버 시 밑줄 (선택 사항) */
+    }
+  }
+`;
 
 const NoData = styled.p`
   color: #999;

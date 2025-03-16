@@ -19,14 +19,41 @@ const ChartContainer = styled.div`
   /* background-color: #f8f9fa;  배경색 (선택 사항) */
 `;
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload; // payload에서 데이터 가져옴
+    return (
+      <div
+        className="custom-tooltip"
+        style={{
+          backgroundColor: "#1c2f43", // 툴팁 배경색 변경
+          padding: "10px",
+          border: "1px solid #1c2f43",
+          borderRadius: "10px", // 둥근 모서리 (선택 사항)
+          color: "white", // 글자 색상 (선택 사항)
+        }}
+      >
+        <p>{`연도: ${label}`}</p>
+        <p>{`자산: ${data.자산 ? data.자산.toLocaleString() : "N/A"} 억원`}</p>
+        <p>{`자본: ${data.자본 ? data.자본.toLocaleString() : "N/A"} 억원`}</p>
+        <p>{`부채: ${data.부채 ? data.부채.toLocaleString() : "N/A"} 억원`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 function YearResultChart({ data }) {
   // 데이터 가공: rechart에 맞는 형태로 변환
-  const chartData = data.map((item) => ({
-    year: item.reportYear,
-    자산: item.data["자산총계"] || 0,
-    자본: item.data["자본총계"] || 0,
-    부채: item.data["부채총계"] || 0,
-  }));
+  const chartData = data
+    .map((item) => ({
+      year: item.reportYear,
+      자산: item.data["자산총계"] || 0,
+      자본: item.data["자본총계"] || 0,
+      부채: item.data["부채총계"] || 0,
+    }))
+    .sort((a, b) => a.year - b.year);
 
   return (
     <ChartContainer>
@@ -41,9 +68,9 @@ function YearResultChart({ data }) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="year" />
+          <XAxis dataKey="year" tick={{ fill: "white" }} />
           {/* <YAxis unit="억원" /> */}
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
           <Legend />
           <Bar dataKey="자산" fill="#82ca9d" name="자산" />
           <Bar dataKey="자본" fill="#8884d8" name="자본" />

@@ -47,7 +47,7 @@ const CompanyPriceChange = styled.span`
   font-size: 20px;
   /* margin-left: 110px; */
 
-  color: ${(props) => (props.change.startsWith("-") ? "blue" : "red")};
+  color: ${(props) => (props.change.startsWith("-") ? "#43aaff" : "#ff6363")};
 `;
 const PriceWrap = styled.div`
   display: flex;
