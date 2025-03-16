@@ -21,7 +21,6 @@ const SearchRankText = styled.div`
   font-weight: 600;
   margin-bottom: 5px;
   margin-right: 10px;
-  color: #646464;
 `;
 
 const SearchBar = styled.div`
@@ -32,7 +31,7 @@ const SearchBar = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px 15px;
-  background-color: #f8fbff;
+  background-color: #1c2f43a5;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   position: relative;
@@ -51,13 +50,13 @@ const StockInfo = styled.div`
 const StockRank = styled.p`
   font-size: 18px;
   font-weight: 700;
-  color: #374151;
+  /* color: #374151; */
 `;
 
 const StockName = styled.p`
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  /* color: #1f2937; */
   flex: 1 0 80px; /* 길이에 맞춰서 flex 크기 조절 */
   white-space: nowrap;
   overflow: hidden;
@@ -67,7 +66,7 @@ const StockName = styled.p`
 const StockPrice = styled.p`
   font-size: 13px;
   font-weight: 700;
-  color: #111827;
+  /* color: #111827; */
   flex: 0 1 80px; /* 가격의 고정된 크기 */
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -88,9 +87,9 @@ const FullRanking = styled.div`
   position: absolute;
   top: 175px;
   left: 0;
-  background-color: #ffffff;
+  background-color: #1c2f43;
   border-radius: 10px;
-  border: 1px solid #f8fbff;
+  border: 1px solid #1c2f43a5;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: 40px;
   padding: 0 18px;
@@ -107,7 +106,7 @@ const RankingItem = styled.div`
   align-items: center;
   gap: 20px;
   padding: 5px 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #3e5671;
   cursor: pointer;
   &:hover {
     background-color: #f0f0f0;

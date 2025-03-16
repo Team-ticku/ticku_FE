@@ -5,17 +5,30 @@ const Img = styled.img`
   width: 35px;
 `;
 const Table = styled.table`
-  border-spacing: 20px;
+  border-spacing: 20px 10px;
 `;
 const Td = styled.td`
   vertical-align: middle;
 `;
 const ImgTd = styled(Td)`
   width: 35px;
+  height: 35px;
+`;
+const Tr = styled.tr`
+  display: flex;
+  box-sizing: border-box;
+  width: 350px;
+  height: 65px;
+  padding: 20px;
+  gap: 10px;
+  align-items: center;
+  background-color: #1c2f43a5;
+  border-radius: 20px;
 `;
 const TextTd = styled(Td)`
-  font-size: 25px;
-  color: #2a343d;
+  font-size: 21px;
+  color: #ffffffeb;
+  line-height: 50px;
 `;
 
 function MyPageTable(props) {
@@ -29,12 +42,12 @@ function MyPageTable(props) {
             navigate(props.link);
           }}
         >
-          <tr>
+          <Tr>
             <ImgTd>
               <Img src={props.src}></Img>
             </ImgTd>
             <TextTd>{props.text}</TextTd>
-          </tr>
+          </Tr>
         </tbody>
       </Table>
     </>

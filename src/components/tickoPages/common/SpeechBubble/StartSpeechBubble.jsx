@@ -17,8 +17,7 @@ const StartWrap = styled.div`
   display: flex;
   gap: 5px;
 `;
-const Character = styled.div`
-  background-color: #c0c0c0;
+const Character = styled.img`
   border-radius: 50%;
   width: 45px;
   height: 45px;
@@ -43,7 +42,7 @@ const StartName = styled.div`
 export default function StartSpeechBubble({ context }) {
   return (
     <StartWrap>
-      <Character></Character>
+      <Character src="/images/ticko_profile.png"></Character>
       <StartSpeech>
         <StartName>티코</StartName>
         <SpeechBubble context={context}></SpeechBubble>

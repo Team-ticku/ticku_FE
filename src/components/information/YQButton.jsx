@@ -16,12 +16,13 @@ const TabButton = styled.button`
   padding: 10px;
   border: none;
   border-radius: 40px;
-  background-color: ${(props) => (props.active ? "#D9D9D9" : "#F0F0F0")};
+  background-color: ${(props) => (props.active ? "#00ffc3c9" : "#1c2f43a5")};
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
   outline: none;
   margin: 10px;
+  color: white;
   &:first-child {
   }
 `;

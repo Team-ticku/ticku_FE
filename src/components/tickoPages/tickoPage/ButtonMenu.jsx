@@ -5,10 +5,11 @@ const MenuWrap = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  border: 1px solid #b2c4df;
-  padding: 20px;
+  border: 2px solid #0d1b2a;
+  padding: 10px 15px 0 15px;
   gap: 20px;
   margin: 20px 30px 30px 30px;
+  background-color: #0d1b2a;
 `;
 
 const MenuContainer = styled.div`
@@ -16,13 +17,13 @@ const MenuContainer = styled.div`
   font-size: 18px;
   padding: 18px;
   border-radius: 20px;
-  border: 1px solid #b2c4df;
-  background-color: rgba(178, 196, 223, 0.2);
+  border: 1px solid #1c2f43a5;
+  background-color: #1c2f43a5;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: #fffffff4;
 `;
 
 export default function ButtonMenu() {

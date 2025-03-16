@@ -13,12 +13,12 @@ const Title = styled.h2`
   font-size: 30px;
   line-height: 0.9px;
   text-align: center;
-  margin-left: -80px;
+  margin-left: -120px;
 
   &:nth-child(2)::before {
     content: "  ";
     display: inline-block;
-    width: 60px;
+    width: 110px;
   }
 `;
 

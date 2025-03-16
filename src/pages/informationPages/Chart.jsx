@@ -14,13 +14,15 @@ const Button = styled.button`
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: ${(props) => (props.active ? "#007bff" : "#fff")};
-  color: ${(props) => (props.active ? "#fff" : "#007bff")};
-  border: 1px solid #007bff;
+  background-color: ${(props) => (props.active ? "#00ffc3e0" : "#1c2f43a5")};
+  color: #ffffff;
+  font-weight: ${(props) => (props.active ? "bold" : "normal")};
+  border: 1px solid;
+  border-color: ${(props) => (props.active ? "#00ffc3e0" : "#1c2f43a5")};
   border-radius: 5px;
 
   &:hover {
-    background-color: ${(props) => (props.active ? "#0056b3" : "#f0f0f0")};
+    background-color: ${(props) => (props.active ? "#00ffc3ae" : "#1c2f4370")};
   }
 `;
 

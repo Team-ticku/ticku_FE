@@ -7,7 +7,7 @@ import MyPortfolioAccordion from "../../components/myPages/MyPortfolioAccordion"
 const PageContainer = styled.div`
   display: flex;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   margin-left: 10px;
 `;
 const PageTitle = styled.p`

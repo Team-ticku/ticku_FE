@@ -37,7 +37,7 @@ const slideDown = keyframes`
 const Modal = styled.div`
   position: fixed;
   bottom: 0;
-  background-color: #ffffff;
+  background-color: #0d1b2a;
   width: 100%;
   height: 380px;
   border-radius: 50px 50px 0 0;
@@ -80,13 +80,16 @@ const PencilImg = styled.img`
 `;
 
 const NameInput = styled.input`
-  font-size: 35px;
+  font-size: 30px;
   text-align: center;
   border: none;
   outline: none;
-  border-bottom: 2px #b2c4df solid;
+  border-bottom: 2px #b2c4dfa2 solid;
   margin-top: 2px;
+  padding-bottom: 5px;
   width: 70%;
+  background-color: transparent;
+  color: white;
 `;
 
 const NameText = styled.p`
@@ -99,11 +102,13 @@ const SaveButton = styled.button`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
-  background-color: #b2c4df;
+  height: 70px;
+  background-color: #00ffc3da;
   color: #ffffff;
   font-size: 16px;
+  font-weight: bold;
   border: none;
+  padding-bottom: 10px;
 `;
 
 function MyPageModal({ isOpen, onClose, userName, userImage }) {

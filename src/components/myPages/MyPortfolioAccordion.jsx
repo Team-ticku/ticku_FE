@@ -5,7 +5,7 @@ import { Pie } from "react-chartjs-2";
 const AccordionItemWrapper = styled.div`
   width: 85%;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-bottom: 10px;
   transform: ${(props) =>
     props.$isPinned ? "translateY(0px)" : "translateY(1px)"};
   transition: transform 0.3s ease;
@@ -14,6 +14,8 @@ const AccordionItemWrapper = styled.div`
 const AccordionHeader = styled.div`
   display: flex;
   align-items: center;
+  padding: 5px 20px;
+  margin-bottom: 10px;
 `;
 
 const Pin = styled.img`
@@ -56,7 +58,7 @@ const LegendWrapper = styled.div`
   flex-direction: column;
   position: absolute;
   right: 10px;
-  top: 40px;
+  top: 60px;
 `;
 
 const LegendItem = styled.div`

@@ -28,7 +28,7 @@ const IdInput = styled.input`
   margin-top: 20px;
   border: none;
   background-color: transparent;
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #b2c4df50;
   font-size: 16px;
   outline: none;
   &::placeholder {
@@ -52,7 +52,7 @@ const PassWordInput = styled.input`
   margin-top: 15px;
   border: none;
   background-color: transparent;
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #b2c4df50;
   font-size: 16px;
   outline: none;
   &::placeholder {
@@ -66,7 +66,7 @@ const NameInput = styled.input`
   margin-top: 15px;
   border: none;
   background-color: transparent;
-  border-bottom: solid 2px #b2c4df;
+  border-bottom: solid 2px #b2c4df50;
   font-size: 16px;
   outline: none;
   &::placeholder {
@@ -77,13 +77,14 @@ const NameInput = styled.input`
 const JoinButton = styled.button`
   position: fixed;
   width: 100%;
-  height: 65px;
+  height: 75px;
   border: none;
-  background-color: #b2c4df;
+  background-color: #00ffc3c8;
   color: #ffffff;
   margin-top: 40px;
-  font-size: 16px;
+  font-size: 18px;
   bottom: 0;
+  padding-bottom: 10px;
 `;
 
 function JoinPage() {

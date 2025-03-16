@@ -12,10 +12,10 @@ const TabP = styled.p`
   padding-left: 20px;
   border: none;
   background-color: transparent;
-  color: black;
   font-weight: bold;
   font-size: 20px;
   margin-top: 8px;
+  margin-bottom: 0;
 `;
 
 function VolumeInfo(props) {

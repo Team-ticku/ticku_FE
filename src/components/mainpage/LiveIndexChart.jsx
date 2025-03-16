@@ -50,8 +50,8 @@ const ButtonGroup = styled.div`
 const Button = styled.button`
   background: ${({ active }) =>
     active
-      ? "linear-gradient(145deg, #b2c4df, #9bb8d7)" // 활성화된 버튼
-      : "linear-gradient(145deg, #b2c4df, #9bb8d7)"};
+      ? "linear-gradient(145deg, #00ffc3bb, #00ebff)" // 활성화된 버튼
+      : "linear-gradient(145deg, #00ffc3bb, #00ebff)"};
   color: #fff;
   padding: 12px 24px;
   font-size: 16px;
@@ -69,13 +69,13 @@ const Button = styled.button`
   opacity: ${({ active }) => (active ? 1 : 0.5)}; // 눌리지 않은 버튼의 투명도
 
   &:hover {
-    background: linear-gradient(145deg, #9bb8d7, #b2c4df);
+    background: linear-gradient(145deg, #00ffc3bb, #00ebff);
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
   }
 
   &:active {
-    background: #a4b3d3;
+    background: #00ebff;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
     transform: translateY(1px);
   }
@@ -104,7 +104,7 @@ const LiveIndexChartBox = styled.div`
   height: 200px;
   max-width: 800px;
   border-radius: 8px;
-  background-color: #f4f4f4;
+  background-color: #1c2f43a5;
   display: flex;
   flex-direction: column;
   align-items: center;

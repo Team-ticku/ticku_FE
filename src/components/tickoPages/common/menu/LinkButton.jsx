@@ -5,10 +5,10 @@ const StyledLink = styled(Link)`
   padding: ${(props) => props.padding || "0"};
   text-decoration: none;
   text-align: center;
-  color: black;
+  color: white;
   border-radius: 20px;
-  border: 1px solid #b2c4df;
-  background-color: rgba(178, 196, 223, 0.2);
+  border: 1px solid #5c7da15e;
+  background-color: #5c7da15e;
   font-size: 15px;
   /* 이미지 메뉴를 위한 속성 */
   display: flex;

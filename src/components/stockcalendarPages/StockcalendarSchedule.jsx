@@ -10,15 +10,14 @@ const ScheduleContainer = styled.div`
 `;
 const Initial = styled.div`
   font-weight: bold;
+  font-size: 19px;
 `;
 const ScheduleHeader = styled.div`
-  //padding: 15px;
   display: flex;
   justify-content: flex-start;
-  background-color: #ffffff;
-  color: black;
   font-family: sans-serif;
   font-weight: 600;
+  font-size: 19px;
 `;
 
 const ScheduleList = styled.ul`
@@ -28,15 +27,16 @@ const ScheduleList = styled.ul`
 const ScheduleItem = styled.div`
   width: 315px;
   height: 30px;
-  border: 2px solid #b2c4df;
-  border-radius: 5px;
+  background-color: #1c2f43a5;
+  border: 2px solid #1c2f43a5;
+  border-radius: 20px;
   margin-top: 10px;
   margin-right: 5px;
   font-size: 16px;
   font-weight: bolder;
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 10px 10px 10px 15px;
   cursor: pointer;
 `;
 

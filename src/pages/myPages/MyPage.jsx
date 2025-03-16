@@ -15,8 +15,8 @@ const Div = styled.div`
 `;
 
 const Hr = styled.hr`
-  height: 20px;
-  background-color: #f1f5f9;
+  height: 11px;
+  background-color: #1c2f43a5;
   border: none;
   margin-bottom: 20px;
 `;
@@ -24,7 +24,7 @@ const Hr = styled.hr`
 const Button = styled.button`
   font-size: 16px;
   color: #ffffff;
-  background-color: #b2c4df;
+  background-color: #223243fe;
   border: none;
   border-radius: 10px;
   height: 45px;

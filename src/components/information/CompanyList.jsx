@@ -5,9 +5,11 @@ import { useState } from "react";
 const CompanyContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 330px;
-  padding: 10px 30px;
+  width: 310px;
+  padding: 3px 20px;
   justify-content: space-between;
+  background-color: #1c2f43a5;
+  border-radius: 20px;
 `;
 
 const CompanySubContainer = styled.div`
@@ -17,11 +19,11 @@ const CompanySubContainer = styled.div`
 
 const CompanyName = styled.p`
   font-size: 20px;
-  margin-left: 20px;
+  margin-left: 15px;
 `;
 
 const StarDiv = styled.div`
-  margin-right: 25px;
+  margin-right: 15px;
 `;
 
 function CompanyList({ company }) {

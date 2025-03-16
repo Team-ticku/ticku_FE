@@ -11,12 +11,12 @@ const CalendarContainer = styled.div`
 
 //화살표 Nav 간격 조정
 const CalendarHeader = styled.div`
-  background-color: #ffffff;
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: #0d1b2a;
 `;
 
 const MonthLabel = styled.span`
@@ -35,9 +35,9 @@ const NavButton = styled.button`
   font-size: 1.2em;
   cursor: pointer;
   img {
-    width: 25px;
-    height: 25px;
-    filter: grayscale(100%) invert(100%) brightness(0%);
+    width: 20px;
+    height: 20px;
+    /* filter: grayscale(100%) invert(100%) brightness(0%); */
   }
 `;
 
@@ -50,7 +50,7 @@ const Weekday = styled.span`
   flex: 1;
   text-align: center;
   padding: 5px;
-  color: #000000;
+  color: #ffffffec;
   font-size: 12px;
   font-weight: bolder;
 `;
@@ -69,26 +69,27 @@ const DayCell = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #1c2f43a5;
+  color: white;
   border: 1px solid transparent;
   transition: 0.2s;
   cursor: pointer;
   &.today {
-    background-color: #b2c4df;
+    border: 2px solid #00ffc3 !important;
+    background-color: #00ffc387 !important;
     color: #ffffff;
   }
   &.selected {
     color: #ffffff !important;
-    background-color: #4287f5 !important; //선택된 날짜와 today 색상과 동일 적용
+    border: 2px solid #00eaff !important;
+    background-color: #00eaff87 !important; //선택된 날짜와 today 색상과 동일 적용
   }
   &.other-month {
     color: #999;
   }
   &.has-schedule {
-    border: 2px solid #b2c4df;
-    background-color: rgba(178, 196, 223, 0.3);
-    color: #000000;
+    border: 2px solid #b2c4df57;
+    color: #ffffff;
   }
   &:hover {
     background-color: #b2c4df;
@@ -99,7 +100,7 @@ const MonthOption = styled.div`
   padding: 8px 12px;
   cursor: pointer;
   &:hover {
-    background-color: #f0f0f0;
+    background-color: #1e334b;
   }
 `;
 
@@ -125,8 +126,9 @@ const MonthDropdown = styled.div`
   top: 45px;
   left: 50%;
   transform: translateX(-50%); //가로 중앙 정렬
-  background: white;
-  border: 1px solid #ddd;
+  background: #15273a;
+  border: 1px solid #15273a;
+  border-radius: 10px;
   z-index: 10;
   width: 80px;
   max-height: 110px; //최대 높이 제한

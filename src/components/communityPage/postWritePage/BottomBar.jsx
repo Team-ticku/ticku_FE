@@ -6,12 +6,12 @@ const Div = styled.div`
   height: 50px;
   position: fixed;
   bottom: 66px;
-  background-color: #b2c4df;
+  background-color: #0d1b2a;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 5px 20px;
 `;
 
 const PictureBox = styled.div`

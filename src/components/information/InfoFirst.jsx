@@ -4,7 +4,8 @@ import styled from "styled-components";
 const ContentDiv = styled.div`
   width: 350px;
   height: 450px;
-  background-color: rgba(178, 196, 223, 0.22);
+  background-color: #1c2f43a5;
+  border-radius: 10px;
   margin: 20px;
   display: flex;
   align-items: center;

@@ -9,16 +9,17 @@ const MakeDiv = styled.div`
 
 const MakeBtn = styled.button`
   width: 100%;
-  background-color: #b2c4df;
+  background-color: #00e8b2;
   height: 60px;
   color: white;
+  font-weight: bold;
   border: 0;
   text-align: center;
   font-size: 20px;
   cursor: pointer;
   &:disabled {
     cursor: not-allowed;
-    background-color: #d3d3d3;
+    background-color: #1c2f43a5;
   }
 `;
 

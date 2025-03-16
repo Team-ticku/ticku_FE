@@ -7,7 +7,7 @@ const BodyWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 55px 20px 10px 10px;
+  padding: 60px 20px 10px 10px;
   visibility: hidden;
 `;
 
@@ -15,7 +15,7 @@ const menuList = [
   {
     link: "/ticko/account/account_1",
     title: "ISA",
-    padding: "9px 100px",
+    padding: "9px 90px",
   },
   {
     link: "/ticko/account/account_2",
@@ -25,7 +25,7 @@ const menuList = [
   {
     link: "/ticko/account/account_3",
     title: "IRP",
-    padding: "9px 100px",
+    padding: "9px 90px",
   },
 ];
 

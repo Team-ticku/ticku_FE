@@ -10,7 +10,7 @@ const BodyWrap = styled.div`
   width: 390px;
   flex-direction: column;
   gap: 5px;
-  padding: 55px 20px 10px 10px;
+  padding: 60px 20px 10px 10px;
   visibility: hidden;
 `;
 

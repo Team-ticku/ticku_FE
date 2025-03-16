@@ -15,6 +15,12 @@ const PageTitle = styled.p`
   margin: 0;
   padding: 0;
 `;
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+`;
 
 function FavoriteCompanies() {
   const [companies, setCompanies] = useState([]);
@@ -50,16 +56,18 @@ function FavoriteCompanies() {
         <PageTitle>관심 기업</PageTitle>
       </PageContainer>
 
-      {companies.map((company) => {
-        return (
-          <CompanyList
-            key={company._id}
-            company={{
-              ...company,
-            }}
-          />
-        );
-      })}
+      <ListContainer>
+        {companies.map((company) => {
+          return (
+            <CompanyList
+              key={company._id}
+              company={{
+                ...company,
+              }}
+            />
+          );
+        })}
+      </ListContainer>
     </>
   );
 }

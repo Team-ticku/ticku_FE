@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PlusModal from "./PlusModal";
 
 const BottomWrap = styled.div`
-  /* display: flex; */
+  display: ${(props) => props.display || "flex"};
   position: fixed;
   bottom: 0;
   left: 0;
@@ -23,12 +23,12 @@ const BottomWrap = styled.div`
     rgba(14, 63, 126, 0.04) 0px -24px 24px -12px;
   padding-top: 10px;
   text-align: center;
-  background-color: white;
+  background-color: #0d1b2a;
+  border: 1px solid #22303d;
   z-index: 2;
-  display: ${(props) => props.display || "flex"};
 `;
 const Div = styled.div`
-  background-color: white;
+  background-color: #0d1b2a;
   border: none;
   flex: 20%;
 `;
@@ -36,7 +36,7 @@ export const IconStyle = styled(FontAwesomeIcon)`
   color: #d2d2d2;
 `;
 export const ClickedIconStyle = styled(FontAwesomeIcon)`
-  color: #111111;
+  color: #00ffc4;
 `;
 
 export default function BottomNavBar({ display }) {
@@ -120,6 +120,7 @@ export default function BottomNavBar({ display }) {
       <Div>
         <IconStyle icon="grip" onClick={modalHandle} />
       </Div>
+
       <PlusModal isOpen={isOpen} modalClose={modalHandle} />
     </BottomWrap>
   );

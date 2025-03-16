@@ -13,9 +13,9 @@ const NewsCardWrapper = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
-  box-shadow: 0px 8px 20px RGB(112, 140, 176, 0.2);
   border: none;
   margin-top: 20px;
+  background-color: #1c2f43a5;
 `;
 
 // 뉴스 카드 왼쪽 섹션
@@ -25,14 +25,15 @@ const LeftSection = styled.div`
 
 const NewsTitle = styled.p`
   margin: 0;
-  font-size: 16px;
+  font-size: 17px;
   white-space: normal;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   width: 90%;
-  color: #2a343d;
+  color: white;
+  font-weight: bold;
 `;
 
 const SourceContainer = styled.div`
@@ -44,7 +45,7 @@ const SourceName = styled.p`
   margin: 0;
   margin-top: 10px;
   font-size: 12px;
-  color: #6e6e6e;
+  color: #fffffff0;
 `;
 
 // 카드 오른쪽 섹션
@@ -65,7 +66,7 @@ const A = styled.a`
 
 const P = styled.p`
   font-size: 12px;
-  color: #6e6e6e;
+  color: #ffffffbf;
 `;
 
 function NewsCard({

@@ -8,11 +8,11 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   width: 390px;
-  border-bottom: 10px solid #b2c4df22;
   cursor: pointer;
-  background: white;
-  :active {
-    background: lightgrey;
+  background: #1c2f43a5;
+  border-radius: 20px;
+  &:active {
+    background: #1c2f432f;
   }
 `;
 

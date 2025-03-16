@@ -11,6 +11,7 @@ const Div = styled.div`
   width: 390px;
   overflow-y: auto; /* 세로 방향 스크롤을 허용 */
   overflow-x: hidden;
+  gap: 15px;
 `;
 
 function PostList(props) {
