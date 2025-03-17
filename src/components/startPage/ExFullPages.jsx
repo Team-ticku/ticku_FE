@@ -104,7 +104,6 @@ const comList = [
         animationDelay="2s"
         width="165px"
         height="35px"
-        alignItems="end"
       ></Instruction>,
     ],
   },
