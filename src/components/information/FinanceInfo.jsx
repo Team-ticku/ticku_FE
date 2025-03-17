@@ -89,6 +89,21 @@ const NoData = styled.p`
 
 // 기업 정보 컴포넌트
 function CompanyInfoContent({ ceo, establishedDate, stockCode, homepage }) {
+  // 홈페이지 URL 보정 함수
+  const getCorrectedHomepage = (homepage) => {
+    if (!homepage) {
+      return null; // 홈페이지 정보가 없으면 null 반환
+    }
+    // "www."가 이미 포함되어 있거나 "http"로 시작하면 그대로 반환
+    if (homepage.startsWith("www.") || homepage.startsWith("http")) {
+      return homepage;
+    }
+    // "www."가 없으면 추가
+    return "www." + homepage;
+  };
+
+  const correctedHomepage = getCorrectedHomepage(homepage);
+
   return (
     <CompanyInfoContainer>
       <InfoItem>
@@ -106,9 +121,13 @@ function CompanyInfoContent({ ceo, establishedDate, stockCode, homepage }) {
       <InfoItem>
         <Label>홈페이지</Label>
         <Value>
-          {homepage ? (
-            <a href={homepage} target="_blank" rel="noopener noreferrer">
-              {homepage}
+          {correctedHomepage ? (
+            <a
+              href={`http://${correctedHomepage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {correctedHomepage}
             </a>
           ) : (
             <NoData>정보 없음</NoData>
