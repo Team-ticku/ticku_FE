@@ -2,9 +2,9 @@ import React from "react";
 
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import SearchBar from "../../components/common/SearchBar";
-import LiveSearchRank from "../../components/mainpage/LiveSearchRank";
-import LiveIndexChart from "../../components/mainpage/LiveIndexChart";
-import MainPortfolio from "../../components/mainpage/MainPortfolio";
+import LiveSearchRank from "../../components/mainPage/LiveSearchRank";
+import LiveIndexChart from "../../components/mainPage/LiveIndexChart";
+import MainPortfolio from "../../components/mainPage/MainPortfolio";
 
 import styled from "styled-components";
 const Wrap = styled.div`
