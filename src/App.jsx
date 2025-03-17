@@ -1,4 +1,4 @@
-import TotalRoutes from "./routes/totalRoutes";
+import TotalRoutes from "./routes/TotalRoutes";
 
 function App() {
   return <TotalRoutes />;
