@@ -88,7 +88,7 @@ const comList = [
       <Instruction
         key="Calen_1"
         top="30px"
-        left="10px"
+        left="12px"
         context="날짜를 선택해봐~"
         animationDelay="1s"
         width="360px"
@@ -98,7 +98,7 @@ const comList = [
       ></Instruction>,
       <Instruction
         key="Calen_2"
-        bottom="240px"
+        bottom="250px"
         left="15px"
         context="그 날짜가 배당락일인 기업 목록으로 바뀔 거야!"
         animationDelay="2s"
@@ -124,7 +124,7 @@ const comList = [
       ></Instruction>,
       <Instruction
         key="Portfolio_2"
-        bottom="278px"
+        bottom="280px"
         left="33px"
         context="만든 포트폴리오를 저장하고 싶으면 꼭 저장하기를 눌러줘!"
         animationDelay="4s"
@@ -135,7 +135,7 @@ const comList = [
       ></Instruction>,
       <Instruction
         key="Portfolio_3"
-        bottom="194px"
+        bottom="198px"
         left="36px"
         context="만든 포트폴리오가 마음에 들지 않으면 삭제할 수 있어!"
         animationDelay="7s"
@@ -165,8 +165,8 @@ const comList = [
     instruction: (
       <Instruction
         key="Portfolio_1"
-        bottom="120px"
-        left="30px"
+        bottom="118px"
+        left="31px"
         context="주식 초보가 이해하기 쉽게 티코가 설명해줄게! 궁금한 게 생기면 날 보러와~"
         animationDelay="1s"
         width="320px"
