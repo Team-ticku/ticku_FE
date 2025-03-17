@@ -43,7 +43,7 @@ const AccordionContent = styled.div`
 `;
 
 const ChartContainer = styled.div`
-  width: 75%;
+  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
