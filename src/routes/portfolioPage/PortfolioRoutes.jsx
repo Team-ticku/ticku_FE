@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import PortMakeModal from "../../components/portfoliomakepage/PortMakeModal";
+import PortMakeModal from "../../components/portfolioMakePage/PortMakeModal";
 
 function PortfolioPageRoutes() {
   return (
