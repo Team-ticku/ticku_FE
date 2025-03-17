@@ -1,14 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 
-import PostListPage from "../pages/communityPages/PostListPage";
-import InformationPage from "../pages/informationPages/InformationPage";
+import StartPage from "../pages/startPage/StartPage";
 import MainPage from "../pages/mainPage/MainPage";
+import PortfolioMainPage from "../pages/portfolioPages/PortfolioMainPage";
+import InformationPage from "../pages/informationPages/InformationPage";
+import PostListPage from "../pages/communityPages/PostListPage";
 import MyPage from "../pages/myPage/MyPage";
 import StockCalenPage from "../pages/stockCalendarPages/StockCalenPage";
-import PortfolioMainPage from "../pages/portfolioPages/PortfolioMainPage";
 import TickoPage from "../pages/tickoPages/TickoPage";
-
-import StartPage from "../pages/startPage/StartPage";
 
 export default function BottomNavBarRoutes() {
   return (
