@@ -27,6 +27,7 @@ export default function Explain() {
       })
       .then((data) => {
         if (data) {
+          // 백엔드로부터 받아온 데이터 description에 저장
           setDescription(data);
         } else {
           console.error("Description not found");
@@ -37,13 +38,14 @@ export default function Explain() {
       });
   }, [title]);
 
-  // context 내용 \n 기준으로 자르기
+  // description의 context 내용 \n 기준으로 자르기
   const contextArr = useRef([]);
   useMemo(() => {
     if (description) {
       contextArr.current = description.context.split("\n");
     }
   }, [description]);
+
   // animation-delay 계산
   let sec = 0;
   const secCal = () => {
