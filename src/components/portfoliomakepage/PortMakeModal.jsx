@@ -97,24 +97,14 @@ const TotalLabel = styled.p`
   border-bottom: solid 2px #b2c4df50;
 `;
 
-const TotalInput = styled.p`
-  border: none;
-  font-size: 30px;
-  text-align: center;
-  padding-bottom: 5px;
-  width: 80px;
-`;
-
 const PercentInput = styled.input`
   width: 13%;
   padding: 0 10px;
-  /* margin-right: 80px; */
   border: none;
   border-bottom: solid 2px #b2c4df50;
   background-color: transparent;
   color: #ffffff;
   font-size: 20px;
-  /* margin-bottom: 20px; */
   cursor: ${(props) => (props.readOnly ? "not-allowed" : "text")};
   margin-left: 30px;
 `;
@@ -173,12 +163,6 @@ const AddButtonImage = styled.img`
   }
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
 const DelButtonImage = styled.img`
   width: 40px;
   height: 40px;
@@ -189,16 +173,14 @@ const DelButtonImage = styled.img`
   }
 `;
 
-function PortMakeModal({ isOpen, onClose }) {
-  //if (!isOpen) return null;
-
+function PortMakeModal() {
   const [name, setName] = useState("");
   const [totalPercent, setTotalPercent] = useState("0");
   const [inputFields, setInputFields] = useState([
     { ticker: "", percent: "" }, // 초기 입력 필드 두개
     { ticker: "", percent: "" },
   ]);
-  const [isMaxPercent, setIsMaxPercent] = useState(false);
+  const [isMaxPercent] = useState(false);
 
   const navigate = useNavigate();
 
@@ -225,15 +207,6 @@ function PortMakeModal({ isOpen, onClose }) {
     } else {
       setInputFields([{ ticker: "", percent: "" }]);
     }
-  };
-  //Total 텍스트 고정
-  const TotalRow = ({ totalPercent }) => {
-    return (
-      <TotalContainer>
-        <TotalLabel>Total</TotalLabel>
-        <TotalInput>{totalPercent}%</TotalInput>
-      </TotalContainer>
-    );
   };
 
   //총 퍼센트 계산을 위한 useEffect

@@ -1,24 +1,19 @@
 // InformationPage.jsx
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import Navigation from "../../components/information/Navigation";
 import InfoFirst from "../../components/information/InfoFirst";
-import {
-  Routes,
-  Route,
-  useLocation,
-  useNavigate,
-  Navigate,
-} from "react-router-dom";
 import TopScrollBtn from "../../components/common/TopScrollBtn";
-import Chart from "./Chart";
-import Finance from "./Finance";
-import VolumePage from "./Volume";
-import DividendPage from "./DividendPage";
-import Result from "./Result";
+import Chart from "../../components/information/Chart";
+import Finance from "../../components/information/Finance";
+import VolumePage from "../../components/information/Volume";
+import Result from "../../components/information/Result";
+import Search from "../../components/information/Search";
 import NewsPage from "./NewsPage";
-import Search from "./Search"; // Search 컴포넌트
+import DividendPage from "./DividendPage";
 
 const Wrap = styled.div`
   width: 390px;
@@ -38,9 +33,7 @@ const SearchContainer = styled.div`
 `;
 
 function Information({ display, hideSearch }) {
-  const contentContainerRef = useRef(null);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const [financeData, setFinanceData] = useState(null);
   const [yearResultData, setYearResultData] = useState(null);

@@ -1,5 +1,5 @@
-import Header from "../../../components/tickoPages/common/header/Header";
-import WordBody from "../../../components/tickoPages/basicWordPage/WordBody";
+import Header from "../../../components/tickoPage/common/header/Header";
+import WordBody from "../../../components/tickoPage/basicWordPage/WordBody";
 
 export default function BasicWordPage() {
   return (

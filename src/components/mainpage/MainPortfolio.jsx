@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Chart from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 
 const Div = styled.div`

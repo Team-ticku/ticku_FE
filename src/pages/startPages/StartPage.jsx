@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import ExFullPages from "./ExFullPages";
+import ExFullPages from "../../components/startPage/ExFullPages";
 
 const Wrap = styled.div`
   display: flex;

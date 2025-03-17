@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import TopBar from "../../components/communityPage/postWritePage/TopBar";
@@ -14,37 +14,15 @@ const Wrap = styled.div`
   width: 390px;
 `;
 
-function PostEditPage({ display }) {
-  const { postId } = useParams(); // URL에서 postId 가져오기
+function PostWritePage({ display }) {
   const [title, setTitle] = useState(""); // 제목 상태
-  const [content, setContent] = useState("df"); // 내용 상태
+  const [content, setContent] = useState(""); // 내용 상태
   const [tag, setTag] = useState(""); // 태그 상태
   const [anonymous, setAnonymous] = useState(true); // 익명 여부 상태
   const [image, setImage] = useState(null); // 이미지 상태
   const navigate = useNavigate();
 
-  // 특정 게시글 가져오기 (페이지 렌더링 시 한 번만 호출)
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/community/${postId}`
-        );
-        const post = response.data;
-        setImage(post.image);
-        setTitle(post.title);
-        setContent(post.content);
-        setTag(post.tag);
-        setAnonymous(post.anonymous);
-      } catch (error) {
-        console.error("게시글을 가져오는 데 실패했습니다:", error);
-      }
-    };
-
-    fetchPost();
-  }, []); // postId가 변경되면 다시 호출되도록 함
-
-  console.log(image);
+  const userId = localStorage.getItem("userId");
   // 태그 선택 시 호출되는 함수
   const handleTagChange = (newTag) => {
     setTag(newTag);
@@ -60,9 +38,8 @@ function PostEditPage({ display }) {
     setAnonymous((prevState) => !prevState);
   };
 
-  const userId = localStorage.getItem("userId");
   const handleSubmit = async () => {
-    console.log("게시글 수정 중...");
+    console.log("게시글 작성 중...");
     try {
       // 폼 데이터 준비
       const formData = new FormData();
@@ -77,8 +54,8 @@ function PostEditPage({ display }) {
       }
 
       // 요청 보내기
-      const response = await axios.put(
-        `http://localhost:5000/community/${postId}`,
+      const response = await axios.post(
+        "http://localhost:5000/community",
         formData,
         {
           headers: {
@@ -89,12 +66,12 @@ function PostEditPage({ display }) {
 
       // 응답이 있을 때 성공 처리
       if (response.data) {
-        console.log("게시글 수정 성공");
+        console.log("게시글 작성 성공");
         navigate("/communityposts"); // 성공 시, 게시글 목록 페이지로 이동
       }
     } catch (error) {
       console.error(
-        "게시글 수정 실패:",
+        "게시글 작성 실패:",
         error.response ? error.response.data : error.message
       );
     }
@@ -104,21 +81,19 @@ function PostEditPage({ display }) {
     <Wrap>
       <BottomNavBar display={display} />
       <TopBar handleSubmit={handleSubmit} />
-      <SelectTag onTagSelect={handleTagChange} value={tag} />
+      <SelectTag onTagSelect={handleTagChange} />
       <TitleInput value={title} onChange={(e) => setTitle(e.target.value)} />
       <ContentInput
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-
       <BottomBar
-        handleImageChange={handleImageChange}
-        value={image}
-        handleAnonymousChange={handleAnonymousChange}
+        handleImageChange={handleImageChange} // 이미지 선택 처리 함수 전달
+        handleAnonymousChange={handleAnonymousChange} // 익명 상태 변경 함수 전달
         anonymous={anonymous}
       />
     </Wrap>
   );
 }
 
-export default PostEditPage;
+export default PostWritePage;

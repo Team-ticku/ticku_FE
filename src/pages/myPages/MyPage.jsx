@@ -1,10 +1,10 @@
-import MyPageTable from "../../components/myPages/MyPageTable";
-import UserProfile from "../../components/common/UserProfile";
-import MyPageModal from "../../components/myPages/MyPageModal";
-import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
-
 import styled from "styled-components";
 import { useState } from "react";
+
+import MyPageTable from "../../components/myPage/MyPageTable";
+import UserProfile from "../../components/common/UserProfile";
+import MyPageModal from "../../components/myPage/MyPageModal";
+import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 
 const Div = styled.div`
   display: flex;
