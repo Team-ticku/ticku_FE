@@ -1,8 +1,8 @@
 import styled, { keyframes } from "styled-components";
 
 import WelcomeEx from "./WelcomeEx";
-import MainPage from "../../pages/mainPages/MainPage";
-import Information from "../../pages/InformationPages/InformationPage";
+import MainPage from "../../pages/mainPage/MainPage";
+import Information from "../../pages/informationPages/InformationPage";
 import StockCalenPage from "../../pages/stockCalendarPages/StockCalenPage";
 import PortfolioMainPage from "../../pages/portfolioPages/PortfolioMainPage";
 import TickoPage from "../../pages/tickoPages/TickoPage";

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import PostListItem from "./postListItem";
+import PostListItem from "./PostListItem";
 
 const Div = styled.div`
   display: flex;
