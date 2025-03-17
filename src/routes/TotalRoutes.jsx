@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 
 import BottomNavBarRoutes from "./BottomNavBarRoutes"; // 하단 내브바
-import TickoMainRoutes from "./tickoPage/tickoMainRoutes"; // 티코 페이지
+import TickoMainRoutes from "./tickoPage/TickoMainRoutes"; // 티코 페이지
 import PortfolioPageRoutes from "./portfolioPage/PortfolioRoutes"; // 포트폴리오 페이지
 import MyPageRoutes from "./myPage/MyPageRoutes"; // 마이 페이지
 import LoginRoutes from "./loginPage/LoginRoutes"; // 로그인 페이지
