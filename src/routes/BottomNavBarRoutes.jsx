@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import PostListPage from "../pages/communityPages/PostListPage";
 import InformationPage from "../pages/informationPages/InformationPage";
-import MainPage from "../pages/mainpage/MainPage";
+import MainPage from "../pages/MainPages/MainPage";
 import MyPage from "../pages/myPages/MyPage";
 import StockCalenPage from "../pages/stockCalendarPages/StockCalenPage";
 import PortfolioMainPage from "../pages/portfolioPages/PortfolioMainPage";

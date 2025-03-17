@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
 import WelcomeEx from "./WelcomeEx";
-import MainPage from "../../pages/mainpage/MainPage";
+import MainPage from "../../pages/mainPages/MainPage";
 import Information from "../../pages/InformationPages/InformationPage";
 import StockCalenPage from "../../pages/stockCalendarPages/StockCalenPage";
 import PortfolioMainPage from "../../pages/portfolioPages/PortfolioMainPage";
