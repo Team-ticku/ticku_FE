@@ -1,9 +1,8 @@
 // StockCalenPages.jsx
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
 import StockCalendar from "../../components/stockCalendarPage/StockCalendar";
-import StockCalendarSchedule from "../../components/stockCalendarPage/StockCalendarSchedule";
+import StockCalendarSchedule from "../../components/stockCalendarPage/StockcalendarSchedule";
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 
 const Wrap = styled.div`
