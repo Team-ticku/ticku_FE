@@ -8,7 +8,7 @@ const Wrap = styled.div`
   display: flex;
   overflow: hidden;
 `;
-
+// skip 버튼
 const Skip = styled.div`
   position: fixed;
   top: 15px;
@@ -16,22 +16,20 @@ const Skip = styled.div`
   color: #ffffffdc;
   font-size: 15px;
   text-decoration: underline #ffffffdc;
-  text-underline-position: under;
+  text-underline-position: under; /* text와 밑줄 사이 간격을 조금 띄워줌 */
 `;
-
 // 다음, 이전 버튼
 const Button = styled.div`
   visibility: ${(props) => props.visibility || "visible"};
   position: fixed;
   bottom: 70px;
-  right: ${(props) => props.right || "auto"};
-  left: ${(props) => props.left || "auto"};
+  right: ${(props) => props.right || "auto"}; /* 다음 버튼 위치 지정 */
+  left: ${(props) => props.left || "auto"}; /* 이전 버튼 위치 지정 */
   color: #ffffffdc;
   font-size: 18px;
   text-decoration: underline #ffffffdc;
   text-underline-position: under;
 `;
-
 // 슬라이드바
 const BottomSlide = styled.ul`
   display: flex;
@@ -39,8 +37,8 @@ const BottomSlide = styled.ul`
   padding: 0;
   gap: 10px;
   bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 50%; /* 가운데 배치 */
+  transform: translateX(-50%); /* 가운데 배치 */
 `;
 const Circle = styled.div`
   border: 5px solid;
@@ -56,7 +54,7 @@ export default function StartPage() {
   const firstPage = 0;
   const lastPage = 6;
 
-  // inswrap 재렌더링 위함
+  // Inswrap 재렌더링 위함
   const [insKey, setInsKey] = useState(0);
   // 이전, 다음 클릭 시 페이지 이동 함수
   const movePage = (value) => {

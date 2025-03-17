@@ -8,7 +8,6 @@ const Wrap = styled.div`
   padding-top: 140px;
   box-sizing: border-box;
 `;
-
 const Logo = styled.img`
   width: 230px;
   height: 230px;

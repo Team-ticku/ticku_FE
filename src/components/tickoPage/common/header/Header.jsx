@@ -9,7 +9,6 @@ const HeaderContainer = styled.div`
   height: 50px;
   position: fixed;
   background-color: #0d1b2a;
-  align-items: center;
   z-index: 1;
   padding: 5px;
 `;

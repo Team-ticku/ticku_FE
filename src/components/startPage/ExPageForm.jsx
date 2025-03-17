@@ -17,7 +17,6 @@ const Filter = styled.div`
   opacity: 0.3;
   z-index: 6;
 `;
-
 const InsWrap = styled.div`
   visibility: hidden;
   z-index: 7;
@@ -35,10 +34,7 @@ export default function ExPageForm({
       {page}
       <Filter></Filter>
       {/* 필터 윗부분 */}
-      <InsWrap key={insKey}>
-        {/* <Instruction top="210px" left="30px"></Instruction> */}
-        {instruction}
-      </InsWrap>
+      <InsWrap key={insKey}>{instruction}</InsWrap>
     </ShowArea>
   );
 }

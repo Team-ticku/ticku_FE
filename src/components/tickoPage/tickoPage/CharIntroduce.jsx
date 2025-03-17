@@ -6,12 +6,12 @@ const CharIntroduceWrap = styled.div`
   align-items: center;
   gap: 10px;
 `;
-
+// 티코 사진
 const Character = styled.img`
   width: 210px;
   height: 210px;
 `;
-
+// 티코 소개 문구
 const Introduce = styled.div`
   /* wrap의 gap 속성 StyledP 적용 방지 */
 `;
