@@ -1,5 +1,5 @@
-import Header from "../../../components/tickoPages/common/header/Header";
-import AccountBody from "../../../components/tickoPages/basicAccountPage/AccountBody";
+import Header from "../../../components/tickoPage/common/header/Header";
+import AccountBody from "../../../components/tickoPage/basicAccountPage/AccountBody";
 
 export default function BasicAccountPage() {
   return (

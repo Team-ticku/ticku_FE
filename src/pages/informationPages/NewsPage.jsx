@@ -1,14 +1,13 @@
 // NewsPage.jsx
 import React from "react";
-import NewsCard from "../../components/common/NewsCard"; // NewsCard import
-import VolumeInfo from "../../components/information/VolumeInfo";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+
+import NewsCard from "../../components/common/NewsCard";
+import VolumeInfo from "../../components/information/VolumeInfo";
 
 const NewsContainer = styled.div``;
 
 function NewsPage({ newsData }) {
-  const location = useLocation();
   const safeNewsData = newsData || [];
 
   return (

@@ -1,5 +1,5 @@
-import Header from "../../../components/tickoPages/common/header/Header";
-import ChartBody from "../../../components/tickoPages/basicChartPage/ChartBody";
+import Header from "../../../components/tickoPage/common/header/Header";
+import ChartBody from "../../../components/tickoPage/basicChartPage/ChartBody";
 
 export default function BasicChartPage() {
   return (

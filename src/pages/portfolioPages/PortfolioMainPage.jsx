@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import PortTitle from "../../components/portfoliopage/PortTitle";
-import PortBox from "../../components/portfoliopage/PortBox";
-import PortButton from "../../components/portfoliopage/PortButtons";
-import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import styled from "styled-components";
+
+import PortTitle from "../../components/portfolioPage/PortTitle";
+import PortBox from "../../components/portfolioPage/PortBox";
+import PortButton from "../../components/portfolioPage/PortButtons";
+import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 
 const Container = styled.div`
   display: flex;

@@ -3,8 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import BasicWordPage from "../../pages/tickoPages/tickoMenuPages/BasicWordPage";
 import BasicChartPage from "../../pages/tickoPages/tickoMenuPages/BasicChartPage";
 import BasicAccountPage from "../../pages/tickoPages/tickoMenuPages/BasicAccountPage";
-
-import Explain from "../../pages/tickoPages/tickoMenuPages/Explain";
+import Explain from "../../components/tickoPage/tickoPage/Explain";
 
 export default function TickoMainRoutes() {
   return (

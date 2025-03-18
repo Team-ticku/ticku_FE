@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+
 import TopBar from "../../components/communityPage/postWritePage/TopBar";
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 import SelectTag from "../../components/communityPage/postWritePage/SelectTag";

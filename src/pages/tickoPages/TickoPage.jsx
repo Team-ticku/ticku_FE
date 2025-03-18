@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ButtonMenu from "../../components/tickoPages/tickoPage/ButtonMenu";
-import CharIntroduce from "../../components/tickoPages/tickoPage/CharIntroduce";
+import ButtonMenu from "../../components/tickoPage/tickoPage/ButtonMenu";
+import CharIntroduce from "../../components/tickoPage/tickoPage/CharIntroduce";
 import BottomNavBar from "../../components/common/bottomNavBars/BottomNavBar";
 
 const Wrap = styled.div`

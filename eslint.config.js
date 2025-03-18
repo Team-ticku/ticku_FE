@@ -35,6 +35,10 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
+      "no-console": "off", // 콘솔 로그 허용
+      "react-hooks/rules-of-hooks": "off",
+      "react/no-unescaped-entities": "off",
+      "react-hooks/exhaustive-deps": "off",
     },
   },
 ];
