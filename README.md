@@ -14,18 +14,6 @@ npm start
 - 일상, 종목 추천, 포트폴리오 공유 등 친화적인 커뮤니티 기능을 사용할 수 있습니다.
 
 
-## 팀원 구성
-
-| 조장                                                      | 조원                                                       | 조원                                                                                         | 조원                                                                                        | 조원                                                       |
-| --------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| ![](https://avatars.githubusercontent.com/u/61596931?v=4) | ![](https://avatars.githubusercontent.com/u/196294809?v=4) | ![View yeongchul's full-sized avatar](https://avatars.githubusercontent.com/u/109527366?v=4) | ![View sonnnnhe's full-sized avatar](https://avatars.githubusercontent.com/u/147504410?v=4) | ![](https://avatars.githubusercontent.com/u/124152742?v=4) |
-| 전장우                                                    | 박소현                                                     | 김민정                                                                                       | 손하은                                                                                      | 진은비                                                     |
-
----
-
-## 개발 환경
-
-Frontend : Html , React, Styledcomponents
 
 ## 팀원 구성
 
@@ -39,10 +27,14 @@ Frontend : Html , React, Styledcomponents
 
 ## 개발 환경
 
-Frontend : Html , React, Styledcomponents 
+Frontend : Html , React, Styledcomponents
+<br />
 Backend : Node.js , express , MongoDB
+<br />
 버전 및 이슈관리 : Github
+<br />
 협업 툴 : Notion
+<br />
 디자인 : Figma
 
 ## 주요 기능
