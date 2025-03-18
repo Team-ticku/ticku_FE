@@ -114,9 +114,9 @@ const SaveButton = styled.button`
 function MyPageModal({ isOpen, onClose, userName, userImage }) {
   if (!isOpen) return null;
 
-  const [isClosing, setIsClosing] = useState(false); // 모달이 닫힐 때 애니메이션을 위해 추가
+  const [isClosing, setIsClosing] = useState(false);
   const [updateName, setUpdateName] = useState(userName);
-  const [updateImg, setUpdateImg] = useState(userImage);
+  const [updateImg, setUpdateImg] = useState(userImage); // 사용자 이미지
   const [sampleImg, setSampleImg] = useState(""); // 편집모드일 때 보여주는 샘플 이미지
   const [isEditing, setIsEditing] = useState(false);
 
@@ -186,6 +186,7 @@ function MyPageModal({ isOpen, onClose, userName, userImage }) {
   // 로그아웃
   const handleLogOut = () => {
     localStorage.removeItem("userId");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
