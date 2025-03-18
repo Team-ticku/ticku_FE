@@ -16,6 +16,19 @@ npm start
 
 ## 팀원 구성
 
+| 조장                                                      | 조원                                                       | 조원                                                                                         | 조원                                                                                        | 조원                                                       |
+| --------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| ![](https://avatars.githubusercontent.com/u/61596931?v=4) | ![](https://avatars.githubusercontent.com/u/196294809?v=4) | ![View yeongchul's full-sized avatar](https://avatars.githubusercontent.com/u/109527366?v=4) | ![View sonnnnhe's full-sized avatar](https://avatars.githubusercontent.com/u/147504410?v=4) | ![](https://avatars.githubusercontent.com/u/124152742?v=4) |
+| 전장우                                                    | 박소현                                                     | 김민정                                                                                       | 손하은                                                                                      | 진은비                                                     |
+
+---
+
+## 개발 환경
+
+Frontend : Html , React, Styledcomponents
+
+## 팀원 구성
+
 | 조장  | 조원 | 조원 | 조원 | 조원|
 |--|--|--|--|--|
 | ![](https://avatars.githubusercontent.com/u/61596931?v=4) | ![](https://avatars.githubusercontent.com/u/196294809?v=4) | ![View yeongchul's full-sized avatar](https://avatars.githubusercontent.com/u/109527366?v=4) | ![View sonnnnhe's full-sized avatar](https://avatars.githubusercontent.com/u/147504410?v=4) | ![](https://avatars.githubusercontent.com/u/124152742?v=4)
@@ -45,12 +58,39 @@ Backend : Node.js , express , MongoDB
   - 아이디, 비밀번호 입력 시 로그인
 
 - 메인 페이지
+  - 아이디, 비밀번호 입력 시 로그인
+
+- 메인 페이지
   - 실시간 검색 상위 종목 1 ~ 10위 가 출력된다.
   - KOSPI, KOSDAQ 지수가 1주일 및 3개월 차트로 제공된다.
   - 차트 밑으로는 현재 지수가 제공된다.
   - 마이 페이지에서 지정한 대표 포트폴리오가 표시된다.
 
 - 정보 제공 페이지
+  - 검색 엔진에서 원하는 종목을 검색할 수 있다.
+  - 검색한 종목의 차트, 기업 재무, 거래량, 뉴스, 배당, 실적 을 확인할 수 있다.
+
+- 포트폴리오 페이지
+  - 플러스 버튼 클릭 시 제작 페이지로 이동한다.
+  - 포트폴리오 제목, 각 종목과 비율 입력 시 차트가 생성되고 save 버튼으로 localstorage에 저장하거나 reset 버튼으로 초기화할 수 있다.
+
+- 티코 페이지
+  - “티코”라는 캐릭터가 메인 화면에 나타나고 어려운 주식 개념들을 챗봇 형태로
+    학습할 수 있다.
+  - 학습 할 수 있는 개념들에는 주식 기초 지식, 차트 , 절세 계좌 등이 있다.
+
+
+- 커뮤니티 페이지
+  - 투자자들이 자유롭게 대화할 수 있는 소통 창구이다.
+  - 마이페이지 내 닉네임 등록 시 닉네임으로 보여지고 미등록 시 익명으로
+    표시된다. 익명/ 닉네임은 선택이 가능하다.
+  - 글 작성 시 종목 추천 , 일상, 질문, 포트폴리오, 정보/분석 중 하나의 관심을
+    선택할 수 있다.
+    제목과 게시글을 입력하고 사진 첨부를 할 수 있다.
+
+- 마이페이지
+  - 프로필 사진 업데이트와 닉네임 변경이 가능하다.
+  - 정보 제공 페이지에서 스크랩하였던 뉴스 목록과 지정된 관심 목록, 포트폴리오 페이지에서 제작하였던 포트폴리오를 확인할 수 있다.
   - 검색 엔진에서 원하는 종목을 검색할 수 있다.
   - 검색한 종목의 차트, 기업 재무, 거래량, 뉴스, 배당, 실적 을 확인할 수 있다.
 
@@ -62,6 +102,8 @@ Backend : Node.js , express , MongoDB
   - “티코”라는 캐릭터가 메인 화면에 나타나고 어려운 주식 개념들을 챗봇 형태로 
 학습할 수 있다. 
   - 학습 할 수 있는 개념들에는 주식 기초 지식, 차트 , 절세 계좌 등이 있다.
+
+
 - 커뮤니티 페이지
   - 투자자들이 자유롭게 대화할 수 있는 소통 창구이다.
   - 마이페이지 내 닉네임 등록 시 닉네임으로 보여지고 미등록 시 익명으로 
@@ -74,7 +116,6 @@ Backend : Node.js , express , MongoDB
   - 프로필 사진 업데이트와 닉네임 변경이 가능하다.
   - 정보 제공 페이지에서 스크랩하였던 뉴스 목록과 지정된 관심 목록, 포트폴리오 페이지에서 제작하였던 포트폴리오를 확인할 수 있다. 
 
-  
 
 ## 프로젝트 구조
 
@@ -82,44 +123,44 @@ Backend : Node.js , express , MongoDB
     ├── public/
     │   ├── images               # 이미지 파일
     │   └── favicon.ico          # 아이콘 파일
-	├── src/
-	│   ├── assets/              # 이미지, 폰트 등 정적 파일
-	│   ├── components/          # 재사용 가능한 UI 컴포넌트
-	 |   |   ├── common           # 공용 컴포넌트
-	 |   |   ├── communityPage    # 커뮤니티 페이지 컴포넌트
-	 |   |   ├── information      # 정보 제공 페이지 컴포넌트
-	 |   |   ├── mainpage         # 메인 페이지 컴포넌트
-	 |   |   ├── myPages          # 마이 페이지 컴포넌트
-	 |   |   ├── portfoliomakepage# 포트폴리오 제작 컴포넌트
-	 |   |   ├── portfoliopage    # 포트폴리오 컴포넌트
-	 |   |   ├── startPage        # 앱 시작 안내 페이지 컴포넌트
-	 |   |   ├── stockcalendarPage# 배당락일 캘린더 컴포넌트
-	 |   |   ├── tickoPages       # 용어 설명 페이지 컴포넌트
-	│ ├── pages/               # 각 페이지
-	 |   |   ├── communityPages   # 커뮤니티 페이지
-	 |   |   ├── informationPages # 정보 제공 페이지
-	 |   |   ├── joinPage         # 회원가입 페이지
-	 |   |   ├── loginPage        # 로그인 페이지
-	 |   |   ├── mainpage         # 메인 페이지
-	 |   |   ├── myPages          # 마이 페이지
-	 |   |   ├── portfolioPages   # 포트폴리오 페이지
-	 |   |   ├── startPages       # 앱 시작 안내 페이지
-	 |   |   ├── stockcalendarPages # 배당락일 캘린더 페이지
-	 |   |   ├── tickoPages       # 용어 설명 페이지
-	│ ├── routes/              # 페이지 라우팅
-	 |   |   ├── communityPages    # 커뮤니티 페이지 라우팅
-	 |   |   ├── joinPage          # 회원 가입 페이지 라우팅
-	 |   |   ├── loginPage         # 로그인 페이지 라우팅
-	 |   |   ├── myPages           # 마이 페이지 라우팅
-	 |   |   ├── portfolioPages    # 포트폴리오 페이지 라우팅
-	 |   |   ├── tickoPage          # 티코 페이지 라우팅
-	│ ├── App.jsx                  # 메인 애플리케이션 컴포넌트
-	│ ├── main.jsx                 # 엔트리 포인트 파일
-	│ ├── index.css                # 전역 css 파일
-	│   package-lock.json            # 정확한 종속성 버전이 기록된 파일로, 일관된 빌드를 보장
-	│   package.json                   # 프로젝트 종속성 및 스크립트 정의
-	├── .gitignore                    # Git 무시 파일 목록
-	└── README.md                # 프로젝트 개요 및 사용법
+    ├── src/
+    │   ├── assets/              # 이미지, 폰트 등 정적 파일
+    │   ├── components/          # 재사용 가능한 UI 컴포넌트
+     |   |   ├── common           # 공용 컴포넌트
+     |   |   ├── communityPage    # 커뮤니티 페이지 컴포넌트
+     |   |   ├── information      # 정보 제공 페이지 컴포넌트
+     |   |   ├── mainpage         # 메인 페이지 컴포넌트
+     |   |   ├── myPages          # 마이 페이지 컴포넌트
+     |   |   ├── portfoliomakepage# 포트폴리오 제작 컴포넌트
+     |   |   ├── portfoliopage    # 포트폴리오 컴포넌트
+     |   |   ├── startPage        # 앱 시작 안내 페이지 컴포넌트
+     |   |   ├── stockcalendarPage# 배당락일 캘린더 컴포넌트
+     |   |   ├── tickoPages       # 용어 설명 페이지 컴포넌트
+    │ ├── pages/               # 각 페이지
+     |   |   ├── communityPages   # 커뮤니티 페이지
+     |   |   ├── informationPages # 정보 제공 페이지
+     |   |   ├── joinPage         # 회원가입 페이지
+     |   |   ├── loginPage        # 로그인 페이지
+     |   |   ├── mainpage         # 메인 페이지
+     |   |   ├── myPages          # 마이 페이지
+     |   |   ├── portfolioPages   # 포트폴리오 페이지
+     |   |   ├── startPages       # 앱 시작 안내 페이지
+     |   |   ├── stockcalendarPages # 배당락일 캘린더 페이지
+     |   |   ├── tickoPages       # 용어 설명 페이지
+    │ ├── routes/              # 페이지 라우팅
+     |   |   ├── communityPages    # 커뮤니티 페이지 라우팅
+     |   |   ├── joinPage          # 회원 가입 페이지 라우팅
+     |   |   ├── loginPage         # 로그인 페이지 라우팅
+     |   |   ├── myPages           # 마이 페이지 라우팅
+     |   |   ├── portfolioPages    # 포트폴리오 페이지 라우팅
+     |   |   ├── tickoPage          # 티코 페이지 라우팅
+    │ ├── App.jsx                  # 메인 애플리케이션 컴포넌트
+    │ ├── main.jsx                 # 엔트리 포인트 파일
+    │ ├── index.css                # 전역 css 파일
+    │   package-lock.json            # 정확한 종속성 버전이 기록된 파일로, 일관된 빌드를 보장
+    │   package.json                   # 프로젝트 종속성 및 스크립트 정의
+    ├── .gitignore                    # Git 무시 파일 목록
+    └── README.md                # 프로젝트 개요 및 사용법
 
 ## Type 종류
 
@@ -133,3 +174,4 @@ chore: 기타 변경 (빌드, 설정 등)
 perf : 성능 개선
 ci   : CI/CD 관련 변경
 ui   : UI 작업
+```
